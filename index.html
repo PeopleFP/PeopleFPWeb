@@ -1,229 +1,367 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>People for People - Página Web</title>
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PeopleForPeople - Freiwilligenmanagement</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Importación de la fuente Poppins */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-    :root {
-      --header-height: 3rem;
-      --font-semi: 600;
-      --first-color: #4070F4;
-      --second-color: #0E2431;
-      --body-font: 'Poppins', sans-serif;
-      --big-font-size: 2rem;
-      --h2-font-size: 1.5rem;
-      --normal-font-size: 0.938rem;
-      --mb1: 0.5rem;
-      --mb2: 1rem;
-      --mb3: 1.5rem;
-      --mb4: 2rem;
-      --mb5: 2.5rem;
-      --mb6: 3rem;
-      --z-back: -10;
-      --z-normal: 1;
-      --z-tooltip: 10;
-      --z-fixed: 100;
-    }
-
-    /* Reset de estilos */
-    * {
+    /* Global & smooth scroll */
+    html, body {
+      scroll-behavior: smooth;
       margin: 0;
       padding: 0;
+    }
+    *, *::before, *::after {
       box-sizing: border-box;
     }
-
     body {
-      font-family: var(--body-font);
-      font-size: var(--normal-font-size);
-      line-height: 1.6;
-      color: var(--second-color);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      color: #0E2431;
       background-color: #fff;
-    }
-
-    /* Encabezado */
-    .l-header {
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: var(--z-fixed);
-      background-color: var(--second-color);
-      padding: 1rem 10%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.3s ease;
-    }
-
-    .nav-logo {
-      color: #fff;
-      font-size: var(--big-font-size);
-      font-weight: var(--font-semi);
-      text-decoration: none;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      width: 100%;
-    }
-
-    .nav-menu {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    .nav-list {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    .nav-link {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .nav-link.active,
-    .nav-link:hover {
-      color: var(--first-color);
-    }
-
-    /* Botón Toggle para móvil */
-    #nav-toggle {
-      display: none;
-    }
-    .nav-toggle-icon {
-      font-size: 1.5rem;
-      color: #fff;
-      cursor: pointer;
-      display: none;
-    }
-
-    /* Secciones generales */
-    /* Hacemos que sólo las secciones que no son "home" inicien ocultas */
-    .home {
-      opacity: 1;
-    }
-    section:not(.home) {
-      opacity: 0;
+      padding-top: 3rem; /* space for fixed header */
     }
     section {
-      padding: 100px 10%;
-      margin-top: var(--header-height);
-    }
-
-    .home {
-      min-height: 80vh;
+      padding: 4rem 1.5rem;
+      height: 100vh; /* each section takes full screen */
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      position: relative;
     }
-
-    .home-title {
-      font-size: var(--big-font-size);
-      margin-bottom: var(--mb2);
-      color: var(--second-color);
+    /* Header and Navigation */
+    .l-header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      background-color: #fff;
+      box-shadow: 0 1px 4px rgba(146,161,176,0.15);
     }
-
-    .home-subtitle {
-      font-size: var(--h2-font-size);
-      color: var(--second-color);
-      margin-bottom: var(--mb3);
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 3rem;
+      padding: 0 1.5rem;
     }
-
-    section h2 {
-      font-size: var(--big-font-size);
-      margin-bottom: var(--mb2);
-      text-align: center;
-      color: var(--second-color);
+    .nav-logo {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #0E2431;
     }
-
-    section p {
-      max-width: 800px;
-      margin: 0 auto var(--mb3);
-      text-align: center;
+    .nav-menu {
+      position: fixed;
+      top: 3rem;
+      right: -100%;
+      width: 80%;
+      height: 100%;
+      background-color: #0E2431;
+      padding: 2rem;
+      transition: 0.5s;
+      display: flex;
+      flex-direction: column;
     }
-
-    /* Pie de Página */
-    footer {
-      text-align: center;
-      padding: 2rem 10%;
-      background-color: var(--second-color);
+    .nav-menu.show {
+      right: 0;
+    }
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .nav-link {
       color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      position: relative;
     }
-
-    /* Animación Magnet: se activa al scrollear */
-    @keyframes magnet {
-      0%   { opacity: 0; transform: translateY(40px); }
-      60%  { opacity: 1; transform: translateY(-10px); }
-      80%  { transform: translateY(5px); }
-      100% { transform: translateY(0); }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.3rem;
+      width: 100%;
+      height: 0.18rem;
+      background-color: #4070F4;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+    /* Language Selector */
+    #lang-selector {
+      background-color: rgba(64,112,244,0.1);
+      border-radius: 25px;
+      padding: 0.2rem 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    #lang-selector:hover {
+      background-color: rgba(64,112,244,0.2);
+    }
+    .lang-btn {
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 0.3rem 0.5rem;
+      outline: none;
+      color: #0E2431;
+      font-weight: 600;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .lang-btn.active {
+      color: #4070F4;
+      transform: scale(1.1);
+    }
+    .nav-toggle {
+      font-size: 1.5rem;
+      color: #0E2431;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+    @media screen and (min-width: 769px) {
+      .nav-menu {
+        position: initial;
+        background: none;
+        height: auto;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+      }
+      .nav-list {
+        flex-direction: row;
+        gap: 2rem;
+      }
+      .nav-link {
+        color: #0E2431;
+      }
+      .nav-toggle {
+        display: none;
+      }
+    }
+    /* Hero Section */
+    #home {
+      text-align: center;
+    }
+    .hero-company {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #4070F4;
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s forwards 0.2s;
+    }
+    .hero-slogan {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeIn 1s forwards 0.4s;
+    }
+    .hero-tagline {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0;
+      border-right: 2px solid #0E2431;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    /* Down Arrow */
+    .down-arrow {
+      position: absolute;
+      bottom: 10px; /* Adjusted to be higher on the screen */
+      left: 50%;
+      transform: translateX(-50%);
+      text-decoration: none;
+      color: #4070F4;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 1s forwards 1s;
+    }
+    .down-arrow:hover {
+      color: #0E2431;
+    }
+    /* Other Sections */
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeIn 1s forwards 0.5s;
+    }
+    .section-text {
+      font-size: 1rem;
+      max-width: 800px;
+      opacity: 0;
+      animation: fadeIn 1s forwards 0.8s;
+      line-height: 1.5;
+    }
+    /* Image Groups */
+    .store-container,
+    .feature-container,
+    .info-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .store-img,
+    .feature-img,
+    .info-img {
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      width: 30%;
+      max-width: 150px;
+    }
+    .store-img:hover,
+    .feature-img:hover,
+    .info-img:hover {
+      transform: scale(1.05);
+    }
+    @media screen and (max-width: 768px) {
+      .store-img,
+      .feature-img,
+      .info-img {
+        width: 45%;
+        max-width: 120px;
+      }
+    }
+    /* Footer */
+    footer {
+      background-color: #0E2431;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+    /* Overlay for Language Transition – full screen, left to right */
+    #lang-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #4070F4, #0E2431);
+      opacity: 0;
+      z-index: 200;
+      transform: translateX(-100%);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes wave {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
     }
   </style>
 </head>
 <body>
+  <!-- Overlay for Language Transition -->
+  <div id="lang-overlay"></div>
+
+  <!-- Header -->
   <header class="l-header">
     <nav class="nav">
-      <a href="#" class="nav-logo">People for People</a>
-      <div id="nav-toggle" class="nav-toggle-icon">
-        <i class='bx bx-menu'></i>
-      </div>
+      <div class="nav-logo">PeopleForPeople</div>
       <div class="nav-menu" id="nav-menu">
         <ul class="nav-list">
-          <li class="nav-item"><a href="#home" class="nav-link active">Inicio</a></li>
-          <li class="nav-item"><a href="#about" class="nav-link">Quiénes Somos</a></li>
-          <li class="nav-item"><a href="#services" class="nav-link">Servicios</a></li>
-          <li class="nav-item"><a href="#contact" class="nav-link">Contacto</a></li>
+          <li><a href="#home" class="nav-link active" id="nav-home">Startseite</a></li>
+          <li><a href="#app" class="nav-link" id="nav-app">App</a></li>
+          <li><a href="#info" class="nav-link" id="nav-info">Informationen</a></li>
+          <li><a href="#about" class="nav-link" id="nav-about">Über uns</a></li>
         </ul>
+      </div>
+      <div class="header-right">
+        <div id="lang-selector">
+          <button class="lang-btn active" data-lang="de">DE</button>
+          <button class="lang-btn" data-lang="es">ES</button>
+        </div>
+        <div class="nav-toggle" id="nav-toggle"><i class='bx bx-menu'></i></div>
       </div>
     </nav>
   </header>
 
-  <section id="home" class="home">
-    <h1 class="home-title">Bienvenido a People for People</h1>
-    <p class="home-subtitle">Conectamos personas para transformar vidas.</p>
-  </section>
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section id="home">
+      <div class="hero-company" id="hero-company">People for People</div>
+      <h1 class="hero-slogan" id="hero-slogan">Tu ayuda. Su esperanza. ¡Nosotros unimos!</h1>
+      <p class="hero-tagline" id="hero-tagline"></p>
+      <a href="#app" id="down-arrow" class="down-arrow">
+        <span id="arrow-text"></span>
+        <i class='bx bx-down-arrow-alt'></i>
+      </a>
+    </section>
 
-  <section id="about">
-    <h2>Quiénes Somos</h2>
-    <p>
-      Somos una startup comprometida con el empoderamiento y la conexión de las personas para generar un impacto social positivo. Nuestro objetivo es crear
-      soluciones innovadoras y accesibles que marquen la diferencia.
-    </p>
-  </section>
+    <!-- Section App (Unser Prototyp) -->
+    <section id="app">
+      <h2 class="section-title" id="app-title">Unser Prototyp</h2>
+      <p class="section-text" id="app-text">
+        Unser Prototyp ermöglicht eine schnelle Registrierung und flexible Einsatzplanung. Laden Sie die Anwendung aus dem App Store, Play Store oder nutzen Sie die Web-Version – immer verbunden, überall.
+      </p>
+      <div class="store-container">
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/APP%20STORE.jpg?raw=true" alt="App Store" class="store-img" />
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/PLAY%20STORE.jpg?raw=true" alt="Play Store" class="store-img" />
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/WEB.png?raw=true" alt="Web Version" class="store-img" />
+      </div>
+      <div class="feature-container">
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/MAPA.png?raw=true" alt="Karte" class="feature-img" />
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/organizacion.png?raw=true" alt="Organisation" class="feature-img" />
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/PERFIL.png?raw=true" alt="Profil" class="feature-img" />
+      </div>
+    </section>
 
-  <section id="services">
-    <h2>Servicios</h2>
-    <p>
-      Descubre nuestros servicios diseñados para facilitar la colaboración, el intercambio de ideas y el desarrollo de proyectos sociales.
-      Trabajamos para hacer la tecnología y la innovación accesibles a todos.
-    </p>
-  </section>
+    <!-- Section Informationen -->
+    <section id="info">
+      <h2 class="section-title" id="info-title">Informationen</h2>
+      <p class="section-text" id="info-text">
+        Unser Geschäftsmodell basiert auf einem Freemium-Ansatz. Kleine Organisationen nutzen die Plattform kostenfrei, während größere von einem Abonnement profitieren. Transparente Statistiken und nachhaltige Entwicklungsziele (ODS) unterstützen unsere Mission.
+      </p>
+      <div class="info-group">
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/FREEMIUM.png?raw=true" alt="Freemium Modell" class="info-img" />
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/NUM%20FREIWILLIGE.png?raw=true" alt="Anzahl Freiwillige" class="info-img" />
+      </div>
+      <div class="info-group">
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2017.jpg?raw=true" alt="ODS 17" class="info-img" />
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%203.jpg?raw=true" alt="ODS 3" class="info-img" />
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contacto</h2>
-    <p>
-      ¿Tienes alguna pregunta o deseas saber más? ¡Contáctanos y seamos parte de la transformación!
-    </p>
-  </section>
+    <!-- Section Über uns -->
+    <section id="about">
+      <h2 class="section-title" id="about-title">Über uns</h2>
+      <p class="section-text" id="about-text">
+        PeopleForPeople wurde gegründet, um die Koordination von Freiwilligen zu optimieren. Erfahrungen in Krisensituationen haben uns gezeigt, wie wichtig eine effektive Vernetzung zwischen Freiwilligen, NGOs und Behörden ist.
+      </p>
+    </section>
+  </main>
 
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 People for People. Todos los derechos reservados.</p>
+    <p>&#169; 2025 PeopleForPeople. Alle Rechte vorbehalten.</p>
   </footer>
 
+  <!-- JavaScript -->
+  <script src="https://unpkg.com/scrollreveal"></script>
   <script>
-    // Toggling Menu
+    // Toggle Menu Functionality
     const showMenu = (toggleId, navId) => {
       const toggle = document.getElementById(toggleId);
       const nav = document.getElementById(navId);
@@ -232,34 +370,179 @@
           nav.classList.toggle('show');
         });
       }
-    }
+    };
     showMenu('nav-toggle', 'nav-menu');
 
-    // Toggling Active Link
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(n => n.addEventListener('click', function() {
-      navLinks.forEach(link => link.classList.remove('active'));
+    // Active Link Switching
+    const navLink = document.querySelectorAll('.nav-link');
+    function linkAction() {
+      navLink.forEach(n => n.classList.remove('active'));
       this.classList.add('active');
-      // Cierra el menú en vista móvil
-      const navMenu = document.getElementById('nav-menu');
-      navMenu.classList.remove('show');
-    }));
+      document.getElementById('nav-menu').classList.remove('show');
+    }
+    navLink.forEach(n => n.addEventListener('click', linkAction));
 
-    // Efecto "Magnet" al scrollear: solo se activa si se hace scroll
-    const sections = document.querySelectorAll('section:not(.home)');
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 0) {
-        sections.forEach(section => {
-          // Si aún no se ha aplicado la animación
-          if (!section.classList.contains('revealed')) {
-            let pos = section.getBoundingClientRect().top;
-            if (pos < window.innerHeight * 0.8) {
-              section.style.animation = 'magnet 1s ease-out forwards';
-              section.classList.add('revealed');
-            }
-          }
-        });
+    // Function to change language texts
+    function changeLanguage(lang) {
+      document.getElementById("nav-home").innerText = translations[lang]["nav-home"];
+      document.getElementById("nav-app").innerText = translations[lang]["nav-app"];
+      document.getElementById("nav-info").innerText = translations[lang]["nav-info"];
+      document.getElementById("nav-about").innerText = translations[lang]["nav-about"];
+      document.getElementById("app-title").innerText = translations[lang]["app-title"];
+      document.getElementById("app-text").innerText = translations[lang]["app-text"];
+      document.getElementById("info-title").innerText = translations[lang]["info-title"];
+      document.getElementById("info-text").innerText = translations[lang]["info-text"];
+      document.getElementById("about-title").innerText = translations[lang]["about-title"];
+      document.getElementById("about-text").innerText = translations[lang]["about-text"];
+      // Update Hero Section Texts
+      document.getElementById("hero-company").textContent = translations[lang]["hero-company"];
+      document.getElementById("hero-slogan").textContent = translations[lang]["hero-slogan"];
+      document.getElementById("hero-tagline").textContent = translations[lang]["hero-tagline"];
+      document.getElementById("arrow-text").textContent = translations[lang]["arrow-text"];
+    }
+
+    // Fullscreen Language Transition Animation (left-to-right with full opacity)
+    function runLanguageTransition(lang) {
+      const overlay = document.getElementById("lang-overlay");
+      overlay.style.transition = "transform 0.8s ease, opacity 0.8s ease";
+      overlay.style.transform = "translateX(0)";
+      overlay.style.opacity = "1";
+      setTimeout(() => {
+        changeLanguage(lang);
+        overlay.style.transform = "translateX(100%)";
+        overlay.style.opacity = "0";
+      }, 800);
+      setTimeout(() => {
+        overlay.style.transition = "none";
+        overlay.style.transform = "translateX(-100%)";
+      }, 1600);
+    }
+
+    // Translations
+    const translations = {
+      de: {
+        "nav-home": "Startseite",
+        "nav-app": "App",
+        "nav-info": "Informationen",
+        "nav-about": "Über uns",
+        "app-title": "Unser Prototyp",
+        "app-text": "Unser Prototyp ermöglicht eine schnelle Registrierung und flexible Einsatzplanung. Laden Sie die Anwendung aus dem App Store, Play Store oder nutzen Sie die Web-Version – immer verbunden, überall.",
+        "info-title": "Informationen",
+        "info-text": "Unser Geschäftsmodell basiert auf einem Freemium-Ansatz. Kleine Organisationen nutzen die Plattform kostenfrei, während größere von einem Abonnement profitieren. Transparente Statistiken und nachhaltige Entwicklungsziele (ODS) unterstützen unsere Mission.",
+        "about-title": "Über uns",
+        "about-text": "PeopleForPeople wurde gegründet, um die Koordination von Freiwilligen zu optimieren. Erfahrungen in Krisensituationen haben uns gezeigt, wie wichtig eine effektive Vernetzung zwischen Freiwilligen, NGOs und Behörden ist.",
+        "hero-company": "People for People",
+        "hero-slogan": "Ihre Hilfe. Ihre Hoffnung. Wir vereinen!",
+        "hero-tagline": "Wir vernetzen Freiwillige mit Bedürftigen und koordinieren in Echtzeit Hilfe – gemeinsam mit NGOs, Behörden und weiteren Institutionen.",
+        "arrow-text": "Zum Prototypen"
+      },
+      es: {
+        "nav-home": "Inicio",
+        "nav-app": "App",
+        "nav-info": "Información",
+        "nav-about": "Quiénes Somos",
+        "app-title": "Nuestro prototipo",
+        "app-text": "Nuestro prototipo permite un registro rápido y una planificación flexible de tareas. Descarga la aplicación desde el App Store, Play Store o utiliza la versión web para estar siempre conectado.",
+        "info-title": "Información",
+        "info-text": "Nuestro modelo de negocio se basa en un enfoque Freemium: las pequeñas organizaciones usan la plataforma gratuitamente, mientras que las instituciones más grandes se benefician de una suscripción. Estadísticas transparentes y objetivos sostenibles (ODS) respaldan nuestra misión.",
+        "about-title": "Quiénes Somos",
+        "about-text": "PeopleForPeople se fundó para optimizar la coordinación del voluntariado. Nuestras experiencias en situaciones críticas demostraron la necesidad de una mejor conexión entre voluntarios, ONG y administraciones.",
+        "hero-company": "People for People",
+        "hero-slogan": "Tu ayuda. Su esperanza. ¡Nosotros unimos!",
+        "hero-tagline": "Vinculamos voluntarios con personas necesitadas y coordinamos ayuda en tiempo real junto a ONGs, autoridades y otras entidades.",
+        "arrow-text": "Accede a nuestro Prototipo"
       }
+    };
+
+    let currentLang = "de";
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        runLanguageTransition(btn.dataset.lang);
+        currentLang = btn.dataset.lang;
+      });
+    });
+
+    // ScrollReveal Animations
+    const sr = ScrollReveal({
+      origin: 'top',
+      distance: '50px',
+      duration: 1000,
+      easing: 'ease-in-out',
+      reset: true
+    });
+    sr.reveal('section');
+
+    // DOMContentLoaded: Setup Typewriter and Wave Effects
+    document.addEventListener("DOMContentLoaded", function() {
+      // Typewriter effect for hero tagline
+      const heroTagline = document.getElementById("hero-tagline");
+      const taglineText = translations[currentLang]["hero-tagline"];
+      heroTagline.textContent = "";
+      let i = 0;
+      setTimeout(() => {
+        const interval = setInterval(() => {
+          if (i < taglineText.length) {
+            heroTagline.textContent += taglineText.charAt(i);
+            heroTagline.style.opacity = 1;
+            i++;
+          } else {
+            clearInterval(interval);
+            heroTagline.style.borderRight = "none";
+            heroTagline.style.whiteSpace = "normal";
+          }
+        }, 70);
+      }, 800);
+
+      // Wave effect for hero slogan: Wrap each letter in a span with a slower wave animation
+      const heroSlogan = document.getElementById("hero-slogan");
+      const sloganText = heroSlogan.textContent;
+      heroSlogan.innerHTML = "";
+      sloganText.split("").forEach((char, index) => {
+        let span = document.createElement("span");
+        span.textContent = char;
+        span.style.display = "inline-block";
+        span.style.animation = "wave 3s ease-in-out infinite";
+        span.style.animationDelay = (index * 0.2) + "s";
+        heroSlogan.appendChild(span);
+      });
+
+      // Typewriter effect for down arrow text
+      const downArrowTextElem = document.getElementById("arrow-text");
+      const arrowTextStr = translations[currentLang]["arrow-text"];
+      downArrowTextElem.textContent = "";
+      let j = 0;
+      setTimeout(() => {
+        const intArrow = setInterval(() => {
+          if(j < arrowTextStr.length){
+            downArrowTextElem.textContent += arrowTextStr.charAt(j);
+            downArrowTextElem.style.opacity = 1;
+            j++;
+          } else {
+            clearInterval(intArrow);
+          }
+        }, 50);
+      }, 1200);
+
+      // Down Arrow: on click, scroll to #app
+      const downArrow = document.getElementById("down-arrow");
+      downArrow.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.getElementById("app").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      // Show or hide down arrow based on scroll position
+      window.addEventListener("scroll", function() {
+        const homeSection = document.getElementById("home");
+        const arrow = document.getElementById("down-arrow");
+        const rect = homeSection.getBoundingClientRect();
+        if(rect.bottom > window.innerHeight * 0.5) {
+          arrow.style.display = "flex";
+        } else {
+          arrow.style.display = "none";
+        }
+      });
     });
   </script>
 </body>
