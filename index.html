@@ -9,25 +9,133 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Estilos adicionales para ajustar algunos elementos -->
   <style>
-    /* Hacemos la imagen de la WEB informativa más pequeña */
-    .info-web img {
-      max-width: 150px;
+    /* Keyframes para la animación de onda */
+    @keyframes waveAnimation {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
     }
-    /* Agregamos transición suave a las imágenes de ODS para evitar cortes */
-    .ods-item img {
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    /* Keyframes para la animación de zoom en el modal */
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
-    /* Si se requiere sobrescribir alguna regla de "pay per Freiwilliger" */
-    .business-model-item.right {
-      margin-top: 50px;
+    /* Imagen de la WEB informativa: se mantiene como antes (reducida) */
+    .info-web img { max-width: 150px; }
+    /* Aseguramos que solo el enlace que envuelve la imagen es clicable */
+    .info-web a { display: inline-block; }
+    /* Transición suave en imágenes de ODS */
+    .ods-item img { transition: transform 0.5s ease, box-shadow 0.5s ease; }
+    /* Bajar mucho más la imagen de Pay per Freiwilliger (doblando el margen) */
+    .business-model-item.right { margin-top: 300px; }
+    /* Agrandar el título de ODS y la imagen del título */
+    .ods-header h3 { font-size: 2em; }
+    .ods-header img { height: 80px; width: auto; }
+    /* Contenedor para la imagen de Algemesí: ocupará toda la pantalla sin recortarse */
+    .algemesi-container { position: relative; width: 100vw; height: 100vh; }
+    .algemesi-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      min-width: 100%;
+      min-height: 100%;
+    }
+    /* El texto sobre la imagen de Algemesí se ha hecho más pequeño para no salirse del contenedor */
+    .algemesi-container p {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.8em;
+      background: rgba(255, 255, 255, 0.8);
+      text-align: center;
+    }
+    /* Mantenemos el color azul oscuro para “16.000 voluntarios” */
+    .dark-blue { color: #00008B; }
+    /* Tamaño del texto de la animación de onda para voluntarios */
+    .volunteers-wave { font-size: 1.3em; }
+    /* Sombra y bordes redondeados para las imágenes de App Store y Play Store */
+    .store-img { border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+    /* Regla original para la imagen de Mama */
+    .mama-img { margin-left: 700px; margin-top: -150px; display: block; }
+    /* Texto debajo de la imagen de Mama posicionado aún más a la derecha */
+    .dana-additional p {
+      font-size: 0.8em;
+      margin-top: 10px;
+      margin-left: 900px;
+      text-align: right;
+    }
+    /* Overlay para la transición de idioma con un fondo azul oscuro smooth */
+    #lang-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #bfd1ff;
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 1s ease, opacity 1s ease;
+    }
+    /* Estilos para el modal de imagen (carrusel) */
+    #modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10001;
+      transition: opacity 0.5s ease;
+    }
+    /* Clase para la imagen del modal con animación de zoom */
+    .modal-image {
+      max-width: 90%;
+      max-height: 90%;
+      animation: zoomIn 0.5s ease-out forwards;
+      cursor: pointer;
+    }
+    /* Sección Documentos: ocultada por defecto */
+    #documentos {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #fff;
+      z-index: 9999;
+      padding: 20px;
+      overflow: auto;
+    }
+    #documentos .close-docs {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 1.2em;
+      background: #eee;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
-  <!-- Overlay para transición de idioma -->
+  <!-- Overlay para la transición de idioma -->
   <div id="lang-overlay"></div>
 
-  <!-- Modal para agrandar imagen del collage -->
+  <!-- Modal para agrandar imagen del carrusel -->
   <div id="modal-overlay"></div>
 
   <!-- Header -->
@@ -61,8 +169,7 @@
     <section id="home">
       <div class="hero-overlay"></div>
       <div class="hero-company" id="hero-company">People for People</div>
-      <!-- El hero-slogan se anima separando las palabras -->
-      <h1 class="hero-slogan slogan-wave" id="hero-slogan">Deine Hilfe. Ihre Hoffnung. Wir verbinden!</h1>
+      <h1 id="hero-slogan"></h1>
       <p class="hero-tagline" id="hero-tagline"></p>
       <a href="#app" id="down-arrow" class="down-arrow">
         <i class="bx bx-down-arrow-alt"></i>
@@ -70,16 +177,12 @@
       </a>
     </section>
 
-    <!-- Section App (Unser Prototyp) -->
+    <!-- Section App -->
     <section id="app">
       <h2 class="section-title" id="app-title">Unser Prototyp</h2>
       <div class="app-content">
         <div class="app-description">
-          <!-- Párrafo introductorio centrado -->
-          <p class="app-intro">
-            En PeopleForPeople hemos desarrollado un prototipo de aplicación que optimiza la gestión del voluntariado.
-          </p>
-          <!-- Texto alineado a la izquierda -->
+          <p class="app-intro">En PeopleForPeople hemos desarrollado un prototipo de aplicación que optimiza la gestión del voluntariado.</p>
           <p id="app-text"></p>
           <p>Nuestra plataforma ofrece funcionalidades avanzadas como:</p>
           <ul class="feature-list">
@@ -89,10 +192,7 @@
             <li class="feature-item">Geolocalización dinámica</li>
             <li class="feature-item">Asignación de voluntarios y panel de gestión de solicitudes</li>
           </ul>
-          <p>
-            Descubre nuestro prototipo 
-            <a href="https://charliepoten.github.io/People-For-People/" target="_blank" class="glow-link">aquí</a>.
-          </p>
+          <p><strong>Descubre nuestro prototipo <a href="https://charliepoten.github.io/People-For-People/" target="_blank" class="glow-link">aquí</a>.</strong></p>
           <div class="store-section">
             <p class="store-heading">Próximamente disponible en:</p>
             <div class="store-container">
@@ -127,16 +227,14 @@
     <section id="info">
       <h2 class="section-title" id="info-title">Información</h2>
       <div class="info-content">
-        <!-- Bloque de voluntarios -->
         <div class="info-description">
           <p class="info-intro">
             En PeopleForPeople, los voluntarios son el pilar fundamental de nuestra plataforma. Contamos con una comunidad diversa de voluntarios dispuestos a ayudar donde más se necesita. Nuestra plataforma les permite registrarse, elegir sus áreas de interés y ser asignados eficientemente a tareas según su perfil, optimizando cada esfuerzo para generar un impacto real.
           </p>
           <p class="volunteers-wave">
-            Actualmente, ya somos más de <span>16.000</span> voluntarios comprometidos con el cambio social.
+            Actualmente, ya somos más de <span class="special-word"><span class="dark-blue">16.000 voluntarios</span></span> comprometidos con el cambio social.
           </p>
         </div>
-        <!-- Bloque de Modelo de negocio (sin título) -->
         <div class="business-model-section">
           <div class="business-model">
             <div class="business-model-item left">
@@ -149,7 +247,6 @@
             </div>
           </div>
         </div>
-        <!-- Sección ODS -->
         <div class="ods-section">
           <div class="ods-header">
             <h3>ODS</h3>
@@ -174,18 +271,19 @@
               <p><strong>ODS 17 (Alianzas para lograr los objetivos):</strong> Conectamos voluntarios, ONG y administraciones públicas para fortalecer la cooperación y maximizar el impacto social.</p>
             </div>
           </div>
-          <!-- Bloque Web informativa debajo de ODS -->
           <div class="info-web">
             <p>
-              Para más detalles sobre nuestro impacto, modelo de negocio y cómo unirte a nuestra comunidad de voluntarios, visita nuestra web informativa:
+              Para más detalles sobre nuestro impacto, modelo de negocio y cómo unirte a nuestra comunidad de voluntarios, visita nuestra WEB Informativa:
             </p>
             <a href="https://peopleforpeople7.wordpress.com/" target="_blank">
               <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/WEB.png?raw=true" alt="WEB Informativa">
             </a>
             <p style="font-weight:bold;">Visita nuestra WEB Informativa</p>
+            <p style="margin-top:30px;">
+              <strong>Accede a nuestros documentos oficiales <a href="#documentos" class="glow-link" id="docs-link">aquí</a>.</strong>
+            </p>
           </div>
         </div>
-        <!-- (Se eliminaron imágenes adicionales que no cargaban) -->
       </div>
     </section>
 
@@ -206,6 +304,7 @@
         </div>
         <div class="dana-collage">
           <div class="collage-container">
+            <!-- Imágenes del carrusel; se asigna el event listener para abrir el modal al hacer clic -->
             <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/foto%20volunt%201.JPG?raw=true" alt="Volunt 1" class="collage-img img1">
             <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/volunt%202.JPG?raw=true" alt="Volunt 2" class="collage-img img2">
             <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/volunt%203.JPG?raw=true" alt="Volunt 3" class="collage-img img3">
@@ -215,15 +314,17 @@
       </div>
       <div class="dana-additional">
         <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ADIOS%20MAMA.png?raw=true" alt="Adiós, mamá" class="mama-img">
-        <p>Adiós, mamá. No pudimos llegar a tiempo. Perdón</p>
+        <p style="margin-left:900px; text-align: right;">Adiós, mamá. No pudimos llegar a tiempo. Perdón</p>
       </div>
       <div class="dana-news">
-        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/algemesi.jpg?raw=true" alt="Algemesí" class="algemesi-img">
-        <p>
-          «Hay muchos voluntarios en Algemesí, pero falta coordinación und maquinaria»<br>
-          LEVANTE – EL MERCANTIL VALENCIANO<br>
-          2 de Noviembre de 2024.
-        </p>
+        <div class="algemesi-container">
+          <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/algemesi.jpg?raw=true" alt="Algemesí" class="algemesi-img">
+          <p>
+            «Hay muchos voluntarios en Algemesí, pero falta coordinación und maquinaria»<br>
+            LEVANTE – EL MERCANTIL VALENCIANO<br>
+            2 de Noviembre de 2024.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -231,19 +332,126 @@
     <section id="about">
       <h2 class="section-title" id="about-title">Über uns</h2>
       <p class="section-text" id="about-text">
-        PeopleForPeople wurde gegründet, um die Koordination von Freiwilligen zu optimieren. Erfahrungen in Krisensituationen haben uns gezeigt, wie wichtig eine effektive Vernetzung zwischen Freiwilligen, NGOs und Behörden ist.
+        Conecta con quienes necesitan tu ayuda y convierte tu tiempo en impacto real, brindando apoyo en emergencias y necesidades diarias, de forma flexible y organizada. ¡Tu solidaridad, cuando y donde más importa!<br><br>
+        Tu ayuda, su esperanza. ¡Nosotros os unimos!<br><br>
+        <strong>Carlos Potenciano - Daniel Banerjee - Jakobus Fernandez - Alberto Kremers.</strong>
       </p>
     </section>
+    
+    <!-- Section Documentos -->
+    <section id="documentos">
+      <span class="close-docs" id="close-docs">&times; Cerrar</span>
+      <h2 class="section-title">Documentos de People For People</h2>
+      <div class="doc-item" id="doc-captacion">
+        <h3>Estrategias Captación de Voluntarios People For People</h3>
+      </div>
+      <div class="doc-item" id="doc-terminos">
+        <h3>Términos y Condiciones || Política de Privacidad People for People</h3>
+      </div>
+      <div id="doc-content"></div>
+    </section>
+  
   </main>
-
+  
   <!-- Footer -->
   <footer>
     <p>&#169; 2025 PeopleForPeople. Alle Rechte vorbehalten.</p>
   </footer>
-
+  
   <!-- JavaScript -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script>
+    // Función recursiva para envolver nodos con efecto de onda
+    function wrapNode(node, delay) {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent) {
+        let frag = document.createDocumentFragment();
+        for (let i = 0; i < node.textContent.length; i++) {
+          let char = node.textContent.charAt(i);
+          let span = document.createElement("span");
+          span.textContent = (char === " ") ? "\u00A0" : char;
+          span.style.display = "inline-block";
+          span.style.animation = "waveAnimation 3s ease-in-out infinite";
+          span.style.animationDelay = delay + "s";
+          frag.appendChild(span);
+          delay += 0.15;
+        }
+        return { node: frag, delay: delay };
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        let newElem = node.cloneNode(false);
+        let currentDelay = delay;
+        node.childNodes.forEach(child => {
+          let result = wrapNode(child, currentDelay);
+          newElem.appendChild(result.node);
+          currentDelay = result.delay;
+        });
+        return { node: newElem, delay: currentDelay };
+      }
+    }
+    
+    // Función para crear el slogan letra por letra
+    function createCustomSlogan() {
+      const target = document.getElementById("hero-slogan");
+      const sloganText = "Deine Hilfe. Ihre Hoffnung. Wir verbinden!";
+      target.innerHTML = "";
+      let delay = 0;
+      for (let i = 0; i < sloganText.length; i++) {
+        let char = sloganText.charAt(i);
+        let span = document.createElement("span");
+        span.textContent = (char === " ") ? "\u00A0" : char;
+        span.style.display = "inline-block";
+        span.style.animation = "waveAnimation 3s ease-in-out infinite";
+        span.style.animationDelay = delay + "s";
+        span.style.color = "black";
+        span.style.fontSize = "1.5em";
+        target.appendChild(span);
+        delay += 0.15;
+      }
+    }
+    
+    // Función para aplicar efecto de onda a elementos
+    function initWaveForElement(selector) {
+      const element = document.querySelector(selector);
+      if (!element) return;
+      let result = wrapNode(element, 0);
+      element.innerHTML = "";
+      element.appendChild(result.node);
+    }
+    
+    // =============================
+    // NUEVA FUNCIONALIDAD: Modal de Ampliación
+    // =============================
+    
+    // Función para abrir el modal y ampliar la imagen del carrusel con efecto de zoom
+    function openModal(src) {
+      let modal = document.getElementById("modal-overlay");
+      modal.innerHTML = '<img src="' + src + '" alt="Imagen Ampliada" class="modal-image">';
+      modal.style.display = "flex";
+      setTimeout(() => {
+        modal.classList.add("active");
+      }, 10);
+    }
+    
+    // Función para cerrar el modal
+    function closeModal() {
+      let modal = document.getElementById("modal-overlay");
+      modal.classList.remove("active");
+      setTimeout(() => {
+        modal.style.display = "none";
+        modal.innerHTML = "";
+      }, 500);
+    }
+    
+    // Asignar listener para cerrar el modal si se hace clic fuera de la imagen
+    document.getElementById("modal-overlay").addEventListener("click", function(e){
+      if(e.target.id === "modal-overlay") {
+        closeModal();
+      }
+    });
+    
+    // =============================
+    // FIN NUEVA FUNCIONALIDAD
+    // =============================
+    
     // Toggle Menu Functionality
     const showMenu = (toggleId, navId) => {
       const toggle = document.getElementById(toggleId);
@@ -255,7 +463,7 @@
       }
     };
     showMenu('nav-toggle', 'nav-menu');
-
+    
     // Active Link Switching
     const navLink = document.querySelectorAll('.nav-link');
     function linkAction() {
@@ -264,7 +472,7 @@
       document.getElementById('nav-menu').classList.remove('show');
     }
     navLink.forEach(n => n.addEventListener('click', linkAction));
-
+    
     // Función para cambiar textos de idioma
     function changeLanguage(lang) {
       document.getElementById("nav-home").innerText = translations[lang]["nav-home"];
@@ -284,12 +492,12 @@
       document.getElementById("arrow-text").textContent = translations[lang]["arrow-text"];
       document.getElementById("dana-title").innerText = translations[lang]["dana-title"];
       document.getElementById("dana-text").innerText = translations[lang]["dana-text"];
-      // Reinitialize animaciones
-      initWaveEffect();
-      initLetterWave('.volunteers-wave');
+      // Reinicializar animaciones
+      createCustomSlogan();
+      initWaveForElement('.volunteers-wave');
       initTypewriter();
     }
-
+    
     // Fullscreen Language Transition Animation
     function runLanguageTransition(lang) {
       const overlay = document.getElementById("lang-overlay");
@@ -305,7 +513,7 @@
         overlay.style.transform = "translateX(-110%)";
       }, 2100);
     }
-
+    
     // Translations
     const translations = {
       de: {
@@ -347,7 +555,7 @@
         "dana-text": "DANA: Un destello de nuestro alma. Su recuerdo fue la chispa tierna que nos impulsó a conectar personas y voluntarios. DANA es más que un nombre, es la inspiración y el latido de nuestro proyecto."
       }
     };
-
+    
     let currentLang = "de";
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -357,7 +565,7 @@
         currentLang = btn.dataset.lang;
       });
     });
-
+    
     // ScrollReveal Animations
     const sr = ScrollReveal({
       origin: 'top',
@@ -366,7 +574,7 @@
       easing: 'ease-in-out'
     });
     sr.reveal('section');
-
+    
     // Typewriter effect for hero tagline
     function initTypewriter() {
       const heroTagline = document.getElementById("hero-tagline");
@@ -385,73 +593,14 @@
         }
       }, 40);
     }
-
-    // Función para animar las letras en el hero-slogan (letter-by-letter)
-    function initWaveEffect() {
-      const heroSlogan = document.getElementById("hero-slogan");
-      const sloganText = heroSlogan.textContent;
-      heroSlogan.innerHTML = "";
-      let delay = 0;
-      const words = sloganText.split(" ");
-      words.forEach((word, wordIndex) => {
-        const wordSpan = document.createElement("span");
-        wordSpan.style.whiteSpace = "nowrap";
-        Array.from(word).forEach((char, letterIndex) => {
-          const span = document.createElement("span");
-          span.textContent = char;
-          span.style.display = "inline-block";
-          span.style.animation = "waveAnimation 3s ease-in-out infinite";
-          span.style.animationDelay = (delay + letterIndex * 0.15) + "s";
-          wordSpan.appendChild(span);
-        });
-        heroSlogan.appendChild(wordSpan);
-        if (wordIndex < words.length - 1) {
-          heroSlogan.appendChild(document.createTextNode(" "));
-        }
-        delay += 0.5;
-      });
-    }
-
-    // Función para animar las letras en el texto de voluntarios (letter-by-letter)
-    function initLetterWave(selector) {
-      const element = document.querySelector(selector);
-      if (!element) return;
-      const text = element.textContent;
-      element.innerHTML = "";
-      let delay = 0;
-      text.split("").forEach(letter => {
-        const span = document.createElement("span");
-        span.textContent = letter;
-        span.style.display = "inline-block";
-        span.style.animation = "waveAnimation 2.5s ease-in-out infinite";
-        span.style.animationDelay = delay + "s";
-        delay += 0.1;
-        element.appendChild(span);
-      });
-    }
-
-    // Modal para ampliar imagen del collage en sección DANA
-    function openModal(src) {
-      const modalOverlay = document.getElementById("modal-overlay");
-      modalOverlay.innerHTML = '<img src="' + src + '" alt="Imagen Ampliada">';
-      modalOverlay.style.display = "flex";
-      setTimeout(() => {
-        modalOverlay.classList.add("active");
-      }, 10);
-    }
-    document.getElementById("modal-overlay").addEventListener("click", function() {
-      this.classList.remove("active");
-      setTimeout(() => {
-        this.style.display = "none";
-      }, 500);
-    });
-  
+    
     document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("home").scrollIntoView();
       initTypewriter();
-      initWaveEffect();
-      initLetterWave('.volunteers-wave');
-  
-      // Animación del collage en DANA
+      createCustomSlogan();
+      initWaveForElement('.volunteers-wave');
+      
+      // Carousel en DANA
       const collageImages = document.querySelectorAll(".collage-img");
       let current = 0;
       setInterval(() => {
@@ -459,16 +608,15 @@
         collageImages[current].classList.add("highlight");
         current = (current + 1) % collageImages.length;
       }, 5000);
-  
-      // Al pulsar sobre una foto del collage, se amplía con animación
+      
+      // Al pulsar sobre una imagen del carrusel, se abre el modal con la animación de zoom
       collageImages.forEach(img => {
         img.addEventListener("click", function(e) {
           e.stopPropagation();
           openModal(this.getAttribute("src"));
         });
       });
-  
-      // Down arrow effect
+      
       const downArrowTextElem = document.getElementById("arrow-text");
       const arrowTextStr = translations[currentLang]["arrow-text"];
       downArrowTextElem.textContent = "";
@@ -482,15 +630,13 @@
           clearInterval(intArrow);
         }
       }, 50);
-  
-      // Down arrow scroll
+      
       const downArrow = document.getElementById("down-arrow");
       downArrow.addEventListener("click", function(e) {
         e.preventDefault();
         document.getElementById("app").scrollIntoView({ behavior: "smooth", block: "start" });
       });
-  
-      // Mostrar u ocultar la flecha de abajo
+      
       window.addEventListener("scroll", function() {
         const homeSection = document.getElementById("home");
         const arrow = document.getElementById("down-arrow");
@@ -501,7 +647,7 @@
           arrow.style.display = "none";
         }
       });
-  
+      
       // Animación de móviles
       const mobileContainer = document.querySelector(".mobile-container");
       const mobileItems = Array.from(document.querySelectorAll(".mobile-item"));
@@ -533,16 +679,45 @@
           mobileItems.push(mobileItems.shift());
           applyMobilePositions(mobileItems);
         }, 5000);
-      
-        // Animación para destacar solo las imágenes de ODS (no el texto)
+    
+        // Animación para destacar de forma fluida las imágenes de ODS cada 3 s
         const odsImages = document.querySelectorAll(".ods-item img");
         let odsIndex = 0;
         setInterval(() => {
           odsImages.forEach(img => img.classList.remove("ods-highlight"));
           odsImages[odsIndex].classList.add("ods-highlight");
           odsIndex = (odsIndex + 1) % odsImages.length;
-        }, 5000);
+        }, 3000);
       }
+      
+      document.getElementById("documentos").style.display = "none";
+      
+      document.getElementById("docs-link").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.getElementById("documentos").style.display = "block";
+      });
+      
+      document.getElementById("close-docs").addEventListener("click", function() {
+        document.getElementById("documentos").style.display = "none";
+        document.getElementById("doc-content").innerHTML = "";
+      });
+      
+      document.getElementById("doc-captacion").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.getElementById("doc-content").innerHTML =
+          '<div style="display:flex; flex-direction:column; align-items:center;">' +
+          '<img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/estra%201.jpeg?raw=true" style="max-width:90%; margin-bottom:20px;">' +
+          '<img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/estra%202.jpeg?raw=true" style="max-width:90%;">' +
+          '</div>';
+      });
+      document.getElementById("doc-terminos").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.getElementById("doc-content").innerHTML =
+          '<div style="display:flex; flex-direction:column; align-items:center;">' +
+          '<img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/term%201.jpeg?raw=true" style="max-width:90%; margin-bottom:20px;">' +
+          '<img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/term%202.jpeg?raw=true" style="max-width:90%;">' +
+          '</div>';
+      });
     });
   </script>
 </body>
