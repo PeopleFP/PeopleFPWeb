@@ -7,10 +7,28 @@
   <link rel="stylesheet" href="styles.css" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Estilos adicionales para ajustar algunos elementos -->
+  <style>
+    /* Hacemos la imagen de la WEB informativa más pequeña */
+    .info-web img {
+      max-width: 150px;
+    }
+    /* Agregamos transición suave a las imágenes de ODS para evitar cortes */
+    .ods-item img {
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    /* Si se requiere sobrescribir alguna regla de "pay per Freiwilliger" */
+    .business-model-item.right {
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
   <!-- Overlay para transición de idioma -->
   <div id="lang-overlay"></div>
+
+  <!-- Modal para agrandar imagen del collage -->
+  <div id="modal-overlay"></div>
 
   <!-- Header -->
   <header class="l-header">
@@ -20,7 +38,7 @@
         <ul class="nav-list">
           <li><a href="#home" class="nav-link active" id="nav-home">Startseite</a></li>
           <li><a href="#app" class="nav-link" id="nav-app">App</a></li>
-          <li><a href="#info" class="nav-link" id="nav-info">Informationen</a></li>
+          <li><a href="#info" class="nav-link" id="nav-info">Información</a></li>
           <li><a href="#dana" class="nav-link" id="nav-dana">DANA</a></li>
           <li><a href="#about" class="nav-link" id="nav-about">Über uns</a></li>
         </ul>
@@ -30,7 +48,9 @@
           <button class="lang-btn active" data-lang="de">DE</button>
           <button class="lang-btn" data-lang="es">ES</button>
         </div>
-        <div class="nav-toggle" id="nav-toggle"><i class='bx bx-menu'></i></div>
+        <div class="nav-toggle" id="nav-toggle">
+          <i class="bx bx-menu"></i>
+        </div>
       </div>
     </nav>
   </header>
@@ -41,10 +61,11 @@
     <section id="home">
       <div class="hero-overlay"></div>
       <div class="hero-company" id="hero-company">People for People</div>
-      <h1 class="hero-slogan" id="hero-slogan">Deine Hilfe. Ihre Hoffnung. Wir verbinden!</h1>
+      <!-- El hero-slogan se anima separando las palabras -->
+      <h1 class="hero-slogan slogan-wave" id="hero-slogan">Deine Hilfe. Ihre Hoffnung. Wir verbinden!</h1>
       <p class="hero-tagline" id="hero-tagline"></p>
       <a href="#app" id="down-arrow" class="down-arrow">
-        <i class='bx bx-down-arrow-alt'></i>
+        <i class="bx bx-down-arrow-alt"></i>
         <span id="arrow-text"></span>
       </a>
     </section>
@@ -53,9 +74,12 @@
     <section id="app">
       <h2 class="section-title" id="app-title">Unser Prototyp</h2>
       <div class="app-content">
-        <!-- Columna Izquierda: Texto y store -->
         <div class="app-description">
-          <!-- Contenedor para el texto de la app; se actualizará al cambiar de idioma -->
+          <!-- Párrafo introductorio centrado -->
+          <p class="app-intro">
+            En PeopleForPeople hemos desarrollado un prototipo de aplicación que optimiza la gestión del voluntariado.
+          </p>
+          <!-- Texto alineado a la izquierda -->
           <p id="app-text"></p>
           <p>Nuestra plataforma ofrece funcionalidades avanzadas como:</p>
           <ul class="feature-list">
@@ -65,7 +89,10 @@
             <li class="feature-item">Geolocalización dinámica</li>
             <li class="feature-item">Asignación de voluntarios y panel de gestión de solicitudes</li>
           </ul>
-          <p>Descubre nuestro prototipo <a href="https://charliepoten.github.io/People-For-People/" target="_blank">aquí</a>.</p>
+          <p>
+            Descubre nuestro prototipo 
+            <a href="https://charliepoten.github.io/People-For-People/" target="_blank" class="glow-link">aquí</a>.
+          </p>
           <div class="store-section">
             <p class="store-heading">Próximamente disponible en:</p>
             <div class="store-container">
@@ -80,7 +107,6 @@
             </div>
           </div>
         </div>
-        <!-- Columna Derecha: Animación de móviles -->
         <div class="mobile-preview">
           <div class="mobile-container">
             <div class="mobile-item">
@@ -99,34 +125,77 @@
 
     <!-- Section Informationen -->
     <section id="info">
-      <h2 class="section-title" id="info-title">Informationen</h2>
-      <p class="section-text" id="info-text">
-        Unser Geschäftsmodell basiert auf einem Freemium-Ansatz. Kleine Organisationen nutzen die Plattform kostenfrei, während größere von einem Abonnement profitieren. Transparente Statistiken und nachhaltige Entwicklungsziele (ODS) unterstützen unsere Mission.
-      </p>
-      <div>
-        <a href="https://peopleforpeople7.wordpress.com/" target="_blank">
-          <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/WEB.png?raw=true" alt="Web Version" class="info-img" />
-        </a>
-      </div>
-      <div class="info-group">
-        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/FREEMIUM.png?raw=true" alt="Freemium Modell" class="info-img" />
-        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/NUM%20FREIWILLIGE.png?raw=true" alt="Anzahl Freiwillige" class="info-img" />
-      </div>
-      <div class="info-group">
-        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2017.jpg?raw=true" alt="ODS 17" class="info-img" />
-        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%203.jpg?raw=true" alt="ODS 3" class="info-img" />
+      <h2 class="section-title" id="info-title">Información</h2>
+      <div class="info-content">
+        <!-- Bloque de voluntarios -->
+        <div class="info-description">
+          <p class="info-intro">
+            En PeopleForPeople, los voluntarios son el pilar fundamental de nuestra plataforma. Contamos con una comunidad diversa de voluntarios dispuestos a ayudar donde más se necesita. Nuestra plataforma les permite registrarse, elegir sus áreas de interés y ser asignados eficientemente a tareas según su perfil, optimizando cada esfuerzo para generar un impacto real.
+          </p>
+          <p class="volunteers-wave">
+            Actualmente, ya somos más de <span>16.000</span> voluntarios comprometidos con el cambio social.
+          </p>
+        </div>
+        <!-- Bloque de Modelo de negocio (sin título) -->
+        <div class="business-model-section">
+          <div class="business-model">
+            <div class="business-model-item left">
+              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/FREEMIUM.png?raw=true" alt="Freemium Modell" class="info-img">
+              <p>Aplicamos un modelo freemium, ofreciendo acceso gratuito a pequeñas ONG y comunidades con recursos limitados.</p>
+            </div>
+            <div class="business-model-item right">
+              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/PAY%20PER%20FREIWILLIGER.png?raw=true" alt="Pay per Freiwilliger" class="info-img">
+              <p>Para organizaciones más grandes, implementamos un sistema de pay per Freiwilliger (pago por voluntario activado), asegurando sostenibilidad y escalabilidad mientras maximizamos el impacto social.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Sección ODS -->
+        <div class="ods-section">
+          <div class="ods-header">
+            <h3>ODS</h3>
+            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS.jpg?raw=true" alt="ODS">
+          </div>
+          <p>PeopleForPeople contribuye a varios Objetivos de Desarrollo Sostenible (ODS):</p>
+          <div class="ods-items">
+            <div class="ods-item">
+              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%203.jpg?raw=true" alt="ODS 3">
+              <p><strong>ODS 3 (Salud y bienestar):</strong> Facilitamos la asistencia en emergencias y apoyamos iniciativas sociales que mejoran el bienestar de las comunidades.</p>
+            </div>
+            <div class="ods-item">
+              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2010.jpg?raw=true" alt="ODS 10">
+              <p><strong>ODS 10 (Reducción de desigualdades):</strong> Garantizamos que la ayuda llegue a quienes más lo necesitan, promoviendo una distribución equitativa de los recursos.</p>
+            </div>
+            <div class="ods-item">
+              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2011.png?raw=true" alt="ODS 11">
+              <p><strong>ODS 11 (Ciudades y comunidades sostenibles):</strong> Facilitamos la respuesta a emergencias y la gestión del voluntariado en proyectos comunitarios.</p>
+            </div>
+            <div class="ods-item">
+              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2017.jpg?raw=true" alt="ODS 17">
+              <p><strong>ODS 17 (Alianzas para lograr los objetivos):</strong> Conectamos voluntarios, ONG y administraciones públicas para fortalecer la cooperación y maximizar el impacto social.</p>
+            </div>
+          </div>
+          <!-- Bloque Web informativa debajo de ODS -->
+          <div class="info-web">
+            <p>
+              Para más detalles sobre nuestro impacto, modelo de negocio y cómo unirte a nuestra comunidad de voluntarios, visita nuestra web informativa:
+            </p>
+            <a href="https://peopleforpeople7.wordpress.com/" target="_blank">
+              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/WEB.png?raw=true" alt="WEB Informativa">
+            </a>
+            <p style="font-weight:bold;">Visita nuestra WEB Informativa</p>
+          </div>
+        </div>
+        <!-- (Se eliminaron imágenes adicionales que no cargaban) -->
       </div>
     </section>
 
     <!-- Section DANA reestructurada -->
     <section id="dana">
       <h2 class="section-title" id="dana-title">DANA</h2>
-      <!-- Párrafo introductorio extendido y ordenado -->
       <p class="dana-intro">
         La idea de PeopleForPeople surgió tras nuestra experiencia durante la DANA en Valencia, cuando fuimos testigos de la falta de coordinación en la gestión del voluntariado. Aunque muchas personas estaban dispuestas a ayudar, la ausencia de un sistema eficiente impedía que la ayuda llegara a quien más se necesitaba. Observamos que el caos organizativo y la falta de tecnología obstaculizaban una respuesta rápida, lo que nos motivó a buscar una solución integral.
       </p>
       <div class="dana-content">
-        <!-- Columna Izquierda: Texto -->
         <div class="dana-description">
           <p>
             La DANA dejó cientos de afectados, familias enteras que lo perdieron todo en cuestión de horas. Muchas personas quedaron atrapadas sin acceso a recursos básicos, esperando una ayuda que a veces nunca llegó. Algunas familias se vieron separadas por el caos y la falta de respuesta organizada. Lamentablemente, también hubo víctimas mortales – un recordatorio doloroso de la importancia de actuar con rapidez y eficiencia en momentos críticos.
@@ -135,28 +204,26 @@
             Este desafío nos llevó a desarrollar una solución digital que conecta voluntarios con organizaciones en tiempo real, optimizando la respuesta en emergencias y proyectos comunitarios. PeopleForPeople nace con el propósito de hacer que la solidaridad sea más efectiva, estructurada y accesible, para que ninguna ayuda se pierda y cada esfuerzo marque la diferencia.
           </p>
         </div>
-        <!-- Columna Derecha: Collage animado creativo (se mantiene intacto) -->
         <div class="dana-collage">
           <div class="collage-container">
-            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/foto%20volunt%201.JPG?raw=true" alt="Volunt 1" class="collage-img img1" />
-            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/volunt%202.JPG?raw=true" alt="Volunt 2" class="collage-img img2" />
-            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/volunt%203.JPG?raw=true" alt="Volunt 3" class="collage-img img3" />
-            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/volunt%204.jpg?raw=true" alt="Volunt 4" class="collage-img img4" />
+            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/foto%20volunt%201.JPG?raw=true" alt="Volunt 1" class="collage-img img1">
+            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/volunt%202.JPG?raw=true" alt="Volunt 2" class="collage-img img2">
+            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/volunt%203.JPG?raw=true" alt="Volunt 3" class="collage-img img3">
+            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/volunt%204.jpg?raw=true" alt="Volunt 4" class="collage-img img4">
           </div>
         </div>
       </div>
-      <!-- Bloque adicional: La imagen de Mamá se posiciona justo debajo del collage,
-           ubicada mucho más a la derecha y subida hasta la mitad del último texto -->
       <div class="dana-additional">
-        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ADIOS%20MAMA.png?raw=true" alt="Adiós, mamá" class="mama-img" />
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ADIOS%20MAMA.png?raw=true" alt="Adiós, mamá" class="mama-img">
         <p>Adiós, mamá. No pudimos llegar a tiempo. Perdón</p>
       </div>
-      <!-- Bloque de noticia: La imagen de Algemesí se muestra en bloque, ahora mucho más grande -->
       <div class="dana-news">
-        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/algemesi.jpg?raw=true" alt="Algemesí" class="algemesi-img" />
-        <p>«Hay muchos voluntarios en Algemesí, pero falta coordinación y maquinaria»<br>
-        LEVANTE – EL MERCANTIL VALENCIANO<br>
-        2 de Noviembre de 2024.</p>
+        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/algemesi.jpg?raw=true" alt="Algemesí" class="algemesi-img">
+        <p>
+          «Hay muchos voluntarios en Algemesí, pero falta coordinación und maquinaria»<br>
+          LEVANTE – EL MERCANTIL VALENCIANO<br>
+          2 de Noviembre de 2024.
+        </p>
       </div>
     </section>
 
@@ -198,7 +265,7 @@
     }
     navLink.forEach(n => n.addEventListener('click', linkAction));
 
-    // Function to change language texts
+    // Función para cambiar textos de idioma
     function changeLanguage(lang) {
       document.getElementById("nav-home").innerText = translations[lang]["nav-home"];
       document.getElementById("nav-app").innerText = translations[lang]["nav-app"];
@@ -217,9 +284,10 @@
       document.getElementById("arrow-text").textContent = translations[lang]["arrow-text"];
       document.getElementById("dana-title").innerText = translations[lang]["dana-title"];
       document.getElementById("dana-text").innerText = translations[lang]["dana-text"];
-      // Reinitialize typewriter and wave effects after language change
-      initTypewriter();
+      // Reinitialize animaciones
       initWaveEffect();
+      initLetterWave('.volunteers-wave');
+      initTypewriter();
     }
 
     // Fullscreen Language Transition Animation
@@ -290,7 +358,7 @@
       });
     });
 
-    // ScrollReveal Animations (sin reset para conservar el texto)
+    // ScrollReveal Animations
     const sr = ScrollReveal({
       origin: 'top',
       distance: '50px',
@@ -299,7 +367,7 @@
     });
     sr.reveal('section');
 
-    // Typewriter effect for hero tagline (40ms per letter, without cursor)
+    // Typewriter effect for hero tagline
     function initTypewriter() {
       const heroTagline = document.getElementById("hero-tagline");
       const taglineText = translations[currentLang]["hero-tagline"];
@@ -318,7 +386,7 @@
       }, 40);
     }
 
-    // Wave effect for hero slogan: split by words, with looping animation
+    // Función para animar las letras en el hero-slogan (letter-by-letter)
     function initWaveEffect() {
       const heroSlogan = document.getElementById("hero-slogan");
       const sloganText = heroSlogan.textContent;
@@ -332,8 +400,7 @@
           const span = document.createElement("span");
           span.textContent = char;
           span.style.display = "inline-block";
-          // Looping wave animation
-          span.style.animation = "wave 3s ease-in-out infinite";
+          span.style.animation = "waveAnimation 3s ease-in-out infinite";
           span.style.animationDelay = (delay + letterIndex * 0.15) + "s";
           wordSpan.appendChild(span);
         });
@@ -345,23 +412,63 @@
       });
     }
 
-    // Animación del collage en la sección DANA (cada 5 seg)
-    function initDanaCollageAnimation() {
-      const images = document.querySelectorAll('.collage-img');
-      let current = 0;
-      setInterval(() => {
-        images.forEach(img => img.classList.remove('highlight'));
-        images[current].classList.add('highlight');
-        current = (current + 1) % images.length;
-      }, 5000);
+    // Función para animar las letras en el texto de voluntarios (letter-by-letter)
+    function initLetterWave(selector) {
+      const element = document.querySelector(selector);
+      if (!element) return;
+      const text = element.textContent;
+      element.innerHTML = "";
+      let delay = 0;
+      text.split("").forEach(letter => {
+        const span = document.createElement("span");
+        span.textContent = letter;
+        span.style.display = "inline-block";
+        span.style.animation = "waveAnimation 2.5s ease-in-out infinite";
+        span.style.animationDelay = delay + "s";
+        delay += 0.1;
+        element.appendChild(span);
+      });
     }
 
+    // Modal para ampliar imagen del collage en sección DANA
+    function openModal(src) {
+      const modalOverlay = document.getElementById("modal-overlay");
+      modalOverlay.innerHTML = '<img src="' + src + '" alt="Imagen Ampliada">';
+      modalOverlay.style.display = "flex";
+      setTimeout(() => {
+        modalOverlay.classList.add("active");
+      }, 10);
+    }
+    document.getElementById("modal-overlay").addEventListener("click", function() {
+      this.classList.remove("active");
+      setTimeout(() => {
+        this.style.display = "none";
+      }, 500);
+    });
+  
     document.addEventListener("DOMContentLoaded", function() {
       initTypewriter();
       initWaveEffect();
-      initDanaCollageAnimation();
-
-      // Typewriter effect for down arrow text
+      initLetterWave('.volunteers-wave');
+  
+      // Animación del collage en DANA
+      const collageImages = document.querySelectorAll(".collage-img");
+      let current = 0;
+      setInterval(() => {
+        collageImages.forEach(img => img.classList.remove("highlight"));
+        collageImages[current].classList.add("highlight");
+        current = (current + 1) % collageImages.length;
+      }, 5000);
+  
+      // Al pulsar sobre una foto del collage, se amplía con animación
+      collageImages.forEach(img => {
+        img.addEventListener("click", function(e) {
+          e.stopPropagation();
+          openModal(this.getAttribute("src"));
+        });
+      });
+  
+      // Down arrow effect
       const downArrowTextElem = document.getElementById("arrow-text");
       const arrowTextStr = translations[currentLang]["arrow-text"];
       downArrowTextElem.textContent = "";
@@ -375,15 +482,15 @@
           clearInterval(intArrow);
         }
       }, 50);
-
-      // Down Arrow: on click, scroll to #app
+  
+      // Down arrow scroll
       const downArrow = document.getElementById("down-arrow");
       downArrow.addEventListener("click", function(e) {
         e.preventDefault();
         document.getElementById("app").scrollIntoView({ behavior: "smooth", block: "start" });
       });
-
-      // Mostrar u ocultar la flecha de abajo según la posición del scroll
+  
+      // Mostrar u ocultar la flecha de abajo
       window.addEventListener("scroll", function() {
         const homeSection = document.getElementById("home");
         const arrow = document.getElementById("down-arrow");
@@ -394,8 +501,8 @@
           arrow.style.display = "none";
         }
       });
-
-      // Animación de móviles (organizados y separados horizontalmente)
+  
+      // Animación de móviles
       const mobileContainer = document.querySelector(".mobile-container");
       const mobileItems = Array.from(document.querySelectorAll(".mobile-item"));
       const mobilePositions = [
@@ -421,12 +528,19 @@
           item.style.position = "absolute";
           item.style.transition = "all 0.5s ease";
         });
-        // Posiciones iniciales:
         applyMobilePositions(mobileItems);
-        // Rotación cada 5 segundos:
         setInterval(() => {
           mobileItems.push(mobileItems.shift());
           applyMobilePositions(mobileItems);
+        }, 5000);
+      
+        // Animación para destacar solo las imágenes de ODS (no el texto)
+        const odsImages = document.querySelectorAll(".ods-item img");
+        let odsIndex = 0;
+        setInterval(() => {
+          odsImages.forEach(img => img.classList.remove("ods-highlight"));
+          odsImages[odsIndex].classList.add("ods-highlight");
+          odsIndex = (odsIndex + 1) % odsImages.length;
         }, 5000);
       }
     });
