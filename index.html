@@ -51,6 +51,7 @@
     .dark-blue { color: #00008B; }
     .volunteers-wave { font-size: 1.3em; }
     .store-img { border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+    /* ORIGINAL desktop-styles (verbleiben unverändert) */
     .mama-img { margin-left: 700px; margin-top: -150px; display: block; }
     .dana-additional p {
       font-size: 0.8em;
@@ -114,6 +115,52 @@
       border: 1px solid #ccc;
       padding: 5px 10px;
       border-radius: 5px;
+    }
+  </style>
+  <!-- Zusätzliche Anpassungen ausschließlich für Mobil und iPad -->
+  <style>
+    /* Móvil: max-width: 767px */
+    @media screen and (max-width: 767px) {
+      .hero-slogan {
+        font-size: 1.6rem;
+        white-space: normal;
+        overflow-wrap: break-word;
+        line-height: 1.2;
+      }
+      .dana-additional p {
+        margin-left: 0 !important;
+        text-align: left !important;
+      }
+      .algemesi-container p {
+        font-size: 0.75rem;
+      }
+      /* Ajustamos la imagen de mamá para móvil (reduciendo tamaño y márgenes) */
+      .mama-img {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        width: 80px !important;
+      }
+    }
+    /* iPad: min-width: 768px und max-width: 1024px */
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      .dana-additional {
+        margin-top: -80px !important;
+        margin-right: 50px !important;
+        text-align: right;
+      }
+      .mama-img {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        max-width: 80%;
+        margin-top: -80px !important;
+      }
+      /* Espaciador para forzar una distribución 2×2 en ODS */
+      .ods-spacer {
+        display: block;
+        grid-column: span 2;
+        height: 20px;
+      }
     }
   </style>
 </head>
@@ -249,6 +296,8 @@
               <strong>ODS 10 (Reduzierung von Ungleichheiten):</strong> Wir stellen sicher, dass die Hilfe diejenigen erreicht, die sie am dringendsten benötigen, und fördern so eine gerechte Verteilung der Ressourcen.
             </p>
           </div>
+          <!-- Espaciador solo visible en iPad -->
+          <div class="ods-spacer"></div>
           <div class="ods-item">
             <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2011.png?raw=true" alt="ODS 11">
             <p id="ods11-text">
@@ -487,7 +536,6 @@
       document.getElementById("volunteers-wave-text").innerHTML = translations[lang]["volunteers-wave-text"];
       initWaveForElement("#volunteers-wave-text");
       
-      // Ajuste del tamaño de fuente de la animación de Welle en der Freiwilligen-Sektion, nur im Deutschen kleiner
       if(lang === "de") {
         document.querySelector(".volunteers-wave").style.fontSize = "1.1em";
       } else {
@@ -526,7 +574,6 @@
       }, 2100);
     }
     
-    // Übersetzungsobjekt für Deutsch und Spanisch
     const translations = {
       de: {
         "nav-home": "Startseite",
@@ -556,8 +603,8 @@
         "arrow-text": "Zum Prototypen",
         "dana-title": "DANA",
         "dana-intro": "Die Idee zu PeopleForPeople entstand nach unserer Erfahrung während der DANA in Valencia, als wir die mangelnde Koordination im Freiwilligenmanagement hautnah miterlebten. Obwohl viele Menschen helfen wollten, verhinderte das Fehlen eines effizienten Systems, dass die Hilfe dort ankam, wo sie am dringendsten benötigt wurde. Wir erkannten, dass organisatorisches Chaos und fehlende Technologie eine schnelle Reaktion erschwerten – das motivierte uns, eine ganzheitliche Lösung zu entwickeln.",
-        "dana-desc1": "Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die innerhalb weniger Stunden alles verloren. Viele Menschen waren gefangen, ohne Zugang zu grundlegenden Ressourcen, und warteten auf Hilfe, die in manchen Fällen nie eintraf. Einige Familien wurden durch das Chaos und die fehlende koordinierte Reaktion auseinandergerissen. Tragischerweise gab es auch Todesopfer – eine schmerzhafte Erinnerung daran, wie entscheidend schnelles und effizientes Handeln in Krisensituationen ist.",
-        "dana-desc2": "Diese Herausforderung brachte uns dazu, eine digitale Lösung zu entwickeln, die Freiwillige in Echtzeit mit Organisationen verbindet und so die Reaktion auf Notfälle und Gemeinschaftsprojekte optimiert. PeopleForPeople wurde mit dem Ziel gegründet, Solidarität effektiver, strukturierter und zugänglicher zu machen – damit keine Hilfe verloren geht und jeder Einsatz einen echten Unterschied bewirkt.",
+        "dana-desc1": "Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die innerhalb weniger Stunden alles verloren. Viele Menschen waren gefangen, ohne Zugang zu grundlegenden Ressourcen, und warteten auf Hilfe, die in manchen Fällen nie eintraf. Einige Familien wurden durch das Chaos und die fehlende koordinierte Antwort auseinandergerissen. Tragischerweise gab es auch Todesopfer – eine schmerzhafte Erinnerung daran, wie entscheidend schnelles und effizientes Handeln in Krisensituationen ist.",
+        "dana-desc2": "Diese Herausforderung brachte uns dazu, eine digitale Lösung zu entwickeln, die Freiwillige in Echtzeit mit Organisationen verbindet und so die Reaktion auf Notfälle und Gemeinschaftsprojekte optimiert. PeopleForPeople wurde ins Leben gerufen, um Solidarität effektiver, strukturierter und zugänglicher zu machen – damit keine Hilfe verloren geht und jeder Einsatz einen echten Unterschied bewirkt.",
         "business-model-left": "Wir setzen auf ein Freemium-Modell, das kleinen NGOs und ressourcenarmen Gemeinschaften kostenlosen Zugang bietet.",
         "business-model-right": "Für größere Organisationen setzen wir ein Pay-per-Freiwilliger-Modell ein, das Nachhaltigkeit und Skalierbarkeit gewährleistet, während wir den sozialen Einfluss maximieren.",
         "volunteers-wave-text": "Aktuell sind wir bereits mehr als <span class='special-word'><span class='dark-blue'>16.000 Freiwillige</span></span> engagiert für gesellschaftlichen Wandel.",
@@ -658,7 +705,6 @@
     
     document.addEventListener("DOMContentLoaded", function() {
       document.getElementById("home").scrollIntoView();
-      // Sofortige Übersetzung auf Deutsch beim Laden
       changeLanguage("de");
       initTypewriter();
       createCustomSlogan();
@@ -779,7 +825,6 @@
           '</div>';
       });
       
-      // Übersetzung beim Laden der Seite auf Deutsch erzwingen
       changeLanguage("de");
     });
   </script>
