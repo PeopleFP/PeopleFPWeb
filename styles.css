@@ -703,3 +703,68 @@ footer {
 .app-description p:not(.app-intro) {
   text-align: left;
 }
+
+/* ==============================
+   Media Queries Adicionales
+   ============================== */
+
+/* Ajustes para Tablets (entre 769px y 1024px) */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  body {
+    font-size: 0.95rem;
+  }
+  .app-content,
+  .dana-content {
+    flex-direction: column;
+  }
+  .mobile-preview {
+    margin-left: 0;
+  }
+  .business-model {
+    grid-template-columns: 1fr;
+  }
+  .dana-collage {
+    width: 90%;
+    height: auto;
+  }
+}
+
+/* Ajustes para Móviles (máximo 768px) */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 0.9rem;
+    padding-top: 3rem;
+  }
+  section {
+    padding: 3rem 1rem;
+    min-height: auto;
+  }
+  .nav-menu {
+    width: 100%;
+  }
+  .app-content,
+  .dana-content {
+    flex-direction: column;
+  }
+  .nav-logo {
+    font-size: 1.8rem;
+  }
+  .hero-company {
+    font-size: 2.5rem;
+  }
+  .hero-slogan {
+    font-size: 1.8rem;
+  }
+  .hero-tagline {
+    font-size: 1rem;
+  }
+  .mobile-container {
+    width: 90%;
+  }
+  .store-container .store-img,
+  .feature-img,
+  .info-img {
+    width: 45%;
+    max-width: 120px;
+  }
+}
