@@ -401,6 +401,7 @@ footer {
 .pulsate.delayed {
   animation-delay: 1s;
 }
+
 /* ============================
    PeopleForPeople - Sección DANA
    ============================ */
@@ -498,12 +499,10 @@ footer {
   margin-top: -100px;  /* Ajusta para “subir” la imagen */
   margin-right: 150px; /* Ajusta para desplazar a la derecha */
 }
-
 .dana-additional img.mama-img {
   max-width: 300px;
   display: inline-block;
 }
-
 .dana-additional p {
   font-style: italic;
   font-size: 0.9rem;
@@ -516,13 +515,11 @@ footer {
   text-align: center;
   margin-top: 1rem;
 }
-
 .dana-news img.algemesi-img {
   max-width: 300px;
   display: inline-block;
   margin-bottom: 0.5rem;
 }
-
 .dana-news p {
   font-style: italic;
   font-size: 0.9rem;
@@ -631,6 +628,7 @@ footer {
   width: auto;
 }
 .ods-items {
+  /* Por defecto se usa auto-fit; en pantallas grandes puede ser 3 columnas */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
@@ -709,7 +707,7 @@ footer {
    ============================== */
 
 /* Ajustes para Tablets (entre 769px y 1024px) */
-@media screen and (max-width: 1024px) and (min-width: 769px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
   body {
     font-size: 0.95rem;
   }
@@ -726,6 +724,31 @@ footer {
   .dana-collage {
     width: 90%;
     height: auto;
+  }
+  /* Forzamos grid de 2 columnas en la sección ODS */
+  .ods-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* Centralizamos el bloque de "Adiós/Tschüss Mama" */
+  .dana-additional {
+    text-align: center;
+    margin-top: 0;
+    margin-right: 0;
+  }
+  .dana-additional img.mama-img {
+    margin: 0 auto;
+    display: block;
+    max-width: 80%;
+  }
+  .dana-additional p {
+    margin: 0.5rem auto;
+    text-align: center;
+    max-width: 90%;
+  }
+  /* Reducir la amplitud de la animacion de onda */
+  @keyframes waveAnimation {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
   }
 }
 
@@ -761,10 +784,35 @@ footer {
   .mobile-container {
     width: 90%;
   }
+  /* Aumentar margen inferior para que la sección de Información no se solape con la animación de móviles */
+  .mobile-preview {
+    margin-bottom: 2rem;
+  }
   .store-container .store-img,
   .feature-img,
   .info-img {
     width: 45%;
     max-width: 120px;
+  }
+  /* Centralizamos el bloque "Adiós/Tschüss Mama" */
+  .dana-additional {
+    text-align: center;
+    margin-top: 1rem;
+    margin-right: 0;
+  }
+  .dana-additional img.mama-img {
+    margin: 0 auto;
+    display: block;
+    max-width: 80%;
+  }
+  .dana-additional p {
+    margin: 0.5rem auto;
+    text-align: center;
+    max-width: 90%;
+  }
+  /* Reducir la amplitud de la animacion de onda */
+  @keyframes waveAnimation {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
   }
 }
