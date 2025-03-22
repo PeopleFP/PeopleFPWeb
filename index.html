@@ -125,12 +125,14 @@
         font-size: 1.6rem;
         white-space: normal;
         overflow-wrap: break-word;
-        line-height: 1.35;
+        line-height: 1.5; /* Erhöhter Zeilenabstand */
         padding: 0 1rem;
       }
-      .dana-additional p {
-        margin-left: 0 !important;
-        text-align: left !important;
+      .dana-additional {
+        text-align: left;
+        margin-top: 0.5rem !important;  /* Weniger Abstand oberhalb */
+        margin-right: 0;
+        margin-bottom: 0.5rem;  /* Kleiner Abstand unterhalb */
       }
       .algemesi-container p {
         font-size: 0.75rem;
@@ -142,7 +144,15 @@
         max-width: 350px !important;
         width: 100%;
       }
-      /* Reducir la amplitud de la animación de onda a -3px */
+      /* Aumenta el espacio entre la animación de móviles y la sección de información */
+      .mobile-preview {
+        margin: 0 auto 3rem;
+      }
+      /* Aseguramos que el texto animado de voluntarios se envuelva correctamente */
+      .volunteers-wave {
+        white-space: normal;
+        word-break: break-word;
+      }
       @keyframes waveAnimation {
         0%, 60%, 100% { transform: translateY(0); }
         30% { transform: translateY(-3px); }
@@ -151,16 +161,16 @@
     /* iPad: min-width: 768px und max-width: 1024px */
     @media screen and (min-width: 768px) and (max-width: 1024px) {
       .dana-additional {
-        margin-top: -80px !important;
-        margin-right: 50px !important;
-        text-align: right;
+        margin-top: 1rem !important;  /* Posicionarla sin margen negativo */
+        margin-right: 0 !important;   /* Quitar desplazamiento a la derecha */
+        text-align: left;             /* Texto a la izquierda */
       }
       .mama-img {
         margin-left: auto;
         margin-right: auto;
         display: block;
         max-width: 80%;
-        margin-top: -80px !important;
+        margin-top: 1rem !important;  /* Posicionada adecuadamente */
       }
       /* Espaciador para forzar una distribución 2×2 en ODS */
       .ods-spacer {
@@ -173,10 +183,13 @@
         grid-template-columns: repeat(2, 1fr) !important;
         justify-items: center;
       }
-      /* Reducir la intensidad de la animación de onda a -3px */
       @keyframes waveAnimation {
         0%, 60%, 100% { transform: translateY(0); }
         30% { transform: translateY(-3px); }
+      }
+      .volunteers-wave {
+        white-space: normal;
+        word-break: break-word;
       }
     }
   </style>
