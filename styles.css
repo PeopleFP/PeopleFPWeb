@@ -194,7 +194,6 @@ section {
   max-width: 800px;
   margin: 0 auto;
   opacity: 1;
-  /* Se elimina repetición de animación para no degradar el texto */
 }
 
 /* Down Arrow */
@@ -398,7 +397,6 @@ footer {
    PeopleForPeople - Sección DANA
    ============================ */
 
-/* Contenedor general del contenido DANA */
 .dana-content {
   display: flex;
   flex-wrap: wrap;
@@ -418,14 +416,12 @@ footer {
   max-width: 500px;
   line-height: 1.5;
 }
-/* Párrafo introductorio extendido para mayor ancho horizontal */
 .dana-intro {
   text-align: left;
   font-size: 1rem;
   margin-bottom: 1rem;
   max-width: 800px;
 }
-/* Collage de imágenes (no modificado) */
 .dana-collage {
   flex: 1;
   min-width: 300px;
@@ -471,9 +467,6 @@ footer {
   opacity: 1 !important;
   z-index: 10;
 }
-/* Bloque para la imagen de Mamá:
-   Se reposiciona para estar justo debajo del collage,
-   mucho más a la derecha y subida hasta la mitad del último texto */
 .dana-additional {
   text-align: right;
   margin-top: -100px;  /* Ajusta para “subir” la imagen en desktop */
@@ -488,8 +481,6 @@ footer {
   font-size: 0.9rem;
   line-height: 1.3;
 }
-/* Bloque para la noticia (Imagen de Algemesí)
-   Se aumenta su tamaño */
 .dana-news {
   text-align: center;
   margin-top: 1rem;
@@ -694,11 +685,12 @@ footer {
     width: 90%;
     height: auto;
   }
-  /* Forzamos grid de 2 columnas en la sección ODS */
+  /* Forzar grid de 2 columnas en la sección ODS y centrarlo */
   .ods-items {
     grid-template-columns: repeat(2, 1fr) !important;
+    justify-items: center;
   }
-  /* Añadimos espacio entre la segunda y tercera ods */
+  /* Añadir espacio entre la segunda y tercera ods */
   .ods-item:nth-child(2) {
     margin-bottom: 20px;
   }
@@ -718,10 +710,10 @@ footer {
     text-align: center;
     max-width: 90%;
   }
-  /* Reducir la amplitud de la animacion de onda */
+  /* Reducir la intensidad de la animación de onda a -3px */
   @keyframes waveAnimation {
     0%, 60%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-5px); }
+    30% { transform: translateY(-3px); }
   }
 }
 
@@ -748,11 +740,13 @@ footer {
   .hero-company {
     font-size: 2.5rem;
   }
+  /* Ajustar el slogan para que no se corte */
   .hero-slogan {
     font-size: 1.6rem;
     white-space: normal;
     overflow-wrap: break-word;
-    line-height: 1.2;
+    line-height: 1.35;
+    padding: 0 1rem;
   }
   .hero-tagline {
     font-size: 1rem;
@@ -770,7 +764,7 @@ footer {
     width: 45%;
     max-width: 120px;
   }
-  /* Mover el texto de "Adiós/Tschüss Mama" más a la izquierda (sin padding extra) */
+  /* Mover el texto “Adiós/Tschüss Mama” más a la izquierda */
   .dana-additional {
     text-align: left;
     margin-top: 1rem;
@@ -779,21 +773,21 @@ footer {
   .dana-additional img.mama-img {
     margin: 0 auto;
     display: block;
-    max-width: 300px;
+    max-width: 350px;
   }
   .dana-additional p {
     margin: 0.5rem 0;
     text-align: left;
     max-width: 100%;
-    padding: 0;  /* Se elimina el padding para moverlo más a la izquierda */
+    padding: 0;
   }
   /* Hacer el texto de la noticia de Algemesí más pequeño */
   .dana-news p {
     font-size: 0.75rem;
   }
-  /* Reducir la amplitud de la animacion de onda */
+  /* Reducir la intensidad de la animación de onda a -3px */
   @keyframes waveAnimation {
     0%, 60%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-5px); }
+    30% { transform: translateY(-3px); }
   }
 }
