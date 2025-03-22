@@ -125,7 +125,8 @@
         font-size: 1.6rem;
         white-space: normal;
         overflow-wrap: break-word;
-        line-height: 1.2;
+        line-height: 1.35;
+        padding: 0 1rem;
       }
       .dana-additional p {
         margin-left: 0 !important;
@@ -134,11 +135,17 @@
       .algemesi-container p {
         font-size: 0.75rem;
       }
-      /* Ajustamos la imagen de mamá para móvil (reduciendo tamaño y márgenes) */
+      /* Aumentamos la imagen de mamá para móvil */
       .mama-img {
         margin-left: 0 !important;
         margin-top: 0 !important;
-        width: 80px !important;
+        max-width: 350px !important;
+        width: 100%;
+      }
+      /* Reducir la amplitud de la animación de onda a -3px */
+      @keyframes waveAnimation {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-3px); }
       }
     }
     /* iPad: min-width: 768px und max-width: 1024px */
@@ -160,6 +167,16 @@
         display: block;
         grid-column: span 2;
         height: 20px;
+      }
+      /* Centrar el grid de ODS */
+      .ods-items {
+        grid-template-columns: repeat(2, 1fr) !important;
+        justify-items: center;
+      }
+      /* Reducir la intensidad de la animación de onda a -3px */
+      @keyframes waveAnimation {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-3px); }
       }
     }
   </style>
@@ -330,7 +347,7 @@
       <div class="dana-content">
         <div class="dana-description">
           <p id="dana-desc1">
-            Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die in nur wenigen Stunden alles verloren haben. Viele Menschen waren ohne Zugang zu grundlegenden Ressourcen gefangen und warteten auf Hilfe, die manchmal nie eintraf. Einige Familien wurden durch das Chaos und das Fehlen einer organisierten Antwort auseinandergerissen. Leider gab es auch Todesopfer – ein schmerzlicher Beweis dafür, wie wichtig schnelles und effizientes Handeln in kritischen Momenten ist.
+            Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die in nur wenigen Stunden alles verloren haben. Viele Menschen waren ohne Zugang zu grundlegenden Ressourcen gefangen und warteten auf Hilfe, die manchmal nie eintraf. Einige Familien wurden durch das Chaos und die fehlende koordinierte Antwort auseinandergerissen. Tragischerweise gab es auch Todesopfer – eine schmerzhafte Erinnerung daran, wie entscheidend schnelles und effizientes Handeln in Krisensituationen ist.
           </p>
           <p id="dana-desc2">
             Diese Herausforderung veranlasste uns dazu, eine digitale Lösung zu entwickeln, die Freiwillige in Echtzeit mit Organisationen verbindet, um Notfallreaktionen und Gemeinschaftsprojekte zu optimieren. PeopleForPeople wurde ins Leben gerufen, um Solidarität effektiver, strukturierter und zugänglicher zu machen – damit keine Hilfe verloren geht und jeder Einsatz einen Unterschied macht.
