@@ -358,6 +358,46 @@ section {
     width: 45%;
     max-width: 120px;
   }
+  
+  /* Ajustes para el bloque "Adiós/Tschüss Mama" en móvil */
+  .dana-additional {
+    text-align: left;
+    margin-top: 1rem;
+    margin-right: 0;
+  }
+  .dana-additional img.mama-img {
+    margin: 0 auto;
+    display: block;
+    max-width: 300px;
+  }
+  .dana-additional p {
+    margin: 0.5rem 0;
+    text-align: left;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  /* Reducir el tamaño del texto de la noticia de Algemesí */
+  .dana-news p {
+    font-size: 0.8rem;
+  }
+  
+  /* Ajuste para el slogan, para que la frase no se corte */
+  .hero-slogan {
+    font-size: 1.6rem;
+    white-space: normal;
+  }
+  
+  /* Aumentar margen inferior para que la sección de Información no se solape con la animación de móviles */
+  .mobile-preview {
+    margin-bottom: 2rem;
+  }
+  
+  /* Reducir la amplitud de la animacion de onda */
+  @keyframes waveAnimation {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
+  }
 }
 
 /* Footer */
@@ -727,7 +767,7 @@ footer {
   }
   /* Forzamos grid de 2 columnas en la sección ODS */
   .ods-items {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
   }
   /* Centralizamos el bloque de "Adiós/Tschüss Mama" */
   .dana-additional {
@@ -776,7 +816,8 @@ footer {
     font-size: 2.5rem;
   }
   .hero-slogan {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    white-space: normal;
   }
   .hero-tagline {
     font-size: 1rem;
@@ -794,21 +835,26 @@ footer {
     width: 45%;
     max-width: 120px;
   }
-  /* Centralizamos el bloque "Adiós/Tschüss Mama" */
+  /* Ajustes para el bloque "Adiós/Tschüss Mama" en móvil */
   .dana-additional {
-    text-align: center;
+    text-align: left;
     margin-top: 1rem;
     margin-right: 0;
   }
   .dana-additional img.mama-img {
     margin: 0 auto;
     display: block;
-    max-width: 80%;
+    max-width: 300px;
   }
   .dana-additional p {
-    margin: 0.5rem auto;
-    text-align: center;
-    max-width: 90%;
+    margin: 0.5rem 0;
+    text-align: left;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  /* Reducir el tamaño del texto de la noticia de Algemesí */
+  .dana-news p {
+    font-size: 0.8rem;
   }
   /* Reducir la amplitud de la animacion de onda */
   @keyframes waveAnimation {
