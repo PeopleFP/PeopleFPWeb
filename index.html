@@ -7,30 +7,23 @@
   <link rel="stylesheet" href="styles.css" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Estilos adicionales para ajustar algunos elementos -->
   <style>
-    /* Keyframes para la animación de onda */
+    /* Keyframes für die Wellenanimation */
     @keyframes waveAnimation {
       0%, 60%, 100% { transform: translateY(0); }
       30% { transform: translateY(-10px); }
     }
-    /* Keyframes para la animación de zoom en el modal */
+    /* Keyframes für die Zoom-Animation im Modal */
     @keyframes zoomIn {
       from { transform: scale(0.5); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
-    /* Imagen de la WEB informativa: se mantiene como antes (reducida) */
     .info-web img { max-width: 150px; }
-    /* Aseguramos que solo el enlace que envuelve la imagen es clicable */
     .info-web a { display: inline-block; }
-    /* Transición suave en imágenes de ODS */
     .ods-item img { transition: transform 0.5s ease, box-shadow 0.5s ease; }
-    /* Bajar mucho más la imagen de Pay per Freiwilliger (doblando el margen) */
     .business-model-item.right { margin-top: 300px; }
-    /* Agrandar el título de ODS y la imagen del título */
     .ods-header h3 { font-size: 2em; }
     .ods-header img { height: 80px; width: auto; }
-    /* Contenedor para la imagen de Algemesí: ocupará toda la pantalla sin recortarse */
     .algemesi-container { position: relative; width: 100vw; height: 100vh; }
     .algemesi-container img {
       width: 100%;
@@ -40,7 +33,6 @@
       min-width: 100%;
       min-height: 100%;
     }
-    /* El texto sobre la imagen de Algemesí se ha hecho más pequeño para no salirse del contenedor */
     .algemesi-container p {
       position: absolute;
       top: 0;
@@ -56,22 +48,17 @@
       background: rgba(255, 255, 255, 0.8);
       text-align: center;
     }
-    /* Mantenemos el color azul oscuro para “16.000 voluntarios” */
     .dark-blue { color: #00008B; }
-    /* Tamaño del texto de la animación de onda para voluntarios */
     .volunteers-wave { font-size: 1.3em; }
-    /* Sombra y bordes redondeados para las imágenes de App Store y Play Store */
     .store-img { border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
-    /* Regla original para la imagen de Mama */
     .mama-img { margin-left: 700px; margin-top: -150px; display: block; }
-    /* Texto debajo de la imagen de Mama posicionado aún más a la derecha */
     .dana-additional p {
       font-size: 0.8em;
       margin-top: 10px;
       margin-left: 900px;
       text-align: right;
     }
-    /* Overlay para la transición de idioma con un fondo azul oscuro smooth */
+    /* Overlay für den Sprachwechsel */
     #lang-overlay {
       position: fixed;
       top: 0;
@@ -84,7 +71,7 @@
       pointer-events: none;
       transition: transform 1s ease, opacity 1s ease;
     }
-    /* Estilos para el modal de imagen (carrusel) */
+    /* Modal für große Bilder */
     #modal-overlay {
       position: fixed;
       top: 0;
@@ -98,14 +85,13 @@
       z-index: 10001;
       transition: opacity 0.5s ease;
     }
-    /* Clase para la imagen del modal con animación de zoom */
     .modal-image {
       max-width: 90%;
       max-height: 90%;
       animation: zoomIn 0.5s ease-out forwards;
       cursor: pointer;
     }
-    /* Sección Documentos: ocultada por defecto */
+    /* Bereich Dokumente */
     #documentos {
       display: none;
       position: fixed;
@@ -132,12 +118,10 @@
   </style>
 </head>
 <body>
-  <!-- Overlay para la transición de idioma -->
+  <!-- Overlay für den Sprachwechsel -->
   <div id="lang-overlay"></div>
-
-  <!-- Modal para agrandar imagen del carrusel -->
+  <!-- Modal für große Bilder im Karussell -->
   <div id="modal-overlay"></div>
-
   <!-- Header -->
   <header class="l-header">
     <nav class="nav">
@@ -162,7 +146,6 @@
       </div>
     </nav>
   </header>
-
   <!-- Main Content -->
   <main>
     <!-- Hero Section -->
@@ -176,25 +159,26 @@
         <span id="arrow-text"></span>
       </a>
     </section>
-
     <!-- Section App -->
     <section id="app">
       <h2 class="section-title" id="app-title">Unser Prototyp</h2>
       <div class="app-content">
         <div class="app-description">
-          <p class="app-intro">En PeopleForPeople hemos desarrollado un prototipo de aplicación que optimiza la gestión del voluntariado.</p>
+          <p class="app-intro" id="app-intro">
+            En PeopleForPeople hemos desarrollado un prototipo de aplicación que optimiza la gestión del voluntariado.
+          </p>
           <p id="app-text"></p>
-          <p>Nuestra plataforma ofrece funcionalidades avanzadas como:</p>
+          <p id="app-features-heading">Nuestra plataforma ofrece funcionalidades avanzadas como:</p>
           <ul class="feature-list">
-            <li class="feature-item">Gestión de datos en tiempo real</li>
-            <li class="feature-item">Sistema de mensajería instantánea</li>
-            <li class="feature-item">Perfiles diferenciados para organizaciones y voluntarios</li>
-            <li class="feature-item">Geolocalización dinámica</li>
-            <li class="feature-item">Asignación de voluntarios y panel de gestión de solicitudes</li>
+            <li class="feature-item" id="feature-1">Gestión de datos en tiempo real</li>
+            <li class="feature-item" id="feature-2">Sistema de mensajería instantánea</li>
+            <li class="feature-item" id="feature-3">Differenzierte Profile für Organisationen und Freiwillige</li>
+            <li class="feature-item" id="feature-4">Geolokalisation dynamisch</li>
+            <li class="feature-item" id="feature-5">Asignación de voluntarios und Panel de gestión de solicitudes</li>
           </ul>
-          <p><strong>Descubre nuestro prototipo <a href="https://charliepoten.github.io/People-For-People/" target="_blank" class="glow-link">aquí</a>.</strong></p>
+          <p id="app-cta"><strong>Descubre nuestro prototyp <a href="https://charliepoten.github.io/People-For-People/" target="_blank" class="glow-link">hier</a>.</strong></p>
           <div class="store-section">
-            <p class="store-heading">Próximamente disponible en:</p>
+            <p class="store-heading" id="store-heading">Bald erhältlich in:</p>
             <div class="store-container">
               <div class="store-item">
                 <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/APP%20STORE.jpg?raw=true" alt="App Store" class="store-img pulsate" />
@@ -222,89 +206,89 @@
         </div>
       </div>
     </section>
-
     <!-- Section Informationen -->
     <section id="info">
       <h2 class="section-title" id="info-title">Información</h2>
       <div class="info-content">
         <div class="info-description">
           <p class="info-intro">
-            En PeopleForPeople, los voluntarios son el pilar fundamental de nuestra plataforma. Contamos con una comunidad diversa de voluntarios dispuestos a ayudar donde más se necesita. Nuestra plataforma les permite registrarse, elegir sus áreas de interés y ser asignados eficientemente a tareas según su perfil, optimizando cada esfuerzo para generar un impacto real.
+            En PeopleForPeople, los voluntarios son el pilar fundamental de nuestra plataforma. Contamos mit einer vielfältigen Gemeinschaft von Freiwilligen, die bereit sind zu helfen, wo immer sie gebraucht werden. Unsere Plattform ermöglicht es, sich zu registrieren, Interessen auszuwählen und effektiv zu helfen – jeder Einsatz zählt.
           </p>
-          <p class="volunteers-wave">
-            Actualmente, ya somos más de <span class="special-word"><span class="dark-blue">16.000 voluntarios</span></span> comprometidos con el cambio social.
+          <p class="volunteers-wave" id="volunteers-wave-text">
+            Aktuell sind wir bereits mehr als <span class="special-word"><span class="dark-blue">16.000 Freiwillige</span></span> engagiert für gesellschaftlichen Wandel.
           </p>
         </div>
         <div class="business-model-section">
           <div class="business-model">
             <div class="business-model-item left">
               <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/FREEMIUM.png?raw=true" alt="Freemium Modell" class="info-img">
-              <p>Aplicamos un modelo freemium, ofreciendo acceso gratuito a pequeñas ONG y comunidades con recursos limitados.</p>
+              <p id="business-model-left">
+                Wir setzen auf ein Freemium-Modell, das kleinen NGOs und ressourcenarmen Gemeinschaften kostenlosen Zugang bietet.
+              </p>
             </div>
             <div class="business-model-item right">
               <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/PAY%20PER%20FREIWILLIGER.png?raw=true" alt="Pay per Freiwilliger" class="info-img">
-              <p>Para organizaciones más grandes, implementamos un sistema de pay per Freiwilliger (pago por voluntario activado), asegurando sostenibilidad y escalabilidad mientras maximizamos el impacto social.</p>
+              <p id="business-model-right">
+                Für größere Organisationen setzen wir ein Pay-per-Freiwilliger-Modell ein, das Nachhaltigkeit und Skalierbarkeit gewährleistet, während wir den sozialen Einfluss maximieren.
+              </p>
             </div>
           </div>
         </div>
-        <div class="ods-section">
-          <div class="ods-header">
-            <h3>ODS</h3>
-            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS.jpg?raw=true" alt="ODS">
-          </div>
-          <p>PeopleForPeople contribuye a varios Objetivos de Desarrollo Sostenible (ODS):</p>
-          <div class="ods-items">
-            <div class="ods-item">
-              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%203.jpg?raw=true" alt="ODS 3">
-              <p><strong>ODS 3 (Salud y bienestar):</strong> Facilitamos la asistencia en emergencias y apoyamos iniciativas sociales que mejoran el bienestar de las comunidades.</p>
-            </div>
-            <div class="ods-item">
-              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2010.jpg?raw=true" alt="ODS 10">
-              <p><strong>ODS 10 (Reducción de desigualdades):</strong> Garantizamos que la ayuda llegue a quienes más lo necesitan, promoviendo una distribución equitativa de los recursos.</p>
-            </div>
-            <div class="ods-item">
-              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2011.png?raw=true" alt="ODS 11">
-              <p><strong>ODS 11 (Ciudades y comunidades sostenibles):</strong> Facilitamos la respuesta a emergencias y la gestión del voluntariado en proyectos comunitarios.</p>
-            </div>
-            <div class="ods-item">
-              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2017.jpg?raw=true" alt="ODS 17">
-              <p><strong>ODS 17 (Alianzas para lograr los objetivos):</strong> Conectamos voluntarios, ONG y administraciones públicas para fortalecer la cooperación y maximizar el impacto social.</p>
-            </div>
-          </div>
-          <div class="info-web">
-            <p>
-              Para más detalles sobre nuestro impacto, modelo de negocio y cómo unirte a nuestra comunidad de voluntarios, visita nuestra WEB Informativa:
-            </p>
-            <a href="https://peopleforpeople7.wordpress.com/" target="_blank">
-              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/WEB.png?raw=true" alt="WEB Informativa">
-            </a>
-            <p style="font-weight:bold;">Visita nuestra WEB Informativa</p>
-            <p style="margin-top:30px;">
-              <strong>Accede a nuestros documentos oficiales <a href="#documentos" class="glow-link" id="docs-link">aquí</a>.</strong>
+        <!-- Encabezado ODS -->
+        <p id="ods-header-text"></p>
+        <div class="ods-items">
+          <div class="ods-item">
+            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%203.jpg?raw=true" alt="ODS 3">
+            <p id="ods3-text">
+              <strong>ODS 3 (Gesundheit und Wohlbefinden):</strong> Wir erleichtern die Hilfe in Notfällen und unterstützen soziale Initiativen, die das Wohl der Gemeinschaften verbessern.
             </p>
           </div>
+          <div class="ods-item">
+            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2010.jpg?raw=true" alt="ODS 10">
+            <p id="ods10-text">
+              <strong>ODS 10 (Reduzierung von Ungleichheiten):</strong> Wir stellen sicher, dass die Hilfe diejenigen erreicht, die sie am dringendsten benötigen, und fördern so eine gerechte Verteilung der Ressourcen.
+            </p>
+          </div>
+          <div class="ods-item">
+            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2011.png?raw=true" alt="ODS 11">
+            <p id="ods11-text">
+              <strong>ODS 11 (Nachhaltige Städte und Gemeinden):</strong> Wir erleichtern die Notfallreaktion und das Management von Freiwilligen in Gemeinschaftsprojekten.
+            </p>
+          </div>
+          <div class="ods-item">
+            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2017.jpg?raw=true" alt="ODS 17">
+            <p id="ods17-text">
+              <strong>ODS 17 (Partnerschaften zur Erreichung der Ziele):</strong> Wir vernetzen Freiwillige, NGOs und öffentliche Einrichtungen, um die Zusammenarbeit zu stärken und den sozialen Einfluss zu maximieren.
+            </p>
+          </div>
+        </div>
+        <div class="info-web">
+          <p id="info-web-text1"></p>
+          <a href="https://peopleforpeople7.wordpress.com/" target="_blank">
+            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/WEB.png?raw=true" alt="WEB Informativa">
+          </a>
+          <p id="info-web-text2" style="font-weight:bold;"></p>
+          <p id="info-web-text3" style="margin-top:30px;"></p>
         </div>
       </div>
     </section>
-
     <!-- Section DANA reestructurada -->
     <section id="dana">
       <h2 class="section-title" id="dana-title">DANA</h2>
-      <p class="dana-intro">
-        La idea de PeopleForPeople surgió tras nuestra experiencia durante la DANA en Valencia, cuando fuimos testigos de la falta de coordinación en la gestión del voluntariado. Aunque muchas personas estaban dispuestas a ayudar, la ausencia de un sistema eficiente impedía que la ayuda llegara a quien más se necesitaba. Observamos que el caos organizativo y la falta de tecnología obstaculizaban una respuesta rápida, lo que nos motivó a buscar una solución integral.
+      <p class="dana-intro" id="dana-intro">
+        La idea de PeopleForPeople surgió tras nuestra experiencia durante la DANA en Valencia, cuando fuimos testigos der mangelnden Koordination bei der Freiwilligenverwaltung. Obwohl viele Menschen bereit waren zu helfen, verhinderte das Fehlen eines effizienten Systems, dass die Hilfe jene erreichte, die sie am dringendsten benötigten. Wir stellten fest, dass organisatorisches Chaos und mangelnde Technologie eine schnelle Reaktion behinderten – daher suchten wir nach einer umfassenden Lösung.
       </p>
       <div class="dana-content">
         <div class="dana-description">
-          <p>
-            La DANA dejó cientos de afectados, familias enteras que lo perdieron todo en cuestión de horas. Muchas personas quedaron atrapadas sin acceso a recursos básicos, esperando una ayuda que a veces nunca llegó. Algunas familias se vieron separadas por el caos y la falta de respuesta organizada. Lamentablemente, también hubo víctimas mortales – un recordatorio doloroso de la importancia de actuar con rapidez y eficiencia en momentos críticos.
+          <p id="dana-desc1">
+            Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die in nur wenigen Stunden alles verloren haben. Viele Menschen waren ohne Zugang zu grundlegenden Ressourcen gefangen und warteten auf Hilfe, die manchmal nie eintraf. Einige Familien wurden durch das Chaos und das Fehlen einer organisierten Antwort auseinandergerissen. Leider gab es auch Todesopfer – ein schmerzlicher Beweis dafür, wie wichtig schnelles und effizientes Handeln in kritischen Momenten ist.
           </p>
-          <p>
-            Este desafío nos llevó a desarrollar una solución digital que conecta voluntarios con organizaciones en tiempo real, optimizando la respuesta en emergencias y proyectos comunitarios. PeopleForPeople nace con el propósito de hacer que la solidaridad sea más efectiva, estructurada y accesible, para que ninguna ayuda se pierda y cada esfuerzo marque la diferencia.
+          <p id="dana-desc2">
+            Diese Herausforderung veranlasste uns dazu, eine digitale Lösung zu entwickeln, die Freiwillige in Echtzeit mit Organisationen verbindet, um Notfallreaktionen und Gemeinschaftsprojekte zu optimieren. PeopleForPeople wurde ins Leben gerufen, um Solidarität effektiver, strukturierter und zugänglicher zu machen – damit keine Hilfe verloren geht und jeder Einsatz einen Unterschied macht.
           </p>
         </div>
         <div class="dana-collage">
           <div class="collage-container">
-            <!-- Imágenes del carrusel; se asigna el event listener para abrir el modal al hacer clic -->
             <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/foto%20volunt%201.JPG?raw=true" alt="Volunt 1" class="collage-img img1">
             <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/volunt%202.JPG?raw=true" alt="Volunt 2" class="collage-img img2">
             <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/volunt%203.JPG?raw=true" alt="Volunt 3" class="collage-img img3">
@@ -314,30 +298,30 @@
       </div>
       <div class="dana-additional">
         <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ADIOS%20MAMA.png?raw=true" alt="Adiós, mamá" class="mama-img">
-        <p style="margin-left:900px; text-align: right;">"Adiós, mamá. No pudimos llegar a tiempo. Perdón"</p>
+        <p style="margin-left:900px; text-align: right;" id="adios-mama-text">
+          "Adiós, mamá. No pudimos llegar a tiempo. Perdón"
+        </p>
       </div>
       <div class="dana-news">
         <div class="algemesi-container">
           <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/algemesi.jpg?raw=true" alt="Algemesí" class="algemesi-img">
-          <p>
-            «Hay muchos voluntarios en Algemesí, pero falta coordinación und maquinaria»<br>
+          <p id="algemesi-text">
+            «Hay muchos voluntarios en Algemesí, pero falta Koordination und Maschinen»<br>
             LEVANTE – EL MERCANTIL VALENCIANO<br>
-            2 de Noviembre de 2024.
+            2. November 2024.
           </p>
         </div>
       </div>
     </section>
-
     <!-- Section Über uns -->
     <section id="about">
       <h2 class="section-title" id="about-title">Über uns</h2>
       <p class="section-text" id="about-text">
-        Conecta con quienes necesitan tu ayuda y convierte tu tiempo en impacto real, brindando apoyo en emergencias y necesidades diarias, de forma flexible y organizada. ¡Tu solidaridad, cuando y donde más importa!<br><br>
-        Tu ayuda, su esperanza. ¡Nosotros os unimos!<br><br>
+        Verbinde dich mit denen, die deine Hilfe benötigen und verwandle deine Zeit in echten Einfluss, indem du in Notfällen sowie im Alltag flexibel und organisiert Unterstützung leistest. Deine Solidarität zählt, wann und wo sie am meisten gebraucht wird!<br><br>
+        Deine Hilfe, ihre Hoffnung. Wir bringen euch zusammen!<br><br>
         <strong>Carlos Potenciano - Daniel Banerjee - Jakobus Fernandez - Alberto Kremers.</strong>
       </p>
     </section>
-    
     <!-- Section Documentos -->
     <section id="documentos">
       <span class="close-docs" id="close-docs">&times; Cerrar</span>
@@ -350,18 +334,15 @@
       </div>
       <div id="doc-content"></div>
     </section>
-  
   </main>
-  
   <!-- Footer -->
   <footer>
-    <p>&#169; 2025 PeopleForPeople. Alle Rechte vorbehalten.</p>
+    <p id="footer-text">&#169; 2025 PeopleForPeople. Alle Rechte vorbehalten.</p>
   </footer>
-  
   <!-- JavaScript -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script>
-    // Función recursiva para envolver nodos con efecto de onda
+    // Funktion, die Textknoten rekursiv umschließt (für Wellenanimation)
     function wrapNode(node, delay) {
       if (node.nodeType === Node.TEXT_NODE && node.textContent) {
         let frag = document.createDocumentFragment();
@@ -388,10 +369,10 @@
       }
     }
     
-    // Función para crear el slogan letra por letra
+    // Funktion, um den Slogan Zeichen für Zeichen zu erstellen
     function createCustomSlogan() {
       const target = document.getElementById("hero-slogan");
-      const sloganText = "Deine Hilfe. Ihre Hoffnung. Wir verbinden!";
+      const sloganText = translations[currentLang]["hero-slogan"];
       target.innerHTML = "";
       let delay = 0;
       for (let i = 0; i < sloganText.length; i++) {
@@ -408,7 +389,7 @@
       }
     }
     
-    // Función para aplicar efecto de onda a elementos
+    // Funktion, um einen Element-Effekt mit Wellenanimation anzuwenden
     function initWaveForElement(selector) {
       const element = document.querySelector(selector);
       if (!element) return;
@@ -417,11 +398,7 @@
       element.appendChild(result.node);
     }
     
-    // =============================
-    // NUEVA FUNCIONALIDAD: Modal de Ampliación
-    // =============================
-    
-    // Función para abrir el modal y ampliar la imagen del carrusel con efecto de zoom
+    // Funktion für das Öffnen des Modals
     function openModal(src) {
       let modal = document.getElementById("modal-overlay");
       modal.innerHTML = '<img src="' + src + '" alt="Imagen Ampliada" class="modal-image">';
@@ -431,7 +408,6 @@
       }, 10);
     }
     
-    // Función para cerrar el modal
     function closeModal() {
       let modal = document.getElementById("modal-overlay");
       modal.classList.remove("active");
@@ -441,18 +417,13 @@
       }, 500);
     }
     
-    // Asignar listener para cerrar el modal si se hace clic fuera de la imagen
     document.getElementById("modal-overlay").addEventListener("click", function(e){
       if(e.target.id === "modal-overlay") {
         closeModal();
       }
     });
     
-    // =============================
-    // FIN NUEVA FUNCIONALIDAD
-    // =============================
-    
-    // Toggle Menu Functionality
+    // Toggle-Menü-Funktionalität
     const showMenu = (toggleId, navId) => {
       const toggle = document.getElementById(toggleId);
       const nav = document.getElementById(navId);
@@ -464,7 +435,7 @@
     };
     showMenu('nav-toggle', 'nav-menu');
     
-    // Active Link Switching
+    // Aktives Link-Umschalten
     const navLink = document.querySelectorAll('.nav-link');
     function linkAction() {
       navLink.forEach(n => n.classList.remove('active'));
@@ -473,7 +444,7 @@
     }
     navLink.forEach(n => n.addEventListener('click', linkAction));
     
-    // Función para cambiar textos de idioma
+    // Funktion um die Texte anhand des gewählten Sprachcodes zu wechseln
     function changeLanguage(lang) {
       document.getElementById("nav-home").innerText = translations[lang]["nav-home"];
       document.getElementById("nav-app").innerText = translations[lang]["nav-app"];
@@ -481,24 +452,65 @@
       document.getElementById("nav-dana").innerText = translations[lang]["nav-dana"];
       document.getElementById("nav-about").innerText = translations[lang]["nav-about"];
       document.getElementById("app-title").innerText = translations[lang]["app-title"];
+      document.getElementById("app-intro").innerText = translations[lang]["app-intro"];
       document.getElementById("app-text").innerText = translations[lang]["app-text"];
+      document.getElementById("app-features-heading").innerText = translations[lang]["app-features-heading"];
+      document.getElementById("feature-1").innerText = translations[lang]["feature-1"];
+      document.getElementById("feature-2").innerText = translations[lang]["feature-2"];
+      document.getElementById("feature-3").innerText = translations[lang]["feature-3"];
+      document.getElementById("feature-4").innerText = translations[lang]["feature-4"];
+      document.getElementById("feature-5").innerText = translations[lang]["feature-5"];
+      document.getElementById("app-cta").innerHTML = translations[lang]["app-cta"];
+      document.getElementById("store-heading").innerText = translations[lang]["store-heading"];
       document.getElementById("info-title").innerText = translations[lang]["info-title"];
-      document.getElementById("info-text").innerText = translations[lang]["info-text"];
+      document.querySelector(".info-intro").innerText = translations[lang]["info-text"];
+      
+      // Dynamischer Überschriftstext für den ODS-Bereich
+      document.getElementById("ods-header-text").innerText = translations[lang]["ods-header-text"];
+      
       document.getElementById("about-title").innerText = translations[lang]["about-title"];
-      document.getElementById("about-text").innerText = translations[lang]["about-text"];
+      document.getElementById("about-text").innerHTML = translations[lang]["about-text"];
+      
       document.getElementById("hero-company").textContent = translations[lang]["hero-company"];
-      document.getElementById("hero-slogan").textContent = translations[lang]["hero-slogan"];
-      document.getElementById("hero-tagline").textContent = translations[lang]["hero-tagline"];
-      document.getElementById("arrow-text").textContent = translations[lang]["arrow-text"];
-      document.getElementById("dana-title").innerText = translations[lang]["dana-title"];
-      document.getElementById("dana-text").innerText = translations[lang]["dana-text"];
-      // Reinicializar animaciones
       createCustomSlogan();
-      initWaveForElement('.volunteers-wave');
+      document.getElementById("hero-tagline").innerText = translations[lang]["hero-tagline"];
+      document.getElementById("arrow-text").innerText = translations[lang]["arrow-text"];
+      
+      // Aktualisierung der DANA-Sektion
+      document.getElementById("dana-title").innerText = translations[lang]["dana-title"];
+      document.getElementById("dana-intro").innerText = translations[lang]["dana-intro"];
+      document.getElementById("dana-desc1").innerText = translations[lang]["dana-desc1"];
+      document.getElementById("dana-desc2").innerText = translations[lang]["dana-desc2"];
+      
+      document.getElementById("business-model-left").innerText = translations[lang]["business-model-left"];
+      document.getElementById("business-model-right").innerText = translations[lang]["business-model-right"];
+      document.getElementById("volunteers-wave-text").innerHTML = translations[lang]["volunteers-wave-text"];
+      initWaveForElement("#volunteers-wave-text");
+      
+      // Ajuste del tamaño de fuente de la animación de Welle en der Freiwilligen-Sektion, nur im Deutschen kleiner
+      if(lang === "de") {
+        document.querySelector(".volunteers-wave").style.fontSize = "1.1em";
+      } else {
+        document.querySelector(".volunteers-wave").style.fontSize = "1.3em";
+      }
+      
+      document.getElementById("ods3-text").innerHTML = translations[lang]["ods3-text"];
+      document.getElementById("ods10-text").innerHTML = translations[lang]["ods10-text"];
+      document.getElementById("ods11-text").innerHTML = translations[lang]["ods11-text"];
+      document.getElementById("ods17-text").innerHTML = translations[lang]["ods17-text"];
+      document.getElementById("adios-mama-text").innerText = translations[lang]["adios-mama-text"];
+      document.getElementById("algemesi-text").innerHTML = translations[lang]["algemesi-text"];
+      
+      // Info-Web Block
+      document.getElementById("info-web-text1").innerText = translations[lang]["info-web-text1"];
+      document.getElementById("info-web-text2").innerText = translations[lang]["info-web-text2"];
+      document.getElementById("info-web-text3").innerHTML = translations[lang]["info-web-text3"];
+      
+      document.getElementById("footer-text").innerText = translations[lang]["footer-text"];
       initTypewriter();
     }
     
-    // Fullscreen Language Transition Animation
+    // Vollbild-Sprachwechsel-Animation
     function runLanguageTransition(lang) {
       const overlay = document.getElementById("lang-overlay");
       overlay.style.transition = "transform 1s ease, opacity 1s ease";
@@ -514,7 +526,7 @@
       }, 2100);
     }
     
-    // Translations
+    // Übersetzungsobjekt für Deutsch und Spanisch
     const translations = {
       de: {
         "nav-home": "Startseite",
@@ -523,17 +535,42 @@
         "nav-dana": "DANA",
         "nav-about": "Über uns",
         "app-title": "Unser Prototyp",
+        "app-intro": "Bei PeopleForPeople haben wir einen Prototypen entwickelt, der das Management von Freiwilligen optimiert.",
         "app-text": "Unser Prototyp ermöglicht eine schnelle Registrierung und flexible Einsatzplanung. Laden Sie die Anwendung aus dem App Store, Play Store oder nutzen Sie die Web-Version – immer verbunden, überall.",
+        "app-features-heading": "Unsere Plattform bietet fortschrittliche Funktionen wie:",
+        "feature-1": "Echtzeit-Datenmanagement",
+        "feature-2": "Instant-Messaging-System",
+        "feature-3": "Differenzierte Profile für Organisationen und Freiwillige",
+        "feature-4": "Dynamische Geolokalisierung",
+        "feature-5": "Zuordnung von Freiwilligen und Verwaltung von Anfragen",
+        "app-cta": "Entdecke unseren Prototyp <a href='https://charliepoten.github.io/People-For-People/' target='_blank' class='glow-link'>hier</a>.",
+        "store-heading": "Bald erhältlich in:",
         "info-title": "Informationen",
         "info-text": "Unser Geschäftsmodell basiert auf einem Freemium-Ansatz. Kleine Organisationen nutzen die Plattform kostenfrei, während größere von einem Abonnement profitieren. Transparente Statistiken und nachhaltige Entwicklungsziele (ODS) unterstützen unsere Mission.",
+        "ods-header-text": "PeopleForPeople trägt zu verschiedenen Zielen der nachhaltigen Entwicklung (ODS) bei:",
         "about-title": "Über uns",
-        "about-text": "PeopleForPeople wurde gegründet, um die Koordination von Freiwilligen zu optimieren. Erfahrungen in Krisensituationen haben uns gezeigt, wie wichtig eine effektive Vernetzung zwischen Freiwilligen, NGOs und Behörden ist.",
+        "about-text": "Verbinde dich mit denen, die deine Hilfe benötigen und verwandle deine Zeit in echten Einfluss, indem du in Notfällen sowie im Alltag flexibel und organisiert Unterstützung leistest. Deine Solidarität zählt, wann und wo sie am meisten gebraucht wird!<br><br>Deine Hilfe, ihre Hoffnung. Wir bringen euch zusammen!<br><br><strong>Carlos Potenciano - Daniel Banerjee - Jakobus Fernandez - Alberto Kremers.</strong>",
         "hero-company": "People for People",
         "hero-slogan": "Deine Hilfe. Ihre Hoffnung. Wir verbinden!",
         "hero-tagline": "Wir vernetzen Freiwillige mit Bedürftigen und koordinieren in Echtzeit Hilfe – gemeinsam mit NGOs, Behörden und weiteren Institutionen.",
         "arrow-text": "Zum Prototypen",
         "dana-title": "DANA",
-        "dana-text": "DANA: Ein Funkeln unserer Seele. Ihre Erinnerung war der zärtliche Funke, der uns antrieb, Menschen und Helfer miteinander zu verbinden. DANA ist mehr als ein Name – sie war unsere Inspiration und unser Herzschlag."
+        "dana-intro": "DANA: Ein Funkeln unserer Seele. Ihre Erinnerung war der zärtliche Funke, der uns antrieb, Menschen und Helfer miteinander zu verbinden. DANA ist mehr als ein Name – sie war unsere Inspiration und unser Herzschlag.",
+        "dana-desc1": "Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die in nur wenigen Stunden alles verloren haben. Viele Menschen waren ohne Zugang zu grundlegenden Ressourcen gefangen und warteten auf Hilfe, die manchmal nie eintraf. Einige Familien wurden durch das Chaos und das Fehlen einer organisierten Antwort auseinandergerissen. Leider gab es auch Todesopfer – ein schmerzlicher Beweis dafür, wie wichtig schnelles und effizientes Handeln in kritischen Momenten ist.",
+        "dana-desc2": "Diese Herausforderung veranlasste uns dazu, eine digitale Lösung zu entwickeln, die Freiwillige in Echtzeit mit Organisationen verbindet, um die Reaktion in Notfällen und Gemeinschaftsprojekten zu optimieren. PeopleForPeople wurde mit dem Ziel ins Leben gerufen, Solidarität effektiver, strukturierter und zugänglicher zu machen, damit keine Hilfe verloren geht und jeder Einsatz einen Unterschied macht.",
+        "business-model-left": "Wir setzen auf ein Freemium-Modell, das kleinen NGOs und ressourcenarmen Gemeinschaften kostenlosen Zugang bietet.",
+        "business-model-right": "Für größere Organisationen setzen wir ein Pay-per-Freiwilliger-Modell ein, das Nachhaltigkeit und Skalierbarkeit gewährleistet, während wir den sozialen Einfluss maximieren.",
+        "volunteers-wave-text": "Aktuell sind wir bereits mehr als <span class='special-word'><span class='dark-blue'>16.000 Freiwillige</span></span> engagiert für gesellschaftlichen Wandel.",
+        "ods3-text": "<strong>ODS 3 (Gesundheit und Wohlbefinden):</strong> Wir erleichtern die Hilfe in Notfällen und unterstützen soziale Initiativen, die das Wohl der Gemeinschaften verbessern.",
+        "ods10-text": "<strong>ODS 10 (Reduzierung von Ungleichheiten):</strong> Wir stellen sicher, dass die Hilfe diejenigen erreicht, die sie am dringendsten benötigen, und fördern so eine gerechte Verteilung der Ressourcen.",
+        "ods11-text": "<strong>ODS 11 (Nachhaltige Städte und Gemeinden):</strong> Wir erleichtern die Notfallreaktion und das Management von Freiwilligen in Gemeinschaftsprojekten.",
+        "ods17-text": "<strong>ODS 17 (Partnerschaften zur Erreichung der Ziele):</strong> Wir vernetzen Freiwillige, NGOs und öffentliche Einrichtungen, um die Zusammenarbeit zu stärken und den sozialen Einfluss zu maximieren.",
+        "info-web-text1": "Für weitere Details zu unserem Einfluss, Geschäftsmodell und wie du Teil unserer Freiwilligen-Community wirst, besuche unsere Informationswebsite:",
+        "info-web-text2": "Besuche unsere Informationswebsite",
+        "info-web-text3": "Greife auf unsere offiziellen Dokumente zu <a href=\"#documentos\" class=\"glow-link\">hier</a>.",
+        "adios-mama-text": "Lebewohl, Mama. Wir konnten nicht rechtzeitig ankommen. Es tut uns leid.",
+        "algemesi-text": "«In Algemesí gibt es viele Freiwillige, aber es mangelt an Koordination und passender Ausrüstung.»<br>LEVANTE – EL MERCANTIL VALENCIANO<br>2. November 2024.",
+        "footer-text": "© 2025 PeopleForPeople. Alle Rechte vorbehalten."
       },
       es: {
         "nav-home": "Inicio",
@@ -542,17 +579,42 @@
         "nav-dana": "DANA",
         "nav-about": "Quiénes Somos",
         "app-title": "Nuestro prototipo",
+        "app-intro": "En PeopleForPeople, hemos desarrollado un prototipo que optimiza la gestión de voluntarios.",
         "app-text": "Nuestro prototipo permite un registro rápido y una planificación flexible de tareas. Descarga la aplicación desde el App Store, Play Store o utiliza la versión web para estar siempre conectado.",
+        "app-features-heading": "Nuestra plataforma ofrece funciones avanzadas como:",
+        "feature-1": "Gestión de datos en tiempo real",
+        "feature-2": "Sistema de mensajería instantánea",
+        "feature-3": "Perfiles diferenciados para organizaciones y voluntarios",
+        "feature-4": "Geolocalización dinámica",
+        "feature-5": "Asignación de voluntarios y gestión de solicitudes",
+        "app-cta": "Descubre nuestro prototipo <a href='https://charliepoten.github.io/People-For-People/' target='_blank' class='glow-link'>aquí</a>.",
+        "store-heading": "Próximamente disponible en:",
         "info-title": "Información",
         "info-text": "Nuestro modelo de negocio se basa en un enfoque Freemium: las pequeñas organizaciones usan la plataforma gratuitamente, mientras que las instituciones más grandes se benefician de una suscripción. Estadísticas transparentes y objetivos sostenibles (ODS) respaldan nuestra misión.",
+        "ods-header-text": "PeopleForPeople contribuye a varios Objetivos de Desarrollo Sostenible (ODS):",
         "about-title": "Quiénes Somos",
-        "about-text": "PeopleForPeople se fundó para optimizar la coordinación del voluntariado. Nuestras experiencias en situaciones críticas demostraron la necesidad de una mejor conexión entre voluntarios, ONG y administraciones.",
+        "about-text": "Conecta con quienes necesitan tu ayuda y convierte tu tiempo en impacto real, brindando apoyo en emergencias y necesidades diarias, de forma flexible y organizada. ¡Tu solidaridad, cuando y donde más importa!<br><br>Tu ayuda, su esperanza. ¡Nosotros unimos!<br><br><strong>Carlos Potenciano - Daniel Banerjee - Jakobus Fernandez - Alberto Kremers.</strong>",
         "hero-company": "People for People",
         "hero-slogan": "Tu ayuda. Su esperanza. ¡Nosotros unimos!",
         "hero-tagline": "Vinculamos voluntarios con personas necesitadas y coordinamos ayuda en tiempo real junto a ONGs, autoridades y otras entidades.",
         "arrow-text": "Accede a nuestro Prototipo",
         "dana-title": "DANA",
-        "dana-text": "DANA: Un destello de nuestro alma. Su recuerdo fue la chispa tierna que nos impulsó a conectar personas y voluntarios. DANA es más que un nombre, es la inspiración y el latido de nuestro proyecto."
+        "dana-intro": "La idea de PeopleForPeople surgió tras nuestra experiencia durante la DANA en Valencia, cuando fuimos testigos de la falta de coordinación en la gestión del voluntariado. Aunque muchas personas estaban dispuestas a ayudar, la ausencia de un sistema eficiente impedía que la ayuda llegara a quien más se necesitaba. Observamos que el caos organizativo y la falta de tecnología obstaculizaban una respuesta rápida, lo que nos motivó a buscar una solución integral.",
+        "dana-desc1": "La DANA dejó cientos de afectados, familias enteras que lo perdieron todo en cuestión de horas. Muchas personas quedaron atrapadas sin acceso a recursos básicos, esperando una ayuda que a veces nunca llegó. Algunas familias se vieron separadas por el caos y la falta de respuesta organizada. Lamentablemente, también hubo víctimas mortales – un recordatorio doloroso de la importancia de actuar con rapidez y eficiencia en momentos críticos.",
+        "dana-desc2": "Este desafío nos llevó a desarrollar una solución digital que conecta voluntarios con organizaciones en tiempo real, optimizando la respuesta en emergencias y proyectos comunitarios. PeopleForPeople nace con el propósito de hacer que la solidaridad sea más efectiva, estructurada y accesible, para que ninguna ayuda se pierda y cada esfuerzo marque la diferencia.",
+        "business-model-left": "Nuestro modelo freemium permite a las ONG pequeñas y comunidades con recursos limitados usar la plataforma de forma gratuita.",
+        "business-model-right": "Para organizaciones más grandes, implementamos un modelo de pago por voluntario que garantiza la sostenibilidad y escalabilidad, maximizando el impacto social.",
+        "volunteers-wave-text": "Actualmente contamos con más de <span class='special-word'><span class='dark-blue'>16.000 voluntarios</span></span> comprometidos con el cambio social.",
+        "ods3-text": "<strong>ODS 3 (Salud y Bienestar):</strong> Facilitamos la asistencia en emergencias y apoyamos iniciativas sociales que mejoran el bienestar de las comunidades.",
+        "ods10-text": "<strong>ODS 10 (Reducción de desigualdades):</strong> Nos aseguramos de que la ayuda llegue a quienes más la necesitan, promoviendo una distribución equitativa de los recursos.",
+        "ods11-text": "<strong>ODS 11 (Ciudades y Comunidades Sostenibles):</strong> Facilitamos la respuesta ante emergencias y la gestión de voluntarios en proyectos comunitarios.",
+        "ods17-text": "<strong>ODS 17 (Alianzas para Lograr los Objetivos):</strong> Conectamos voluntarios, ONG y entidades públicas para reforzar la colaboración y maximizar el impacto social.",
+        "info-web-text1": "Para más detalles sobre nuestro impacto, modelo de negocio y cómo unirte a nuestra comunidad de voluntarios, visita nuestra WEB Informativa:",
+        "info-web-text2": "Visita nuestra WEB Informativa",
+        "info-web-text3": "Accede a nuestros documentos oficiales <a href=\"#documentos\" class=\"glow-link\">aquí</a>.",
+        "adios-mama-text": "Adiós, mamá. No pudimos llegar a tiempo. Lo sentimos.",
+        "algemesi-text": "«En Algemesí hay muchos voluntarios, pero falta coordinación y equipamiento adecuado.»<br>LEVANTE – EL MERCANTIL VALENCIANO<br>2 de noviembre de 2024.",
+        "footer-text": "© 2025 PeopleForPeople. Todos los derechos reservados."
       }
     };
     
@@ -566,7 +628,7 @@
       });
     });
     
-    // ScrollReveal Animations
+    // ScrollReveal-Animationen
     const sr = ScrollReveal({
       origin: 'top',
       distance: '50px',
@@ -575,7 +637,7 @@
     });
     sr.reveal('section');
     
-    // Typewriter effect for hero tagline
+    // Typewriter-Effekt für die Hero-Tagline
     function initTypewriter() {
       const heroTagline = document.getElementById("hero-tagline");
       const taglineText = translations[currentLang]["hero-tagline"];
@@ -596,11 +658,13 @@
     
     document.addEventListener("DOMContentLoaded", function() {
       document.getElementById("home").scrollIntoView();
+      // Sofortige Übersetzung auf Deutsch beim Laden
+      changeLanguage("de");
       initTypewriter();
       createCustomSlogan();
       initWaveForElement('.volunteers-wave');
       
-      // Carousel en DANA
+      // Carousel in der DANA-Sektion
       const collageImages = document.querySelectorAll(".collage-img");
       let current = 0;
       setInterval(() => {
@@ -609,7 +673,7 @@
         current = (current + 1) % collageImages.length;
       }, 5000);
       
-      // Al pulsar sobre una imagen del carrusel, se abre el modal con la animación de zoom
+      // Modal beim Klicken auf ein Bild im Karussell
       collageImages.forEach(img => {
         img.addEventListener("click", function(e) {
           e.stopPropagation();
@@ -641,14 +705,10 @@
         const homeSection = document.getElementById("home");
         const arrow = document.getElementById("down-arrow");
         const rect = homeSection.getBoundingClientRect();
-        if (rect.bottom > window.innerHeight * 0.5) {
-          arrow.style.display = "flex";
-        } else {
-          arrow.style.display = "none";
-        }
+        arrow.style.display = (rect.bottom > window.innerHeight * 0.5) ? "flex" : "none";
       });
       
-      // Animación de móviles
+      // Mobile-Animationen
       const mobileContainer = document.querySelector(".mobile-container");
       const mobileItems = Array.from(document.querySelectorAll(".mobile-item"));
       const mobilePositions = [
@@ -680,7 +740,7 @@
           applyMobilePositions(mobileItems);
         }, 5000);
     
-        // Animación para destacar de forma fluida las imágenes de ODS cada 3 s
+        // Animation für Hervorheben der ODS-Bilder alle 3 Sekunden
         const odsImages = document.querySelectorAll(".ods-item img");
         let odsIndex = 0;
         setInterval(() => {
@@ -718,6 +778,9 @@
           '<img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/term%202.jpeg?raw=true" style="max-width:90%;">' +
           '</div>';
       });
+      
+      // Übersetzung beim Laden der Seite auf Deutsch erzwingen
+      changeLanguage("de");
     });
   </script>
 </body>
