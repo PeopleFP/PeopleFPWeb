@@ -476,7 +476,7 @@ footer {
    mucho más a la derecha y subida hasta la mitad del último texto */
 .dana-additional {
   text-align: right;
-  margin-top: -100px;  /* Ajusta para “subir” la imagen */
+  margin-top: -100px;  /* Ajusta para “subir” la imagen en desktop */
   margin-right: 150px; /* Ajusta para desplazar a la derecha */
 }
 .dana-additional img.mama-img {
@@ -698,11 +698,15 @@ footer {
   .ods-items {
     grid-template-columns: repeat(2, 1fr) !important;
   }
-  /* Centralizamos el bloque de "Adiós/Tschüss Mama" */
+  /* Añadimos espacio entre la segunda y tercera ods */
+  .ods-item:nth-child(2) {
+    margin-bottom: 20px;
+  }
+  /* Reubicar la imagen de Mamá para iPad */
   .dana-additional {
-    text-align: center;
-    margin-top: 0;
-    margin-right: 0;
+    text-align: right;
+    margin-top: -80px;  /* menor que en desktop para subirla un poco */
+    margin-right: 50px; /* se reduce el desplazamiento a la derecha */
   }
   .dana-additional img.mama-img {
     margin: 0 auto;
@@ -748,6 +752,7 @@ footer {
     font-size: 1.6rem;
     white-space: normal;
     overflow-wrap: break-word;
+    line-height: 1.2;
   }
   .hero-tagline {
     font-size: 1rem;
@@ -765,7 +770,7 @@ footer {
     width: 45%;
     max-width: 120px;
   }
-  /* Ajustes para el bloque "Adiós/Tschüss Mama" en móvil */
+  /* Mover el texto de "Adiós/Tschüss Mama" más a la izquierda (sin padding extra) */
   .dana-additional {
     text-align: left;
     margin-top: 1rem;
@@ -780,11 +785,11 @@ footer {
     margin: 0.5rem 0;
     text-align: left;
     max-width: 100%;
-    padding: 0 1rem;
+    padding: 0;  /* Se elimina el padding para moverlo más a la izquierda */
   }
-  /* Reducir el tamaño del texto de la noticia de Algemesí */
+  /* Hacer el texto de la noticia de Algemesí más pequeño */
   .dana-news p {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   /* Reducir la amplitud de la animacion de onda */
   @keyframes waveAnimation {
