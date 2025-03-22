@@ -3,6 +3,7 @@ html, body {
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* Evita scroll horizontal en todos los dispositivos */
 }
 *, *::before, *::after {
   box-sizing: border-box;
@@ -308,9 +309,8 @@ section {
   min-width: 300px;
   position: relative;
   height: 320px;
-  /* Se centra y se desplaza un poco a la derecha */
+  /* Se centra sin margen extra para evitar scroll horizontal */
   margin: 0 auto;
-  margin-left: 20px;
 }
 .mobile-container {
   position: relative;
@@ -350,54 +350,6 @@ section {
 .feature-img:hover,
 .info-img:hover {
   transform: scale(1.05);
-}
-@media screen and (max-width: 768px) {
-  .store-container .store-img,
-  .feature-img,
-  .info-img {
-    width: 45%;
-    max-width: 120px;
-  }
-  
-  /* Ajustes para el bloque "Adiós/Tschüss Mama" en móvil */
-  .dana-additional {
-    text-align: left;
-    margin-top: 1rem;
-    margin-right: 0;
-  }
-  .dana-additional img.mama-img {
-    margin: 0 auto;
-    display: block;
-    max-width: 300px;
-  }
-  .dana-additional p {
-    margin: 0.5rem 0;
-    text-align: left;
-    max-width: 100%;
-    padding: 0 1rem;
-  }
-  
-  /* Reducir el tamaño del texto de la noticia de Algemesí */
-  .dana-news p {
-    font-size: 0.8rem;
-  }
-  
-  /* Ajuste para el slogan, para que la frase no se corte */
-  .hero-slogan {
-    font-size: 1.6rem;
-    white-space: normal;
-  }
-  
-  /* Aumentar margen inferior para que la sección de Información no se solape con la animación de móviles */
-  .mobile-preview {
-    margin-bottom: 2rem;
-  }
-  
-  /* Reducir la amplitud de la animacion de onda */
-  @keyframes waveAnimation {
-    0%, 60%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-5px); }
-  }
 }
 
 /* Footer */
@@ -457,18 +409,15 @@ footer {
   max-width: 1200px;
   margin: 2rem 0;
 }
-
 .dana-description {
   flex: 1;
   min-width: 300px;
   text-align: left;
 }
-
 .dana-description p {
   max-width: 500px;
   line-height: 1.5;
 }
-
 /* Párrafo introductorio extendido para mayor ancho horizontal */
 .dana-intro {
   text-align: left;
@@ -476,7 +425,6 @@ footer {
   margin-bottom: 1rem;
   max-width: 800px;
 }
-
 /* Collage de imágenes (no modificado) */
 .dana-collage {
   flex: 1;
@@ -486,13 +434,11 @@ footer {
   height: 400px;
   overflow: visible;
 }
-
 .collage-container {
   position: relative;
   width: 100%;
   height: 100%;
 }
-
 .collage-img {
   position: absolute;
   width: 48%;
@@ -500,37 +446,31 @@ footer {
   transition: transform 0.5s ease, opacity 0.5s ease;
   opacity: 0.9;
 }
-
 .collage-img.img1 {
   top: 5%;
   left: 5%;
   transform: rotate(-8deg);
 }
-
 .collage-img.img2 {
   top: 5%;
   right: 5%;
   transform: rotate(5deg);
 }
-
 .collage-img.img3 {
   bottom: 5%;
   left: 5%;
   transform: rotate(3deg);
 }
-
 .collage-img.img4 {
   bottom: 5%;
   right: 5%;
   transform: rotate(-3deg);
 }
-
 .collage-img.highlight {
   transform: scale(1.2) !important;
   opacity: 1 !important;
   z-index: 10;
 }
-
 /* Bloque para la imagen de Mamá:
    Se reposiciona para estar justo debajo del collage,
    mucho más a la derecha y subida hasta la mitad del último texto */
@@ -548,7 +488,6 @@ footer {
   font-size: 0.9rem;
   line-height: 1.3;
 }
-
 /* Bloque para la noticia (Imagen de Algemesí)
    Se aumenta su tamaño */
 .dana-news {
@@ -571,7 +510,6 @@ footer {
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0); }
 }
-
 /* Animación de pulso (glowing) para destacar imágenes de ODS */
 @keyframes odsPulse {
   0% { transform: scale(1); box-shadow: 0 0 10px rgba(255,255,255,0.5); }
@@ -581,7 +519,6 @@ footer {
 .ods-highlight {
   animation: odsPulse 2s ease-in-out infinite;
 }
-
 /* Glowing animation para el enlace “aquí” en la sección App */
 @keyframes glow {
   0% { text-shadow: 0 0 10px #fff, 0 0 20px #fff; }
@@ -595,13 +532,11 @@ footer {
   text-decoration: none;
   animation: glow 2s infinite;
 }
-
 /* Estilos para el hero-slogan */
 .slogan-wave {
   font-size: 2em;
   font-weight: bold;
 }
-
 /* Estilos para el texto de voluntarios */
 .volunteers-wave {
   font-size: 2em;
@@ -609,14 +544,12 @@ footer {
   color: #ADD8E6;
   margin-top: 1em;
 }
-
 /* Separación entre apartados en la sección Información */
 .info-description,
 .business-model-section,
 .ods-section {
   margin-bottom: 2em;
 }
-
 /* Modelo de negocio: grid de 2 columnas en una sola fila */
 .business-model {
   display: grid;
@@ -647,7 +580,6 @@ footer {
   font-size: 1em;
   margin-top: 0.5em;
 }
-
 /* Sección ODS */
 .ods-section {
   margin-top: 2em;
@@ -687,7 +619,6 @@ footer {
   font-size: 1em;
   margin-top: 0.5em;
 }
-
 /* Bloque para la web informativa debajo de ODS */
 .info-web {
   text-align: center;
@@ -703,7 +634,6 @@ footer {
 .info-web p {
   margin: 0.5em 0;
 }
-
 /* Modal overlay para ampliar imagen del collage */
 #modal-overlay {
   position: fixed;
@@ -731,7 +661,6 @@ footer {
 #modal-overlay.active img {
   transform: scale(1);
 }
-
 /* Sección App */
 .app-intro {
   text-align: center;
@@ -746,8 +675,8 @@ footer {
    Media Queries Adicionales
    ============================== */
 
-/* Ajustes para Tablets (entre 769px y 1024px) */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
+/* Ajustes para Tablets (entre 768px y 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   body {
     font-size: 0.95rem;
   }
@@ -792,8 +721,8 @@ footer {
   }
 }
 
-/* Ajustes para Móviles (máximo 768px) */
-@media screen and (max-width: 768px) {
+/* Ajustes para Móviles (máximo 767px) */
+@media screen and (max-width: 767px) {
   body {
     font-size: 0.9rem;
     padding-top: 3rem;
@@ -818,6 +747,7 @@ footer {
   .hero-slogan {
     font-size: 1.6rem;
     white-space: normal;
+    overflow-wrap: break-word;
   }
   .hero-tagline {
     font-size: 1rem;
@@ -825,9 +755,9 @@ footer {
   .mobile-container {
     width: 90%;
   }
-  /* Aumentar margen inferior para que la sección de Información no se solape con la animación de móviles */
+  /* Aseguramos que no haya margen extra que provoque scroll horizontal */
   .mobile-preview {
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
   }
   .store-container .store-img,
   .feature-img,
