@@ -308,8 +308,7 @@ section {
   min-width: 300px;
   position: relative;
   height: 320px;
-  /* Se centra sin margen extra para evitar scroll horizontal */
-  margin: 0 auto;
+  margin: 0 auto; /* Centrado */
 }
 .mobile-container {
   position: relative;
@@ -468,9 +467,10 @@ footer {
   z-index: 10;
 }
 .dana-additional {
+  /* Desktop los tenía alineado a la derecha; se mantendrá ahí para pantallas grandes */
   text-align: right;
-  margin-top: -100px;  /* Ajusta para “subir” la imagen en desktop */
-  margin-right: 150px; /* Ajusta para desplazar a la derecha */
+  margin-top: -100px;  /* Ajuste para desktop */
+  margin-right: 150px;
 }
 .dana-additional img.mama-img {
   max-width: 300px;
@@ -666,57 +666,6 @@ footer {
    Media Queries Adicionales
    ============================== */
 
-/* Ajustes para Tablets (entre 768px y 1024px) */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  body {
-    font-size: 0.95rem;
-  }
-  .app-content,
-  .dana-content {
-    flex-direction: column;
-  }
-  .mobile-preview {
-    margin-left: 0;
-  }
-  .business-model {
-    grid-template-columns: 1fr;
-  }
-  .dana-collage {
-    width: 90%;
-    height: auto;
-  }
-  /* Forzar grid de 2 columnas en la sección ODS y centrarlo */
-  .ods-items {
-    grid-template-columns: repeat(2, 1fr) !important;
-    justify-items: center;
-  }
-  /* Añadir espacio entre la segunda y tercera ods */
-  .ods-item:nth-child(2) {
-    margin-bottom: 20px;
-  }
-  /* Reubicar la imagen de Mamá para iPad */
-  .dana-additional {
-    text-align: right;
-    margin-top: -80px;  /* menor que en desktop para subirla un poco */
-    margin-right: 50px; /* se reduce el desplazamiento a la derecha */
-  }
-  .dana-additional img.mama-img {
-    margin: 0 auto;
-    display: block;
-    max-width: 80%;
-  }
-  .dana-additional p {
-    margin: 0.5rem auto;
-    text-align: center;
-    max-width: 90%;
-  }
-  /* Reducir la intensidad de la animación de onda a -3px */
-  @keyframes waveAnimation {
-    0%, 60%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-3px); }
-  }
-}
-
 /* Ajustes para Móviles (máximo 767px) */
 @media screen and (max-width: 767px) {
   body {
@@ -754,9 +703,9 @@ footer {
   .mobile-container {
     width: 90%;
   }
-  /* Aseguramos que no haya margen extra que provoque scroll horizontal */
+  /* Incrementar espacio inferior de la animación de apps */
   .mobile-preview {
-    margin: 0 auto 2rem;
+    margin: 0 auto 3rem;
   }
   .store-container .store-img,
   .feature-img,
@@ -764,9 +713,9 @@ footer {
     width: 45%;
     max-width: 120px;
   }
-  /* Mover el texto “Adiós/Tschüss Mama” más a la izquierda */
+  /* Centrar la sección de “Adiós/Tschüss Mama” */
   .dana-additional {
-    text-align: left;
+    text-align: center;
     margin-top: 1rem;
     margin-right: 0;
   }
@@ -777,17 +726,73 @@ footer {
   }
   .dana-additional p {
     margin: 0.5rem 0;
-    text-align: left;
+    text-align: center;
     max-width: 100%;
     padding: 0;
   }
-  /* Hacer el texto de la noticia de Algemesí más pequeño */
-  .dana-news p {
-    font-size: 0.75rem;
+  /* Forzar que el texto de voluntarios se envuelva correctamente */
+  .volunteers-wave,
+  #volunteers-wave-text {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
-  /* Reducir la intensidad de la animación de onda a -3px */
   @keyframes waveAnimation {
     0%, 60%, 100% { transform: translateY(0); }
     30% { transform: translateY(-3px); }
+  }
+}
+
+/* Ajustes para Tablets (entre 768px y 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  body {
+    font-size: 0.95rem;
+  }
+  .app-content,
+  .dana-content {
+    flex-direction: column;
+  }
+  .mobile-preview {
+    margin-left: 0;
+  }
+  .business-model {
+    grid-template-columns: 1fr;
+  }
+  .dana-collage {
+    width: 90%;
+    height: auto;
+  }
+  /* Centrar el grid de ODS en 2 columnas */
+  .ods-items {
+    grid-template-columns: repeat(2, 1fr) !important;
+    justify-items: center;
+  }
+  .ods-item:nth-child(2) {
+    margin-bottom: 20px;
+  }
+  /* Reubicar y centrar el bloque de Mamá para iPad */
+  .dana-additional {
+    text-align: center;
+    margin-top: 1rem;  /* Valor positivo para situarla adecuadamente */
+    margin-right: 0;
+  }
+  .dana-additional img.mama-img {
+    margin: 0 auto;
+    display: block;
+    max-width: 80%;
+  }
+  .dana-additional p {
+    margin: 0.5rem auto;
+    text-align: center;
+    max-width: 90%;
+  }
+  @keyframes waveAnimation {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-3px); }
+  }
+  .volunteers-wave {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 }
