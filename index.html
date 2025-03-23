@@ -142,31 +142,35 @@
     }
     /* Für iPad (min-width: 768px und max-width: 1024px) */
     @media screen and (min-width: 768px) and (max-width: 1024px) {
-      /* ODS-Items zentrieren */
+      /* ODS-Items zentrieren: zusätzlich werden auch Seitenränder zurückgesetzt */
       .ods-items {
         display: flex;
         flex-wrap: wrap;
         justify-content: center !important;
         gap: 1rem;
+        margin-left: auto !important;
+        margin-right: auto !important;
       }
       /* Repositionierung der Mamá-Sektion:
          - Mama-Bild und Text werden zentriert.
-         - Der gesamte Block wird weiter unten (mit margin-top: 3rem) positioniert, sodass er über der Algemesí-Seite erscheint. */
+         - Der gesamte Block wird weiter unten positioniert (margin-top: 10rem)
+           und durch 'z-index' nach vorne gebracht. */
       .dana-additional {
-        margin-top: 3rem !important;
+        margin-top: 10rem !important;
         margin-right: 0 !important;
-        text-align: center;
+        text-align: center !important;
+        position: relative;
+        z-index: 10 !important;
       }
       .mama-img {
         margin: 1rem auto !important;
         display: block;
-        max-width: 80%;
+        max-width: 80% !important;
       }
       #adios-mama-text {
         margin-left: 0 !important;
         text-align: center !important;
       }
-      /* Optional: Falls der Abstand weiter angepasst werden muss, können hier weitere Werte eingestellt werden. */
     }
   </style>
 </head>
