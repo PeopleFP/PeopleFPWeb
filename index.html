@@ -8,12 +8,11 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Keyframes für die Wellenanimation */
+    /* Grundlegende Animationen und Desktop-Stile */
     @keyframes waveAnimation {
       0%, 60%, 100% { transform: translateY(0); }
       30% { transform: translateY(-10px); }
     }
-    /* Keyframes für die Zoom-Animation im Modal */
     @keyframes zoomIn {
       from { transform: scale(0.5); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
@@ -51,7 +50,7 @@
     .dark-blue { color: #00008B; }
     .volunteers-wave { font-size: 1.3em; }
     .store-img { border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
-    /* ORIGINAL desktop-styles (verbleiben unverändert) */
+    /* ORIGINAL desktop-styles (unverändert) */
     .mama-img { margin-left: 700px; margin-top: -150px; display: block; }
     .dana-additional p {
       font-size: 0.8em;
@@ -59,7 +58,6 @@
       margin-left: 900px;
       text-align: right;
     }
-    /* Overlay für den Sprachwechsel */
     #lang-overlay {
       position: fixed;
       top: 0;
@@ -72,7 +70,6 @@
       pointer-events: none;
       transition: transform 1s ease, opacity 1s ease;
     }
-    /* Modal für große Bilder */
     #modal-overlay {
       position: fixed;
       top: 0;
@@ -92,7 +89,6 @@
       animation: zoomIn 0.5s ease-out forwards;
       cursor: pointer;
     }
-    /* Bereich Dokumente */
     #documentos {
       display: none;
       position: fixed;
@@ -119,77 +115,57 @@
   </style>
   <!-- Zusätzliche Anpassungen ausschließlich für Mobil und iPad -->
   <style>
-    /* Móvil: max-width: 767px */
+    /* Für Mobil (max-width: 767px) */
     @media screen and (max-width: 767px) {
-      .hero-slogan {
-        font-size: 1.6rem;
+      /* Hero-Slogan und Volunteers-Text korrekt umbrechen */
+      #hero-slogan,
+      .volunteers-wave,
+      #volunteers-wave-text {
         white-space: normal;
+        word-break: break-word;
         overflow-wrap: break-word;
-        line-height: 1.5; /* Erhöhter Zeilenabstand */
-        padding: 0 1rem;
       }
-      .dana-additional {
-        text-align: left;
-        margin-top: 0.5rem !important;  /* Weniger Abstand oberhalb */
-        margin-right: 0;
-        margin-bottom: 0.5rem;  /* Kleiner Abstand unterhalb */
-      }
-      .algemesi-container p {
-        font-size: 0.75rem;
-      }
-      /* Aumentamos la imagen de mamá para móvil */
+      /* Dana-Additional: Mama-Bild und Text zentrieren */
       .mama-img {
-        margin-left: 0 !important;
-        margin-top: 0 !important;
-        max-width: 350px !important;
-        width: 100%;
+        margin: 1rem auto !important;
+        max-width: 80%;
+        display: block;
       }
-      /* Aumenta el espacio entre la animación de móviles y la sección de información */
+      #adios-mama-text {
+        margin-left: 0 !important;
+        text-align: center !important;
+      }
+      /* Zusätzlicher Abstand zwischen App-Animation und Informationsbereich */
       .mobile-preview {
         margin: 0 auto 3rem;
       }
-      /* Aseguramos que el texto animado de voluntarios se envuelva correctamente */
-      .volunteers-wave {
-        white-space: normal;
-        word-break: break-word;
-      }
-      @keyframes waveAnimation {
-        0%, 60%, 100% { transform: translateY(0); }
-        30% { transform: translateY(-3px); }
-      }
     }
-    /* iPad: min-width: 768px und max-width: 1024px */
+    /* Für iPad (min-width:768px und max-width:1024px) */
     @media screen and (min-width: 768px) and (max-width: 1024px) {
-      .dana-additional {
-        margin-top: 1rem !important;  /* Posicionarla sin margen negativo */
-        margin-right: 0 !important;   /* Quitar desplazamiento a la derecha */
-        text-align: left;             /* Texto a la izquierda */
-      }
+      /* Dana-Additional: Mama-Bild soll zentriert und oberhalb erscheinen */
       .mama-img {
-        margin-left: auto;
-        margin-right: auto;
+        margin: 1rem auto !important;
         display: block;
         max-width: 80%;
-        margin-top: 1rem !important;  /* Posicionada adecuadamente */
       }
-      /* Espaciador para forzar una distribución 2×2 en ODS */
-      .ods-spacer {
-        display: block;
-        grid-column: span 2;
-        height: 20px;
+      #adios-mama-text {
+        margin-left: 0 !important;
+        text-align: center !important;
       }
-      /* Centrar el grid de ODS */
+      /* ODS-Items zentrieren */
       .ods-items {
-        grid-template-columns: repeat(2, 1fr) !important;
-        justify-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center !important;
+        gap: 1rem;
       }
-      @keyframes waveAnimation {
-        0%, 60%, 100% { transform: translateY(0); }
-        30% { transform: translateY(-3px); }
+      /* Dana-Additional: Inhalt als Block normal anzeigen (ohne großen rechten Versatz) */
+      .dana-additional {
+        text-align: center;
       }
-      .volunteers-wave {
-        white-space: normal;
-        word-break: break-word;
+      .dana-additional p {
+        margin: 1rem auto !important;
+        text-align: center !important;
       }
     }
   </style>
@@ -207,7 +183,7 @@
         <ul class="nav-list">
           <li><a href="#home" class="nav-link active" id="nav-home">Startseite</a></li>
           <li><a href="#app" class="nav-link" id="nav-app">App</a></li>
-          <li><a href="#info" class="nav-link" id="nav-info">Información</a></li>
+          <li><a href="#info" class="nav-link" id="nav-info">Informationen</a></li>
           <li><a href="#dana" class="nav-link" id="nav-dana">DANA</a></li>
           <li><a href="#about" class="nav-link" id="nav-about">Über uns</a></li>
         </ul>
@@ -242,20 +218,20 @@
       <div class="app-content">
         <div class="app-description">
           <p class="app-intro" id="app-intro">
-            En PeopleForPeople hemos desarrollado un prototipo de aplicación que optimiza la gestión del voluntariado.
+            En PeopleForPeople haben wir einen Prototyp entwickelt, der das Freiwilligenmanagement optimiert.
           </p>
           <p id="app-text"></p>
-          <p id="app-features-heading">Nuestra plataforma ofrece funcionalidades avanzadas como:</p>
+          <p id="app-features-heading">Unsere Plattform bietet fortschrittliche Funktionen wie:</p>
           <ul class="feature-list">
-            <li class="feature-item" id="feature-1">Gestión de datos en tiempo real</li>
-            <li class="feature-item" id="feature-2">Sistema de mensajería instantánea</li>
-            <li class="feature-item" id="feature-3">Differenzierte Profile für Organisationen und Freiwillige</li>
-            <li class="feature-item" id="feature-4">Geolokalisation dynamisch</li>
-            <li class="feature-item" id="feature-5">Asignación de voluntarios und Panel de gestión de solicitudes</li>
+            <li class="feature-item" id="feature-1">Echtzeit-Datenmanagement</li>
+            <li class="feature-item" id="feature-2">Instant-Messaging-System</li>
+            <li class="feature-item" id="feature-3">Unterschiedliche Profile für Organisationen und Freiwillige</li>
+            <li class="feature-item" id="feature-4">Dynamische Geolokalisierung</li>
+            <li class="feature-item" id="feature-5">Zuweisung von Freiwilligen und Anfragenverwaltung</li>
           </ul>
-          <p id="app-cta"><strong>Descubre nuestro prototyp <a href="https://charliepoten.github.io/People-For-People/" target="_blank" class="glow-link">hier</a>.</strong></p>
+          <p id="app-cta"><strong>Entdecke unseren Prototyp <a href="https://charliepoten.github.io/People-For-People/" target="_blank" class="glow-link">hier</a>.</strong></p>
           <div class="store-section">
-            <p class="store-heading" id="store-heading">Bald erhältlich in:</p>
+            <p class="store-heading" id="store-heading">Demnächst verfügbar auf:</p>
             <div class="store-container">
               <div class="store-item">
                 <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/APP%20STORE.jpg?raw=true" alt="App Store" class="store-img pulsate" />
@@ -274,10 +250,10 @@
               <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/MAPA.png?raw=true" alt="MAPA" class="mobile-img" />
             </div>
             <div class="mobile-item">
-              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/organizacion.png?raw=true" alt="Organizaciones" class="mobile-img" />
+              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/organizacion.png?raw=true" alt="Organisations" class="mobile-img" />
             </div>
             <div class="mobile-item">
-              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/PERFIL.png?raw=true" alt="Perfil" class="mobile-img" />
+              <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/PERFIL.png?raw=true" alt="Profil" class="mobile-img" />
             </div>
           </div>
         </div>
@@ -285,11 +261,11 @@
     </section>
     <!-- Section Informationen -->
     <section id="info">
-      <h2 class="section-title" id="info-title">Información</h2>
+      <h2 class="section-title" id="info-title">Informationen</h2>
       <div class="info-content">
         <div class="info-description">
           <p class="info-intro">
-            En PeopleForPeople, los voluntarios son el pilar fundamental de nuestra plataforma. Contamos mit einer vielfältigen Gemeinschaft von Freiwilligen, die bereit sind zu helfen, wo immer sie gebraucht werden. Unsere Plattform ermöglicht es, sich zu registrieren, Interessen auszuwählen und effektiv zu helfen – jeder Einsatz zählt.
+            En PeopleForPeople sind unsere Freiwilligen das Fundament unserer Plattform. Wir verfügen über eine vielfältige Gemeinschaft von Freiwilligen, die bereit sind zu helfen, wo immer sie gebraucht werden. Unsere Plattform ermöglicht dir, dich zu registrieren, Interessen auszuwählen und effektiv zu helfen – jeder Einsatz zählt.
           </p>
           <p class="volunteers-wave" id="volunteers-wave-text">
             Aktuell sind wir bereits mehr als <span class="special-word"><span class="dark-blue">16.000 Freiwillige</span></span> engagiert für gesellschaftlichen Wandel.
@@ -311,7 +287,7 @@
             </div>
           </div>
         </div>
-        <!-- Encabezado ODS -->
+        <!-- ODS-Bereich -->
         <p id="ods-header-text"></p>
         <div class="ods-items">
           <div class="ods-item">
@@ -326,7 +302,7 @@
               <strong>ODS 10 (Reduzierung von Ungleichheiten):</strong> Wir stellen sicher, dass die Hilfe diejenigen erreicht, die sie am dringendsten benötigen, und fördern so eine gerechte Verteilung der Ressourcen.
             </p>
           </div>
-          <!-- Espaciador solo visible en iPad -->
+          <!-- Spacer (wird nur bei iPad benötigt) -->
           <div class="ods-spacer"></div>
           <div class="ods-item">
             <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ODS%2011.png?raw=true" alt="ODS 11">
@@ -351,19 +327,19 @@
         </div>
       </div>
     </section>
-    <!-- Section DANA reestructurada -->
+    <!-- Section DANA -->
     <section id="dana">
       <h2 class="section-title" id="dana-title">DANA</h2>
       <p class="dana-intro" id="dana-intro">
-        La idea de PeopleForPeople surgió tras nuestra experiencia durante la DANA en Valencia, cuando fuimos testigos der mangelnden Koordination bei der Freiwilligenverwaltung. Obwohl viele Menschen bereit waren zu helfen, verhinderte das Fehlen eines effizienten Systems, dass die Hilfe jene erreichte, die sie am dringendsten benötigten. Wir stellten fest, dass organisatorisches Chaos und mangelnde Technologie eine schnelle Reaktion behinderten – daher suchten wir nach einer umfassenden Lösung.
+        La Idee von PeopleForPeople entstand nach unseren Erfahrungen während der DANA in Valencia, als wir die mangelhafte Koordination im Freiwilligenmanagement erlebten. Obwohl viele helfen wollten, verhinderte das Fehlen eines effizienten Systems, dass die Hilfe dort ankam, wo sie am dringendsten gebraucht wurde. Wir erkannten, dass organisatorisches Chaos und fehlende Technologie eine schnelle Reaktion behinderten – und suchten daher nach einer ganzheitlichen Lösung.
       </p>
       <div class="dana-content">
         <div class="dana-description">
           <p id="dana-desc1">
-            Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die in nur wenigen Stunden alles verloren haben. Viele Menschen waren ohne Zugang zu grundlegenden Ressourcen gefangen und warteten auf Hilfe, die manchmal nie eintraf. Einige Familien wurden durch das Chaos und die fehlende koordinierte Antwort auseinandergerissen. Tragischerweise gab es auch Todesopfer – eine schmerzhafte Erinnerung daran, wie entscheidend schnelles und effizientes Handeln in Krisensituationen ist.
+            Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die innerhalb weniger Stunden alles verloren. Viele Menschen blieben ohne Zugang zu grundlegenden Ressourcen zurück und warteten auf Hilfe, die in einigen Fällen nie eintraf. Einige Familien wurden durch das Chaos und die fehlende koordinierte Antwort auseinandergerissen. Tragischerweise gab es auch Todesopfer – eine schmerzliche Erinnerung daran, wie wichtig schnelles und effizientes Handeln in Krisenzeiten ist.
           </p>
           <p id="dana-desc2">
-            Diese Herausforderung veranlasste uns dazu, eine digitale Lösung zu entwickeln, die Freiwillige in Echtzeit mit Organisationen verbindet, um Notfallreaktionen und Gemeinschaftsprojekte zu optimieren. PeopleForPeople wurde ins Leben gerufen, um Solidarität effektiver, strukturierter und zugänglicher zu machen – damit keine Hilfe verloren geht und jeder Einsatz einen Unterschied macht.
+            Diese Herausforderung führte uns dazu, eine digitale Lösung zu entwickeln, die Freiwillige in Echtzeit mit Organisationen verbindet, um Notfallaktionen und Gemeindeprojekte zu optimieren. PeopleForPeople wurde ins Leben gerufen, um Solidarität effektiver, strukturierter und zugänglicher zu machen – damit keine Hilfe verloren geht und jeder Einsatz den Unterschied macht.
           </p>
         </div>
         <div class="dana-collage">
@@ -544,7 +520,6 @@
       document.getElementById("info-title").innerText = translations[lang]["info-title"];
       document.querySelector(".info-intro").innerText = translations[lang]["info-text"];
       
-      // Dynamischer Überschriftstext für den ODS-Bereich
       document.getElementById("ods-header-text").innerText = translations[lang]["ods-header-text"];
       
       document.getElementById("about-title").innerText = translations[lang]["about-title"];
@@ -555,7 +530,6 @@
       document.getElementById("hero-tagline").innerText = translations[lang]["hero-tagline"];
       document.getElementById("arrow-text").innerText = translations[lang]["arrow-text"];
       
-      // Aktualisierung der DANA-Sektion
       document.getElementById("dana-title").innerText = translations[lang]["dana-title"];
       document.getElementById("dana-intro").innerText = translations[lang]["dana-intro"];
       document.getElementById("dana-desc1").innerText = translations[lang]["dana-desc1"];
@@ -620,7 +594,7 @@
         "feature-3": "Unterschiedliche Profile für Organisationen und Freiwillige",
         "feature-4": "Dynamische Geolokalisierung",
         "feature-5": "Zuweisung von Freiwilligen und Anfragenverwaltung",
-        "app-cta": "Entdecke unseren Prototyp hier.<a href='https://charliepoten.github.io/People-For-People/' target='_blank' class='glow-link'>hier</a>.",
+        "app-cta": "Entdecke unseren Prototyp <a href='https://charliepoten.github.io/People-For-People/' target='_blank' class='glow-link'>hier</a>.",
         "store-heading": "Demnächst verfügbar auf:",
         "info-title": "Informationen",
         "info-text": "Unser Geschäftsmodell basiert auf einem Freemium-Ansatz: Kleine Organisationen nutzen die Plattform kostenlos, während größere Institutionen von einem Abonnement profitieren. Transparente Statistiken und nachhaltige Entwicklungsziele (SDGs) unterstützen unsere Mission.",
@@ -632,9 +606,9 @@
         "hero-tagline": "Wir vernetzen Freiwillige mit Bedürftigen und koordinieren in Echtzeit Hilfe – gemeinsam mit NGOs, Behörden und weiteren Institutionen.",
         "arrow-text": "Zum Prototypen",
         "dana-title": "DANA",
-        "dana-intro": "Die Idee zu PeopleForPeople entstand nach unserer Erfahrung während der DANA in Valencia, als wir die mangelnde Koordination im Freiwilligenmanagement hautnah miterlebten. Obwohl viele Menschen helfen wollten, verhinderte das Fehlen eines effizienten Systems, dass die Hilfe dort ankam, wo sie am dringendsten benötigt wurde. Wir erkannten, dass organisatorisches Chaos und fehlende Technologie eine schnelle Reaktion erschwerten – das motivierte uns, eine ganzheitliche Lösung zu entwickeln.",
-        "dana-desc1": "Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die innerhalb weniger Stunden alles verloren. Viele Menschen waren gefangen, ohne Zugang zu grundlegenden Ressourcen, und warteten auf Hilfe, die in manchen Fällen nie eintraf. Einige Familien wurden durch das Chaos und die fehlende koordinierte Antwort auseinandergerissen. Tragischerweise gab es auch Todesopfer – eine schmerzhafte Erinnerung daran, wie entscheidend schnelles und effizientes Handeln in Krisensituationen ist.",
-        "dana-desc2": "Diese Herausforderung brachte uns dazu, eine digitale Lösung zu entwickeln, die Freiwillige in Echtzeit mit Organisationen verbindet und so die Reaktion auf Notfälle und Gemeinschaftsprojekte optimiert. PeopleForPeople wurde ins Leben gerufen, um Solidarität effektiver, strukturierter und zugänglicher zu machen – damit keine Hilfe verloren geht und jeder Einsatz einen echten Unterschied bewirkt.",
+        "dana-intro": "Die Idee zu PeopleForPeople entstand nach unserer Erfahrung während der DANA in Valencia, als wir die mangelnde Koordination im Freiwilligenmanagement hautnah miterlebten. Obwohl viele Menschen helfen wollten, verhinderte das Fehlen eines effizienten Systems, dass die Hilfe dort ankam, wo sie am dringendsten benötigt wurde. Wir setzten uns zum Ziel, diese Lücke zu schließen.",
+        "dana-desc1": "Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die in nur wenigen Stunden alles verloren haben. Viele Menschen waren ohne Zugang zu grundlegenden Ressourcen gefangen und warteten auf Hilfe, die manchmal nie eintraf. Einige Familien wurden durch das Chaos und die fehlende koordinierte Antwort auseinandergerissen. Tragischerweise gab es auch Todesopfer – eine schmerzliche Erinnerung daran, wie entscheidend schnelles und effizientes Handeln in Krisensituationen ist.",
+        "dana-desc2": "Diese Herausforderung veranlasste uns dazu, eine digitale Lösung zu entwickeln, die Freiwillige in Echtzeit mit Organisationen verbindet, um Notfallreaktionen und Gemeinschaftsprojekte zu optimieren. PeopleForPeople wurde ins Leben gerufen, um Solidarität effektiver, strukturierter und zugänglicher zu machen – damit keine Hilfe verloren geht und jeder Einsatz einen Unterschied macht.",
         "business-model-left": "Wir setzen auf ein Freemium-Modell, das kleinen NGOs und ressourcenarmen Gemeinschaften kostenlosen Zugang bietet.",
         "business-model-right": "Für größere Organisationen setzen wir ein Pay-per-Freiwilliger-Modell ein, das Nachhaltigkeit und Skalierbarkeit gewährleistet, während wir den sozialen Einfluss maximieren.",
         "volunteers-wave-text": "Aktuell sind wir bereits mehr als <span class='special-word'><span class='dark-blue'>16.000 Freiwillige</span></span> engagiert für gesellschaftlichen Wandel.",
@@ -645,7 +619,7 @@
         "info-web-text1": "Für weitere Details zu unserem Einfluss, Geschäftsmodell und wie du Teil unserer Freiwilligen-Community wirst, besuche unsere Informationswebsite:",
         "info-web-text2": "Besuche unsere Informationswebsite",
         "info-web-text3": "Greife auf unsere offiziellen Dokumente zu <a href=\"#documentos\" class=\"glow-link\">hier</a>.",
-        "adios-mama-text": "Auf Wiedersehen, Mama. Wir konnten nicht rechtzeitig kommen. Es tut uns leid.",
+        "adios-mama-text": "Auf Wiedersehen, Mama. Wir konnten nicht rechtzeitig kommen. Entschuldigung.",
         "algemesi-text": "«In Algemesí gibt es viele Freiwillige, aber es fehlt an Koordination und geeignetem Equipment.»<br>LEVANTE – EL MERCANTIL VALENCIANO<br>2. November 2024.",
         "footer-text": "© 2025 PeopleForPeople. Alle Rechte vorbehalten."
       },
@@ -670,7 +644,7 @@
         "info-text": "Nuestro modelo de negocio se basa en un enfoque Freemium: las pequeñas organizaciones usan la plataforma gratuitamente, mientras que las instituciones más grandes se benefician de una suscripción. Estadísticas transparentes y objetivos sostenibles (ODS) respaldan nuestra misión.",
         "ods-header-text": "PeopleForPeople contribuye a varios Objetivos de Desarrollo Sostenible (ODS):",
         "about-title": "Quiénes Somos",
-        "about-text": "Conecta con quienes necesitan tu ayuda y convierte tu tiempo en impacto real, brindando apoyo en emergencias y necesidades diarias, de forma flexible y organizada. ¡Tu solidaridad, cuando y donde más importa!<br><br>Tu ayuda, su esperanza. ¡Nosotros unimos!<br><br><strong>Carlos Potenciano - Daniel Banerjee - Jakobus Fernandez - Alberto Kremers.</strong>",
+        "about-text": "Conecta con quienes necesitan tu ayuda y convierte tu tiempo en impacto real, brindando apoyo en emergencias y necesidades diarias de forma flexible y organizada. ¡Tu solidaridad, cuando y donde más importa!<br><br>Tu ayuda, su esperanza. ¡Nosotros unimos!<br><br><strong>Carlos Potenciano - Daniel Banerjee - Jakobus Fernandez - Alberto Kremers.</strong>",
         "hero-company": "People for People",
         "hero-slogan": "Tu ayuda. Su esperanza. ¡Nosotros unimos!",
         "hero-tagline": "Vinculamos voluntarios con personas necesitadas y coordinamos ayuda en tiempo real junto a ONGs, autoridades y otras entidades.",
@@ -678,7 +652,7 @@
         "dana-title": "DANA",
         "dana-intro": "La idea de PeopleForPeople surgió tras nuestra experiencia durante la DANA en Valencia, cuando fuimos testigos de la falta de coordinación en la gestión del voluntariado. Aunque muchas personas estaban dispuestas a ayudar, la ausencia de un sistema eficiente impedía que la ayuda llegara a quien más se necesitaba. Observamos que el caos organizativo y la falta de tecnología obstaculizaban una respuesta rápida, lo que nos motivó a buscar una solución integral.",
         "dana-desc1": "La DANA dejó cientos de afectados, familias enteras que lo perdieron todo en cuestión de horas. Muchas personas quedaron atrapadas sin acceso a recursos básicos, esperando una ayuda que a veces nunca llegó. Algunas familias se vieron separadas por el caos y la falta de respuesta organizada. Lamentablemente, también hubo víctimas mortales – un recordatorio doloroso de la importancia de actuar con rapidez y eficiencia en momentos críticos.",
-        "dana-desc2": "Este desafío nos llevó a desarrollar una solución digital que conecta voluntarios con organizaciones en tiempo real, optimizando la respuesta en emergencias y proyectos comunitarios. PeopleForPeople nace con el propósito de hacer que la solidaridad sea más efectiva, estructurada y accesible, para que ninguna ayuda se pierda y cada esfuerzo marque la diferencia.",
+        "dana-desc2": "Este desafío nos llevó a desarrollar una solución digital que conecta voluntarios con organizaciones en tiempo real, optimizando la respuesta ante emergencias y proyectos comunitarios. PeopleForPeople nace con el propósito de hacer que la solidaridad sea más efectiva, estructurada y accesible, para que ninguna ayuda se pierda y cada esfuerzo marque la diferencia.",
         "business-model-left": "Nuestro modelo freemium permite a las ONG pequeñas y comunidades con recursos limitados usar la plataforma de forma gratuita.",
         "business-model-right": "Para organizaciones más grandes, implementamos un modelo de pago por voluntario que garantiza la sostenibilidad y escalabilidad, maximizando el impacto social.",
         "volunteers-wave-text": "Actualmente contamos con más de <span class='special-word'><span class='dark-blue'>16.000 voluntarios</span></span> comprometidos con el cambio social.",
