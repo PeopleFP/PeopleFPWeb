@@ -55,7 +55,7 @@
     .dana-additional p {
       font-size: 0.8em;
       margin-top: 10px;
-      /* Se elimina el margen inline para permitir que el CSS responsivo lo modifique */
+      /* Se elimina el margen inline para permitir que der CSS responsivo lo modifique */
       text-align: right;
     }
     #lang-overlay {
@@ -140,9 +140,23 @@
         margin: 0 auto 3rem;
       }
     }
-    /* Für iPad (min-width:768px und max-width:1024px) */
+    /* Für iPad (min-width: 768px und max-width: 1024px) */
     @media screen and (min-width: 768px) and (max-width: 1024px) {
-      /* Dana-Additional: Mama-Bild soll zentriert und oberhalb erscheinen */
+      /* ODS-Items zentrieren */
+      .ods-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center !important;
+        gap: 1rem;
+      }
+      /* Repositionierung der Mamá-Sektion:
+         - Mama-Bild und Text werden zentriert.
+         - Der gesamte Block wird weiter unten (mit margin-top: 3rem) positioniert, sodass er über der Algemesí-Seite erscheint. */
+      .dana-additional {
+        margin-top: 3rem !important;
+        margin-right: 0 !important;
+        text-align: center;
+      }
       .mama-img {
         margin: 1rem auto !important;
         display: block;
@@ -152,21 +166,7 @@
         margin-left: 0 !important;
         text-align: center !important;
       }
-      /* ODS-Items zentrieren */
-      .ods-items {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center !important;
-        gap: 1rem;
-      }
-      /* Dana-Additional: Inhalt als Block normal anzeigen (ohne großen rechten Versatz) */
-      .dana-additional {
-        text-align: center;
-      }
-      .dana-additional p {
-        margin: 1rem auto !important;
-        text-align: center !important;
-      }
+      /* Optional: Falls der Abstand weiter angepasst werden muss, können hier weitere Werte eingestellt werden. */
     }
   </style>
 </head>
@@ -336,7 +336,7 @@
       <div class="dana-content">
         <div class="dana-description">
           <p id="dana-desc1">
-            Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die innerhalb weniger Stunden alles verloren. Viele Menschen blieben ohne Zugang zu grundlegenden Ressourcen zurück und warteten auf Hilfe, die in einigen Fällen nie eintraf. Einige Familien wurden durch das Chaos und die fehlende koordinierte Antwort auseinandergerissen. Tragischerweise gab es auch Todesopfer – eine schmerzliche Erinnerung daran, wie wichtig schnelles und effizientes Handeln in Krisenzeiten ist.
+            Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die innerhalb weniger Stunden alles verloren haben. Viele Menschen blieben ohne Zugang zu grundlegenden Ressourcen zurück und warteten auf Hilfe, die in einigen Fällen nie eintraf. Einige Familien wurden durch das Chaos und die fehlende koordinierte Antwort auseinandergerissen. Tragischerweise gab es auch Todesopfer – eine schmerzliche Erinnerung daran, wie wichtig schnelles und effizientes Handeln in Krisenzeiten ist.
           </p>
           <p id="dana-desc2">
             Diese Herausforderung führte uns dazu, eine digitale Lösung zu entwickeln, die Freiwillige in Echtzeit mit Organisationen verbindet, um Notfallaktionen und Gemeindeprojekte zu optimieren. PeopleForPeople wurde ins Leben gerufen, um Solidarität effektiver, strukturierter und zugänglicher zu machen – damit keine Hilfe verloren geht und jeder Einsatz den Unterschied macht.
@@ -353,7 +353,6 @@
       </div>
       <div class="dana-additional">
         <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/ADIOS%20MAMA.png?raw=true" alt="Adiós, mamá" class="mama-img">
-        <!-- Se ha eliminado el estilo inline para permitir las reglas responsivas -->
         <p id="adios-mama-text">
           "Adiós, mamá. No pudimos llegar a tiempo. Perdón"
         </p>
@@ -653,14 +652,14 @@
         "dana-title": "DANA",
         "dana-intro": "La idea de PeopleForPeople surgió tras nuestra experiencia durante la DANA en Valencia, cuando fuimos testigos de la falta de coordinación en la gestión del voluntariado. Aunque muchas personas estaban dispuestas a ayudar, la ausencia de un sistema eficiente impedía que la ayuda llegara a quien más se necesitaba. Observamos que el caos organizativo y la falta de tecnología obstaculizaban una respuesta rápida, lo que nos motivó a buscar una solución integral.",
         "dana-desc1": "La DANA dejó cientos de afectados, familias enteras que lo perdieron todo en cuestión de horas. Muchas personas quedaron atrapadas sin acceso a recursos básicos, esperando una ayuda que a veces nunca llegó. Algunas familias se vieron separadas por el caos y la falta de respuesta organizada. Lamentablemente, también hubo víctimas mortales – un recordatorio doloroso de la importancia de actuar con rapidez y eficiencia en momentos críticos.",
-        "dana-desc2": "Este desafío nos llevó a desarrollar una solución digital que conecta voluntarios con organizaciones en tiempo real, optimizando la respuesta ante emergencias y proyectos comunitarios. PeopleForPeople nace con el propósito de hacer que la solidaridad sea más efectiva, estructurada y accesible, para que ninguna ayuda se pierda y cada esfuerzo marque la diferencia.",
+        "dana-desc2": "Este desafío nos llevó a desarrollar una solución digital que optimiza la respuesta y conecta voluntarios con organizaciones en tiempo real, haciendo que la solidaridad sea más efectiva y accesible.",
         "business-model-left": "Nuestro modelo freemium permite a las ONG pequeñas y comunidades con recursos limitados usar la plataforma de forma gratuita.",
-        "business-model-right": "Para organizaciones más grandes, implementamos un modelo de pago por voluntario que garantiza la sostenibilidad y escalabilidad, maximizando el impacto social.",
+        "business-model-right": "Para organizaciones más grandes, implementamos un modelo de pago por voluntario que garantiza sostenibilidad y escalabilidad, maximizando el impacto social.",
         "volunteers-wave-text": "Actualmente contamos con más de <span class='special-word'><span class='dark-blue'>16.000 voluntarios</span></span> comprometidos con el cambio social.",
-        "ods3-text": "<strong>ODS 3 (Salud y Bienestar):</strong> Facilitamos la asistencia en emergencias y apoyamos iniciativas sociales que mejoran el bienestar de las comunidades.",
-        "ods10-text": "<strong>ODS 10 (Reducción de desigualdades):</strong> Nos aseguramos de que la ayuda llegue a quienes más la necesitan, promoviendo una distribución equitativa de los recursos.",
-        "ods11-text": "<strong>ODS 11 (Ciudades y Comunidades Sostenibles):</strong> Facilitamos la respuesta ante emergencias y la gestión de voluntarios en proyectos comunitarios.",
-        "ods17-text": "<strong>ODS 17 (Alianzas para Lograr los Objetivos):</strong> Conectamos voluntarios, ONG y entidades públicas para reforzar la colaboración y maximizar el impacto social.",
+        "ods3-text": "<strong>ODS 3 (Salud y Bienestar):</strong> Facilitamos la asistencia en emergencias y apoyamos iniciativas sociales para mejorar el bienestar de las comunidades.",
+        "ods10-text": "<strong>ODS 10 (Reducción de desigualdades):</strong> Garantizamos que la ayuda llegue a quienes más la necesitan, promoviendo una distribución equitativa de recursos.",
+        "ods11-text": "<strong>ODS 11 (Ciudades y Comunidades Sostenibles):</strong> Apoyamos la respuesta ante emergencias y la gestión de voluntarios en proyectos comunitarios.",
+        "ods17-text": "<strong>ODS 17 (Alianzas para Lograr los Objetivos):</strong> Conectamos voluntarios, ONG y entidades públicas para fortalecer la colaboración y maximizar el impacto social.",
         "info-web-text1": "Para más detalles sobre nuestro impacto, modelo de negocio y cómo unirte a nuestra comunidad de voluntarios, visita nuestra WEB Informativa:",
         "info-web-text2": "Visita nuestra WEB Informativa",
         "info-web-text3": "Accede a nuestros documentos oficiales <a href=\"#documentos\" class=\"glow-link\">aquí</a>.",
