@@ -87,7 +87,7 @@
       width: 100vw;
       height: 100vh;
       background: #bfd1ff;
-      z-index: 10005; /* elevado para cubrir los menús */
+      z-index: 10005;
       opacity: 0;
       pointer-events: none;
       transition: transform 1s ease, opacity 1s ease;
@@ -152,16 +152,17 @@
       <div class="nav-logo">PeopleForPeople</div>
       <div class="nav-menu" id="nav-menu">
         <ul class="nav-list">
+          <!-- Estos enlaces internos no cambian la URL principal -->
           <li><a href="#home" class="nav-link active" id="nav-home">Startseite</a></li>
           <li><a href="#app" class="nav-link" id="nav-app">App</a></li>
           <li><a href="#info" class="nav-link" id="nav-info">Información</a></li>
           <li><a href="#dana" class="nav-link" id="nav-dana">DANA</a></li>
           <li><a href="#about" class="nav-link" id="nav-about">Über uns</a></li>
-          <!-- Los enlaces a apartados especiales redirigen a páginas propias -->
-          <li><a href="voluntarios/index.html" class="nav-link" id="nav-freiwillige">Für Freiwillige</a></li>
-          <li><a href="ongs/index.html" class="nav-link" id="nav-ngos">Für NGO´s</a></li>
-          <li><a href="comunidades/index.html" class="nav-link" id="nav-kommunen">Für Kommunen</a></li>
-          <li><a href="empresas/index.html" class="nav-link" id="nav-unternehmen">Für Unternehmen</a></li>
+          <!-- Los siguientes enlaces apuntan a páginas independientes y se mostrarán sin "index.html" en la URL -->
+          <li><a href="voluntarios/" class="nav-link" id="nav-freiwillige">Für Freiwillige</a></li>
+          <li><a href="ongs/" class="nav-link" id="nav-ngos">Für NGO´s</a></li>
+          <li><a href="comunidades/" class="nav-link" id="nav-kommunen">Für Kommunen</a></li>
+          <li><a href="empresas/" class="nav-link" id="nav-unternehmen">Für Unternehmen</a></li>
         </ul>
       </div>
       <div class="header-right">
@@ -177,9 +178,9 @@
   </header>
   
   <!-- 
-    NOTA: Se han eliminado los paneles (freiwillige-menu, ngos-menu, etc.) 
-    ya que los contenidos para "Für Freiwillige", "Für NGO´s", "Für Kommunen" y "Für Unternehmen" 
-    se encontrarán en páginas independientes.
+    NOTA: Se han eliminado los paneles dinámicos ya que los contenidos para 
+    "Für Freiwillige", "Für NGO´s", "Für Kommunen" y "Für Unternehmen" se ubicarán 
+    en páginas independientes.
   -->
   
   <!-- Main Content -->
@@ -318,7 +319,7 @@
       <div class="dana-content">
         <div class="dana-description">
           <p id="dana-desc1">
-            Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die innerhalb weniger Stunden alles verloren. Viele Menschen waren ohne grundlegende Ressourcen und warteten auf Hilfe, die oft nicht kam. Einige Familien wurden auseinandergerissen – eine tragische Erinnerung, wie wichtig schnelles und effizientes Handeln in Krisensituationen ist.
+            Die DANA hinterließ Hunderte von Betroffenen, ganze Familien, die innerhalb weniger Stunden alles verloren. Viele Menschen waren ohne grundlegende Ressourcen und warteten auf Hilfe, die oft nicht kam. Einige Familien wurden auseinandergerissen – eine tragische Erinnerung, wie wichtig schnelles Handeln ist.
           </p>
           <p id="dana-desc2">
             Diese Erfahrung führte zur Entwicklung einer digitalen Lösung, die Freiwillige in Echtzeit mit Organisationen verbindet und so Notfälle und Gemeinschaftsprojekte effektiv koordiniert.
@@ -609,8 +610,8 @@
         "adios-mama-text": "Auf Wiedersehen, Mama. Wir konnten nicht rechtzeitig kommen. Es tut uns leid.",
         "algemesi-text": "«In Algemesí gibt es viele Freiwillige, aber es fehlt an Koordination und geeignetem Equipment.»<br>LEVANTE – EL MERCANTIL VALENCIANO<br>2. November 2024.",
         "footer-text": "© 2025 PeopleForPeople. Alle Rechte vorbehalten.",
-        "freiwillige-content": "<h2 id='freiwillige-title' style='color: #00008B; font-size: 2em;'>Werde Teil von PeopleForPeople und engagiere dich!</h2><p class='highlight-phrase' style='font-size: 1.5em; font-weight: bold;'>Du möchtest helfen, hast aber keine Zeit, ständig nach passenden Angeboten zu suchen?</p><p>PeopleForPeople macht es dir leicht! Registriere dich in wenigen Minuten, gib deine Fähigkeiten und Verfügbarkeit an – unser System verbindet dich automatisch mit passenden Einsätzen.</p><p><strong>So funktioniert es:</strong></p><ol class='function-list' style='margin-bottom: 40px;'><li class='function-item'><div class='header-row' style='display: flex; align-items: center; justify-content: space-between;'><div class='text-block' style='text-align: left;'><h3 style='margin: 0; padding-bottom: 3px;'>1. Registrieren</h3><p style='margin: 0;'>Erstelle dein kostenloses Profil.</p></div><div class='image-container'><img src='https://github.com/PeopleFP/PeopleFPWeb/blob/main/Registro.jpg?raw=true' alt='Registrieren'></div></div></li><li class='function-item'><div class='header-row' style='display: flex; align-items: center; justify-content: space-between;'><div class='text-block' style='text-align: left;'><h3 style='margin: 0; padding-bottom: 3px;'>2. Fähigkeiten &amp; Verfügbarkeit angeben</h3><p style='margin: 0;'>Teile mit, was du kannst und wann du Zeit hast.</p></div><div class='image-container'><img src='https://github.com/PeopleFP/PeopleFPWeb/blob/main/Hilfe%20anfordern.JPG?raw=true' alt='Fähigkeiten'></div></div></li><li class='function-item'><div class='header-row' style='display: flex; align-items: center; justify-content: space-between;'><div class='text-block' style='text-align: left;'><h3 style='margin: 0; padding-bottom: 3px;'>3. Passende Einsätze finden</h3><p style='margin: 0;'>Erhalte automatische Vorschläge.</p></div><div class='image-container'><img src='https://github.com/PeopleFP/PeopleFPWeb/blob/main/email.png?raw=true' alt='Einsätze finden'></div></div></li><li class='function-item'><div class='header-row' style='display: flex; align-items: center; justify-content: space-between;'><div class='text-block' style='text-align: left;'><h3 style='margin: 0; padding-bottom: 3px;'>4. Engagieren</h3><p style='margin: 0;'>Bestätige deinen Einsatz und hilf mit!</p></div><div class='image-container'><img src='https://github.com/PeopleFP/PeopleFPWeb/blob/main/ayuda%20frei.png?raw=true' alt='Engagieren'></div></div></li></ol><div class='benefits-section' style='margin: 40px 0 20px; gap:5px; padding: 0 20px;'><div class='benefits-text' style='width:48%; text-align: left;'><p><strong>Deine Vorteile als Freiwilliger:</strong></p><p>Schnell passende Einsätze finden</p><p>Flexibel engagieren</p><p>Deine Fähigkeiten sinnvoll einsetzen</p><p>Teil einer starken Gemeinschaft werden</p><p>Einen positiven Beitrag leisten</p></div><div class='benefits-image' style='width:48%; text-align: right;'><img src='https://github.com/PeopleFP/PeopleFPWeb/blob/main/voluntario%20freiwilliger.jpg?raw=true' alt='Freiwilliger' style='max-width:80%; border-radius:10px;'></div></div>",
-        "ngos-content": "<h2 id='ngos-title' style='color: #00008B; font-size: 2em;'>Effiziente Freiwilligenverwaltung mit PeopleForPeople</h2><p class='highlight-phrase' style='font-size: 1.5em; font-weight: bold;'>¿Necesitas voluntarios für deine Projekte?</p><p>PeopleForPeople erleichtert die Koordination – erstelle Aufgaben, visualisiere Freiwillige und kommuniziere in Echtzeit.</p>",
+        "freiwillige-content": "<h2 id='freiwillige-title' style='color: #00008B; font-size: 2em;'>Werde Teil von PeopleForPeople und engagiere dich!</h2><p class='highlight-phrase' style='font-size: 1.5em; font-weight: bold;'>Du möchtest helfen, hast aber keine Zeit, ständig nach passenden Angeboten zu suchen?</p><p>PeopleForPeople macht es dir leicht! Registriere dich in wenigen Minuten, gib deine Fähigkeiten und Verfügbarkeit an – unser System verbindet dich automatisch mit passenden Einsätzen.</p>",
+        "ngos-content": "<h2 id='ngos-title' style='color: #00008B; font-size: 2em;'>Effiziente Freiwilligenverwaltung mit PeopleForPeople</h2><p class='highlight-phrase' style='font-size: 1.5em; font-weight: bold;'>¿Necesitas voluntarios für deine Projekte?</p>",
         "kommunen-content": "<h2 id='kommunen-title' style='color: #00008B; font-size: 2em;'>Für Kommunen & Behörden</h2><p class='highlight-phrase' style='font-size: 1.5em; font-weight: bold;'>Anwendungsbereiche für Kommunen</p>",
         "unternehmen-content": "<h2 id='unternehmen-title' style='color: #00008B; font-size: 2em;'>Stärken Sie Ihr Unternehmen und die Gesellschaft</h2><p>Unternehmen nutzen PeopleForPeople, um CSR-Projekte zu organisieren und den sozialen Impact messbar zu machen.</p>"
       },
