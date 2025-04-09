@@ -1,3 +1,365 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PeopleForPeople - Freiwilligenmanagement</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global settings */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Header y menú principal */
+    header.l-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10003;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    main {
+      margin-top: 70px; /* Altura del header */
+    }
+
+    /* Keyframes para animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideIn {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInFromLeft {
+      from { 
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInFromRight {
+      from { 
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes gentlePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Clases de animación */
+    .animate-element {
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .animate-element.animated {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    
+    .fade-in {
+      animation-name: fadeIn;
+    }
+    
+    .slide-up {
+      animation-name: slideIn;
+    }
+    
+    .slide-left {
+      animation-name: slideInFromLeft;
+    }
+    
+    .slide-right {
+      animation-name: slideInFromRight;
+    }
+    
+    .pulse {
+      animation: gentlePulse 3s ease-in-out infinite;
+    }
+    
+    /* Efectos hover */
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.03);
+    }
+    
+    .hover-rotate {
+      transition: transform 0.3s ease;
+    }
+    .hover-rotate:hover {
+      transform: rotate(2deg);
+    }
+
+    /* Estilos para el contenido principal */
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 10px auto;
+      padding: 0 10px;
+    }
+    .hero-title {
+      color: #6cb2eb;
+      font-size: 3em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .hero-subtitle {
+      font-weight: bold;
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+    .hero-description {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+    }
+    .hero-section-title {
+      font-weight: bold;
+      font-size: 1.4em;
+      margin-bottom: 20px;
+    }
+
+    /* Contenedor de secciones de función */
+    .functions-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin: 10px 0 20px 0;
+    }
+    .function-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .section-text {
+      flex: 1;
+      text-align: left;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5em;
+      margin-bottom: 5px;
+    }
+    .section-number {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #333;
+    }
+    .section-text h3 {
+      font-weight: bold;
+      font-size: 1.4em;
+      margin: 0;
+    }
+    .section-text p {
+      font-size: 1em;
+      color: #555;
+      margin: 0;
+    }
+    .section-image {
+      flex-shrink: 0;
+    }
+    .section-image img {
+      width: 200px;
+      border-radius: 5px;
+    }
+
+    /* Apartado "Deine Vorteile als Freiwillige" */
+    .advantages-wrapper {
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0;
+      margin-top: 40px;
+    }
+    .advantages-text {
+      width: 50%;
+      margin: 0 50px;
+      padding: 0;
+      text-align: left;
+    }
+    .advantages-image {
+      width: 80%;
+      margin: 0 70px;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .advantages-image img {
+      width: 800px;
+      border-radius: 10px;
+      display: block;
+    }
+  
+    /* Apartado de suscripción */
+    .subscribe-wrapper {
+      margin: 20px 0 100px 200px;
+      display: flex;
+      justify-content: flex-start;
+      padding: 10px;
+      width: 100%;
+    }
+    .card {
+      width: 240px;
+      height: 254px;
+      padding: 0 15px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card > * {
+      margin: 0;
+    }
+    .card__title {
+      font-size: 23px;
+      font-weight: 900;
+      color: #333;
+    }
+    .card__content {
+      font-size: 13px;
+      line-height: 18px;
+      color: #333;
+    }
+    .card__form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+    .card__form input {
+      margin-top: 10px;
+      outline: 0;
+      background: #fff;
+      box-shadow: transparent 0px 0px 0px 1px inset;
+      padding: 0.6em;
+      border-radius: 14px;
+      border: 1px solid #333;
+      color: black;
+    }
+    .card__form button {
+      border: 0;
+      background: #111;
+      color: #fff;
+      padding: 0.68em;
+      border-radius: 14px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .sign-up:hover {
+      opacity: 0.8;
+      background: #333;
+      cursor: pointer;
+    }
+    .sign-up:active {
+      transform: scale(0.98);
+    }
+
+    /* Estilos del menú */
+    .nav-list li a#nav-freiwillige,
+    .nav-list li a#nav-ngos,
+    .nav-list li a#nav-kommunen,
+    .nav-list li a#nav-unternehmen {
+      color: #2469ca;
+    }
+    
+    /* Overlay para cambio de idioma */
+    #lang-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      z-index: 10000;
+      transform: translateX(-110%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 1s ease, opacity 1s ease;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2em;
+      }
+      
+      .function-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .section-text {
+        text-align: center;
+      }
+      
+      .advantages-wrapper {
+        flex-direction: column;
+      }
+      
+      .advantages-text, 
+      .advantages-image {
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+      }
+      
+      .advantages-image img {
+        width: 100%;
+      }
+      
+      .subscribe-wrapper {
+        margin: 20px auto;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Overlay y modal -->
+  <div id="lang-overlay"></div>
+  <div id="modal-overlay"></div>
+
 <!-- Menú superior -->
 <header class="l-header">
   <nav class="nav">
@@ -26,3 +388,320 @@
     </div>
   </nav>
 </header>
+  
+  <!-- Contenido Principal -->
+  <main>
+    <div class="hero-content">
+      <!-- Textos principales -->
+      <h2 class="hero-title" id="hero-title">Werde Teil von PeopleForPeople und engagiere dich!</h2>
+      <p class="hero-subtitle" id="hero-subtitle">Du möchtest helfen, hast aber keine Zeit, ständig nach passenden Angeboten zu suchen?</p>
+      <p class="hero-description" id="hero-description">
+        PeopleForPeople macht es dir leicht! Registriere dich in wenigen Minuten, gib deine Fähigkeiten und Verfügbarkeit an – unser intelligentes System verbindet dich automatisch mit passenden Einsätzen, egal ob am Wochenende, nach Feierabend oder flexibel nach deinen Möglichkeiten.
+      </p>
+      <p class="hero-section-title" id="hero-section-title">So funktioniert es:</p>
+    
+      <div class="functions-container">
+        <!-- Sección 1 -->
+        <div class="function-section animate-element slide-left" data-delay="0.1s">
+          <div class="section-text hover-scale">
+            <div class="section-header">
+              <span class="section-number">1.</span>
+              <h3 id="section1-title">Registrieren</h3>
+            </div>
+            <p id="section1-desc">Erstelle dein kostenloses Profil</p>
+          </div>
+          <div class="section-image">
+            <img class="hover-rotate pulse" src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/Registro.jpg?raw=true" alt="Registrieren">
+          </div>
+        </div>
+        <!-- Sección 2 -->
+        <div class="function-section animate-element slide-right" data-delay="0.2s">
+          <div class="section-text hover-scale">
+            <div class="section-header">
+              <span class="section-number">2.</span>
+              <h3 id="section2-title">Fähigkeiten &amp; Verfügbarkeit angeben</h3>
+            </div>
+            <p id="section2-desc">Teile mit, was du kannst und wann du Zeit hast</p>
+          </div>
+          <div class="section-image">
+            <img class="hover-rotate pulse" src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/Hilfe%20anfordern.JPG?raw=true" alt="Fähigkeiten &amp; Verfügbarkeit angeben">
+          </div>
+        </div>
+        <!-- Sección 3 -->
+        <div class="function-section animate-element slide-left" data-delay="0.3s">
+          <div class="section-text hover-scale">
+            <div class="section-header">
+              <span class="section-number">3.</span>
+              <h3 id="section3-title">Passende Einsätze finden</h3>
+            </div>
+            <p id="section3-desc">Erhalte automatische Vorschläge für relevante Projekte.</p>
+          </div>
+          <div class="section-image">
+            <img class="hover-rotate pulse" src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/email.png?raw=true" alt="Passende Einsätze finden">
+          </div>
+        </div>
+        <!-- Sección 4 -->
+        <div class="function-section animate-element slide-right" data-delay="0.4s">
+          <div class="section-text hover-scale">
+            <div class="section-header">
+              <span class="section-number">4.</span>
+              <h3 id="section4-title">Engagieren</h3>
+            </div>
+            <p id="section4-desc">Bestätige deinen Einsatz und hilf mit!</p>
+          </div>
+          <div class="section-image">
+            <img class="hover-rotate pulse" src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/ayuda%20frei.png?raw=true" alt="Engagieren">
+          </div>
+        </div>
+      </div>
+
+      <!-- Apartado: Deine Vorteile als Freiwillige -->
+      <div class="advantages-wrapper">
+        <div class="advantages-text animate-element slide-up" data-delay="0.1s">
+          <h3 class="advantages-title" id="advantages-title">Deine Vorteile als Freiwillige:</h3>
+          <p class="advantage-item" id="advantage1">
+            - Schnell und einfach passende Einsatzmöglichkeiten finden
+          </p>
+          <p class="advantage-item" id="advantage2">
+            - Flexibel engagieren – wann und wie es für dich passt
+          </p>
+          <p class="advantage-item" id="advantage3">
+            - Deine Fähigkeiten sinnvoll einsetzen
+          </p>
+          <p class="advantage-item" id="advantage4">
+            - Teil einer starken Gemeinschaft werden
+          </p>
+          <p class="advantage-item" id="advantage5">
+            - Einen positiven Beitrag leisten
+          </p>
+        </div>
+        <div class="advantages-image animate-element slide-up" data-delay="0.3s">
+          <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/voluntario%20freiwilliger.jpg?raw=true" alt="Vorteile">
+        </div>
+      </div>
+    </div>
+  
+    <!-- Apartado de Suscripción -->
+    <div class="subscribe-wrapper">
+      <div class="card animate-element slide-up" data-delay="0.2s">
+        <span class="card__title" id="card-title">Abonnieren</span>
+        <p class="card__content" id="card-content">
+          Erhalte mehr Informationen über PeopleForPeople und unsere Initiative.
+        </p>
+        <div class="card__form">
+          <input placeholder="Your Email" type="text" id="card-input">
+          <button class="sign-up" id="card-button">Senden</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p id="footer-text"></p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Función para actualizar la traducción
+    function changeLanguage(lang) {
+      // Menú
+      document.getElementById("nav-home").innerText = translations[lang]["nav-home"];
+      document.getElementById("nav-app").innerText = translations[lang]["nav-app"];
+      document.getElementById("nav-info").innerText = translations[lang]["nav-info"];
+      document.getElementById("nav-dana").innerText = translations[lang]["nav-dana"];
+      document.getElementById("nav-about").innerText = translations[lang]["nav-about"];
+      document.getElementById("nav-freiwillige").innerText = translations[lang]["nav-freiwillige"];
+      document.getElementById("nav-ngos").innerText = translations[lang]["nav-ngos"];
+      document.getElementById("nav-kommunen").innerText = translations[lang]["nav-kommunen"];
+      document.getElementById("nav-unternehmen").innerText = translations[lang]["nav-unternehmen"];
+    
+      // Hero
+      document.getElementById("hero-title").innerText = translations[lang]["hero_title"];
+      document.getElementById("hero-subtitle").innerText = translations[lang]["hero_subtitle"];
+      document.getElementById("hero-description").innerText = translations[lang]["hero_description"];
+      document.getElementById("hero-section-title").innerText = translations[lang]["hero_section_title"];
+    
+      // Secciones de función
+      document.getElementById("section1-title").innerText = translations[lang]["section1_title"];
+      document.getElementById("section1-desc").innerText = translations[lang]["section1_desc"];
+      document.getElementById("section2-title").innerText = translations[lang]["section2_title"];
+      document.getElementById("section2-desc").innerText = translations[lang]["section2_desc"];
+      document.getElementById("section3-title").innerText = translations[lang]["section3_title"];
+      document.getElementById("section3-desc").innerText = translations[lang]["section3_desc"];
+      document.getElementById("section4-title").innerText = translations[lang]["section4_title"];
+      document.getElementById("section4-desc").innerText = translations[lang]["section4_desc"];
+    
+      // Ventajas
+      document.getElementById("advantages-title").innerText = translations[lang]["advantages_title"];
+      document.getElementById("advantage1").innerText = translations[lang]["advantage1"];
+      document.getElementById("advantage2").innerText = translations[lang]["advantage2"];
+      document.getElementById("advantage3").innerText = translations[lang]["advantage3"];
+      document.getElementById("advantage4").innerText = translations[lang]["advantage4"];
+      document.getElementById("advantage5").innerText = translations[lang]["advantage5"];
+    
+      // Recuadro de suscripción
+      document.getElementById("card-title").innerText = translations[lang]["card__title"];
+      document.getElementById("card-content").innerText = translations[lang]["card__content"];
+      document.getElementById("card-button").innerText = translations[lang]["card__button"];
+      document.getElementById("card-input").placeholder = translations[lang]["card__placeholder"];
+    
+      // Footer
+      document.getElementById("footer-text").innerText = translations[lang]["footer-text"];
+    }
+  
+    // Función para la transición de idioma
+    function runLanguageTransition(lang) {
+      const overlay = document.getElementById("lang-overlay");
+      overlay.style.transform = "translateX(0)";
+      overlay.style.opacity = "1";
+      setTimeout(() => {
+        changeLanguage(lang);
+        overlay.style.transform = "translateX(110%)";
+        overlay.style.opacity = "0";
+      }, 1000);
+      setTimeout(() => {
+        overlay.style.transform = "translateX(-110%)";
+      }, 2100);
+    }
+
+    // Función para animaciones al hacer scroll
+    function setupScrollAnimations() {
+      const animateElements = document.querySelectorAll('.animate-element');
+      
+      // Precarga de imágenes con transición suave
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        if (!img.complete) {
+          img.style.opacity = '0';
+          img.addEventListener('load', function() {
+            img.style.transition = 'opacity 0.5s ease';
+            img.style.opacity = '1';
+          });
+        }
+      });
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const delay = element.dataset.delay || '0s';
+            
+            // Aplicar la animación con el delay especificado
+            setTimeout(() => {
+              element.classList.add('animated');
+            }, parseFloat(delay) * 1000);
+            
+            // Dejar de observar después de animar
+            observer.unobserve(element);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      });
+
+      animateElements.forEach(element => {
+        // Configurar la transformación inicial según el tipo de animación
+        if (element.classList.contains('slide-left')) {
+          element.style.transform = 'translateX(-50px)';
+        } else if (element.classList.contains('slide-right')) {
+          element.style.transform = 'translateX(50px)';
+        } else if (element.classList.contains('slide-up')) {
+          element.style.transform = 'translateY(20px)';
+        }
+        
+        observer.observe(element);
+      });
+    }
+  
+    const translations = {
+      de: {
+        "nav-home": "Startseite",
+        "nav-app": "App",
+        "nav-info": "Informationen",
+        "nav-dana": "DANA",
+        "nav-about": "Über uns",
+        "nav-freiwillige": "Für Freiwillige",
+        "nav-ngos": "Für NGO´s",
+        "nav-kommunen": "Für Kommunen",
+        "nav-unternehmen": "Für Unternehmen",
+        "hero_title": "Werde Teil von PeopleForPeople und engagiere dich!",
+        "hero_subtitle": "Du möchtest helfen, hast aber keine Zeit, ständig nach passenden Angeboten zu suchen?",
+        "hero_description": "PeopleForPeople macht es dir leicht! Registriere dich in wenigen Minuten, gib deine Fähigkeiten und Verfügbarkeit an – unser intelligentes System verbindet dich automatisch mit passenden Einsätzen, egal ob am Wochenende, nach Feierabend oder flexibel nach deinen Möglichkeiten.",
+        "hero_section_title": "So funktioniert es:",
+        "section1_title": "Registrieren",
+        "section1_desc": "Erstelle dein kostenloses Profil",
+        "section2_title": "Fähigkeiten & Verfügbarkeit angeben",
+        "section2_desc": "Teile mit, was du kannst und wann du Zeit hast",
+        "section3_title": "Passende Einsätze finden",
+        "section3_desc": "Erhalte automatische Vorschläge für relevante Projekte.",
+        "section4_title": "Engagieren",
+        "section4_desc": "Bestätige deinen Einsatz und hilf mit!",
+        "advantages_title": "Deine Vorteile als Freiwillige:",
+        "advantage1": "- Schnell und einfach passende Einsatzmöglichkeiten finden",
+        "advantage2": "- Flexibel engagieren – wann und wie es für dich passt",
+        "advantage3": "- Deine Fähigkeiten sinnvoll einsetzen",
+        "advantage4": "- Teil einer starken Gemeinschaft werden",
+        "advantage5": "- Einen positiven Beitrag leisten",
+        "card__title": "Abonnieren",
+        "card__content": "Erhalte mehr Informationen über PeopleForPeople und unsere Initiative.",
+        "card__button": "Senden",
+        "card__placeholder": "Deine Email",
+        "footer-text": "© 2025 PeopleForPeople. Alle Rechte vorbehalten."
+      },
+      es: {
+        "nav-home": "Inicio",
+        "nav-app": "App",
+        "nav-info": "Información",
+        "nav-dana": "DANA",
+        "nav-about": "Quiénes Somos",
+        "nav-freiwillige": "Para voluntarios",
+        "nav-ngos": "Para ONG",
+        "nav-kommunen": "Para municipios",
+        "nav-unternehmen": "Para empresas",
+        "hero_title": "¡Sé parte de PeopleForPeople y comprométete!",
+        "hero_subtitle": "¿Quieres ayudar, pero no tienes tiempo para buscar ofertas adecuadas constantemente?",
+        "hero_description": "¡PeopleForPeople te lo facilita! Regístrate en pocos minutos, indica tus habilidades y tu disponibilidad, y nuestro sistema inteligente te conectará automáticamente con oportunidades adecuadas, ya sea los fines de semana, después del trabajo o de forma flexible según tus posibilidades.",
+        "hero_section_title": "Así funciona:",
+        "section1_title": "Registrarse",
+        "section1_desc": "Crea tu perfil gratis",
+        "section2_title": "Indica tus habilidades y disponibilidad",
+        "section2_desc": "Cuéntanos lo que puedes hacer y cuándo estás disponible",
+        "section3_title": "Encuentra oportunidades adecuadas",
+        "section3_desc": "Recibe sugerencias automáticas para proyectos relevantes.",
+        "section4_title": "Comprométete",
+        "section4_desc": "Confirma tu participación y ayuda",
+        "advantages_title": "Tus ventajas como voluntario:",
+        "advantage1": "- Encuentra oportunidades de servicio de manera rápida y sencilla",
+        "advantage2": "- Comprométete de forma flexible, cuando y como te convenga",
+        "advantage3": "- Aplica tus habilidades de forma efectiva",
+        "advantage4": "- Sé parte de una comunidad fuerte",
+        "advantage5": "- Realiza una contribución positiva",
+        "card__title": "Suscribirse",
+        "card__content": "Recibe más información sobre PeopleForPeople y nuestra iniciativa.",
+        "card__button": "Enviar",
+        "card__placeholder": "Tu correo electrónico",
+        "footer-text": "© 2025 PeopleForPeople. Todos los derechos reservados."
+      }
+    };
+    
+    // Inicialización
+    document.addEventListener("DOMContentLoaded", function() {
+      changeLanguage("de");
+      setupScrollAnimations();
+      
+      // Configurar botones de idioma
+      let currentLang = "de";
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          runLanguageTransition(btn.dataset.lang);
+          currentLang = btn.dataset.lang;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
