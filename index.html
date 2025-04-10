@@ -44,7 +44,12 @@
     .business-model-item.right { margin-top: 300px; }
     .ods-header h3 { font-size: 2em; }
     .ods-header img { height: 80px; width: auto; }
-    .algemesi-container { position: relative; width: 100vw; height: 100vh; }
+    .algemesi-container { 
+      position: relative; 
+      width: 100vw; 
+      height: 100vh; 
+      margin-top: 20px;
+    }
     .algemesi-container img {
       width: 100%;
       height: 100%;
@@ -71,8 +76,27 @@
     .dark-blue { color: #00008B; }
     .volunteers-wave { font-size: 1.3em; }
     .store-img { border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+    /* Estilos para la sección de mamá */
+    .mama-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .mama-container img {
+      max-width: 40%;
+      max-height: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    .mama-container p {
+      font-size: 0.7em;
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
     /* ORIGINAL desktop-styles */
-    .mama-img { margin-left: 700px; margin-top: -150px; display: block; }
     .dana-additional p {
       font-size: 0.8em;
       margin-top: 10px;
@@ -136,8 +160,10 @@
       padding: 5px 10px;
       border-radius: 5px;
     }
-    /* (Se mantienen los estilos para el contenido interno de la homepage) */
-    /* ... [El resto del CSS se conserva tal como lo tienes] ... */
+    /* Estilo para el texto de ODS en negrita */
+    .ods-header-text {
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -176,12 +202,6 @@
       </div>
     </nav>
   </header>
-  
-  <!-- 
-    NOTA: Se han eliminado los paneles dinámicos ya que los contenidos para 
-    "Für Freiwillige", "Für NGO´s", "Für Kommunen" y "Für Unternehmen" se ubicarán 
-    en páginas independientes.
-  -->
   
   <!-- Main Content -->
   <main>
@@ -245,7 +265,6 @@
     </section>
     <!-- Section Informationen -->
     <section id="info">
-      <h2 class="section-title" id="info-title">Información</h2>
       <div class="info-content">
         <div class="info-description">
           <p class="info-intro">
@@ -272,7 +291,7 @@
           </div>
         </div>
         <!-- Encabezado ODS -->
-        <p id="ods-header-text"></p>
+        <p id="ods-header-text" class="ods-header-text"><strong>PeopleForPeople trägt zu verschiedenen Zielen der nachhaltigen Entwicklung bei:</strong></p>
         <div class="ods-items">
           <div class="ods-item">
             <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/ZNE%203.jpg?raw=true" alt="ODS 3">
@@ -301,12 +320,8 @@
           </div>
         </div>
         <div class="info-web">
-          <p id="info-web-text1"></p>
           <a href="https://peopleforpeople7.wordpress.com/" target="_blank">
-            <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/WEB.png?raw=true" alt="WEB Informativa">
           </a>
-          <p id="info-web-text2" style="font-weight:bold;"></p>
-          <p id="info-web-text3" style="margin-top:30px;"></p>
         </div>
       </div>
     </section>
@@ -334,23 +349,24 @@
           </div>
         </div>
       </div>
-      <div class="dana-additional">
-        <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/ADIOS%20MAMA.png?raw=true" alt="Adiós, mamá" class="mama-img">
-        <p style="margin-left:900px; text-align: right;" id="adios-mama-text">
-          "Adiós, mamá. No pudimos llegar a tiempo. Perdón"
-        </p>
-      </div>
-      <div class="dana-news">
-        <div class="algemesi-container">
-          <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/algemesi.jpg?raw=true" alt="Algemesí" class="algemesi-img">
-          <p id="algemesi-text">
-            «In Algemesí gibt es viele Freiwillige, aber es fehlt an Koordination und geeignetem Equipment.»<br>
-            LEVANTE – EL MERCANTIL VALENCIANO<br>
-            2. November 2024.
-          </p>
-        </div>
-      </div>
     </section>
+    
+    <!-- Sección Adiós Mamá (movida fuera de la sección DANA) -->
+    <div class="mama-container">
+      <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/ADIOS%20MAMA.png?raw=true" alt="Adiós, mamá">
+      <p id="adios-mama-text">"Adiós, mamá. No pudimos llegar a tiempo. Perdón"</p>
+    </div>
+    
+    <!-- Sección Algemesí -->
+    <div class="algemesi-container">
+      <img src="https://github.com/PeopleFP/PeopleFPWeb/blob/main/imagenes/algemesi.jpg?raw=true" alt="Algemesí" class="algemesi-img">
+      <p id="algemesi-text">
+        «In Algemesí gibt es viele Freiwillige, aber es fehlt an Koordination und geeignetem Equipment.»<br>
+        LEVANTE – EL MERCANTIL VALENCIANO<br>
+        2. November 2024.
+      </p>
+    </div>
+    
     <!-- Section Über uns -->
     <section id="about">
       <h2 class="section-title" id="about-title">Über uns</h2>
@@ -377,6 +393,7 @@
   </main>
   <!-- Footer -->
   <footer>
+    <p>Greife auf unsere offiziellen Dokumente zu <a href="#documentos" class="glow-link" id="docs-link">hier</a>.</p>
     <p id="footer-text">&#169; 2025 PeopleForPeople. Alle Rechte vorbehalten.</p>
   </footer>
   
@@ -508,9 +525,8 @@
       document.getElementById("feature-5").innerText = translations[lang]["feature-5"];
       document.getElementById("app-cta").innerHTML = translations[lang]["app-cta"];
       document.getElementById("store-heading").innerText = translations[lang]["store-heading"];
-      document.getElementById("info-title").innerText = translations[lang]["info-title"];
       document.querySelector(".info-intro").innerText = translations[lang]["info-text"];
-      document.getElementById("ods-header-text").innerText = translations[lang]["ods-header-text"];
+      document.getElementById("ods-header-text").innerHTML = "<strong>" + translations[lang]["ods-header-text"] + "</strong>";
       document.getElementById("about-title").innerText = translations[lang]["about-title"];
       document.getElementById("about-text").innerHTML = translations[lang]["about-text"];
       document.getElementById("hero-company").textContent = translations[lang]["hero-company"];
@@ -535,9 +551,6 @@
       document.getElementById("ods17-text").innerHTML = translations[lang]["ods17-text"];
       document.getElementById("adios-mama-text").innerText = translations[lang]["adios-mama-text"];
       document.getElementById("algemesi-text").innerHTML = translations[lang]["algemesi-text"];
-      document.getElementById("info-web-text1").innerText = translations[lang]["info-web-text1"];
-      document.getElementById("info-web-text2").innerText = translations[lang]["info-web-text2"];
-      document.getElementById("info-web-text3").innerHTML = translations[lang]["info-web-text3"];
       document.getElementById("footer-text").innerText = translations[lang]["footer-text"];
       initTypewriter();
     }
@@ -580,7 +593,6 @@
         "feature-5": "Zuweisung von Freiwilligen und Anfragenverwaltung",
         "app-cta": "Entdecke unseren Prototyp <a href='https://charliepoten.github.io/People-For-People/' target='_blank' class='glow-link'>hier</a>.",
         "store-heading": "Demnächst verfügbar auf:",
-        "info-title": "Informationen",
         "info-text": "Unser Geschäftsmodell basiert auf einem Freemium-Ansatz: Kleine Organisationen nutzen die Plattform kostenlos, während größere Institutionen von einem Abonnement profitieren. Transparente Statistiken und nachhaltige Entwicklungsziele unterstützen unsere Mission.",
         "ods-header-text": "PeopleForPeople trägt zu verschiedenen Zielen der nachhaltigen Entwicklung bei:",
         "about-title": "Über uns",
@@ -604,9 +616,6 @@
         "ngos-title": "Effiziente Freiwilligenverwaltung mit PeopleForPeople",
         "kommunen-title": "Für Kommunen & Behörden",
         "unternehmen-title": "Stärken Sie Ihr Unternehmen und die Gesellschaft: CSR-Initiativen mit PeopleForPeople",
-        "info-web-text1": "Für weitere Details zu unserem Einfluss und wie du Teil unserer Freiwilligen-Community wirst, besuche unsere Informationswebsite:",
-        "info-web-text2": "Besuche unsere Informationswebsite",
-        "info-web-text3": "Greife auf unsere offiziellen Dokumente zu <a href=\"#documentos\" class=\"glow-link\" id=\"docs-link\">hier</a>.",
         "adios-mama-text": "Auf Wiedersehen, Mama. Wir konnten nicht rechtzeitig kommen. Es tut uns leid.",
         "algemesi-text": "«In Algemesí gibt es viele Freiwillige, aber es fehlt an Koordination und geeignetem Equipment.»<br>LEVANTE – EL MERCANTIL VALENCIANO<br>2. November 2024.",
         "footer-text": "© 2025 PeopleForPeople. Alle Rechte vorbehalten.",
@@ -636,7 +645,6 @@
         "feature-5": "Asignación de voluntarios y gestión de solicitudes",
         "app-cta": "Descubre nuestro prototipo <a href='https://charliepoten.github.io/People-For-People/' target='_blank' class='glow-link'>aquí</a>.",
         "store-heading": "Próximamente disponible en:",
-        "info-title": "Información",
         "info-text": "Nuestro modelo de negocio es Freemium: las pequeñas organizaciones usan la plataforma gratis, mientras que las grandes pagan por servicio.",
         "ods-header-text": "PeopleForPeople contribuye a diversos Objetivos de Desarrollo Sostenible:",
         "about-title": "Quiénes Somos",
@@ -660,9 +668,6 @@
         "ngos-title": "Gestión eficiente de voluntarios con PeopleForPeople",
         "kommunen-title": "Para municipios y autoridades",
         "unternehmen-title": "Fortalece tu empresa y la sociedad con PeopleForPeople",
-        "info-web-text1": "Para más detalles sobre nuestro impacto y cómo unirte a nuestra comunidad de voluntarios, visita nuestra web informativa:",
-        "info-web-text2": "Visita nuestra web informativa",
-        "info-web-text3": "Accede a nuestros documentos oficiales <a href=\"#documentos\" class=\"glow-link\" id=\"docs-link\">aquí</a>.",
         "adios-mama-text": "Adiós, mamá. No pudimos llegar a tiempo. Lo sentimos.",
         "algemesi-text": "«En Algemesí hay muchos voluntarios, pero falta coordinación.»<br>LEVANTE – EL MERCANTIL VALENCIANO<br>2 de noviembre de 2024.",
         "footer-text": "© 2025 PeopleForPeople. Alle Rechte vorbehalten.",
@@ -804,11 +809,9 @@
       }
       
       // Dokumente-Section
-      document.querySelector(".info-web")?.addEventListener("click", function(e) {
-        if(e.target && e.target.id === "docs-link") {
-          e.preventDefault();
-          document.getElementById("documentos").style.display = "block";
-        }
+      document.getElementById("docs-link")?.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.getElementById("documentos").style.display = "block";
       });
       
       document.getElementById("close-docs").addEventListener("click", function() {
