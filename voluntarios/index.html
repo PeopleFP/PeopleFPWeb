@@ -552,17 +552,17 @@
       </div>
     </div>
   
-    <!-- Apartado de Suscripción -->
+    <!-- Apartado de Suscripción CORREGIDO -->
     <div class="subscribe-wrapper">
-      <div class="card animate-element slide-up" data-delay="0.2s">
+      <form id="subscription-form" class="card animate-element slide-up" data-delay="0.2s">
         <span class="card__title" id="card-title">Abonnieren</span>
         <p class="card__content" id="card-content">
           Erhalte mehr Informationen über PeopleForPeople und unsere Initiative.
         </p>
         <div class="card__form">
-          <input placeholder="Dein Name" type="text" id="name-input">
-          <input placeholder="Deine Email" type="email" id="email-input">
-          <button class="sign-up" id="card-button">Senden</button>
+          <input placeholder="Dein Name" type="text" name="name" id="name-input" required>
+          <input placeholder="Deine Email" type="email" name="email" id="email-input" required>
+          <button type="submit" class="sign-up" id="card-button">Senden</button>
         </div>
         <div class="success-message" id="success-message">
           <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -571,127 +571,106 @@
           </svg>
           <p>Vielen Dank für dein Interesse!</p>
         </div>
-      </div>
+      </form>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer>
     <p id="footer-text"></p>
   </footer>
-
-  <!DOCTYPE html>
-<html lang="de">
-<!-- ... (todo el código HTML anterior permanece igual hasta el script de Firebase) ... -->
+  
+   <!-- SDK de EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <!-- Firebase SDK -->
   <script type="module">
-    // Import the functions you need from the Firebase SDKs
+    // Importaciones Firebase
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
     import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
-    // Your web app's Firebase configuration
+    // Inicialización EmailJS CORRECTA
+    emailjs.init('51Uelkje-pi-HUR-g');
+
+    // Configuración Firebase
     const firebaseConfig = {
         apiKey: "AIzaSyCXK3MnPhXxybf6RAJzBLcY-Krt5XsZ8B8",
         authDomain: "subs-people-fp.firebaseapp.com",
         projectId: "subs-people-fp",
-        storageBucket: "subs-people-fp.firebasestorage.app",
+        storageBucket: "subs-people-fp.appspot.com",
         messagingSenderId: "159831662337",
         appId: "1:159831662337:web:de9bb5af3605acab60c500",
         measurementId: "G-MPRES6G1DE"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Función para verificar si el email ya existe
-    async function emailExists(email) {
-      try {
-        const q = query(collection(db, "suscripciones"), where("email", "==", email));
-        const querySnapshot = await getDocs(q);
-        return !querySnapshot.empty;
-      } catch (error) {
-        console.error("Error checking email existence:", error);
-        return false;
-      }
-    }
-
-    // Función para guardar la suscripción en Firestore
-    async function saveSubscription(name, email) {
-      try {
-        // Verificar si el email ya existe
-        const exists = await emailExists(email);
-        if (exists) {
-          console.log("Email ya registrado:", email);
-          return { success: true, exists: true };
-        }
-        
-        // Si no existe, guardar el nuevo registro
-        const docRef = await addDoc(collection(db, "suscripciones"), {
-          nombre: name,
-          email: email,
-          fecha: new Date(),
-          idioma: document.querySelector('.lang-btn.active').dataset.lang
-        });
-        console.log("Document written with ID: ", docRef.id);
-        return { success: true, exists: false };
-      } catch (e) {
-        console.error("Error adding document: ", e);
-        return { success: false, error: e };
-      }
-    }
-
-    // Función para manejar el envío del formulario
-    function handleFormSubmit() {
-      const nameInput = document.getElementById('name-input');
-      const emailInput = document.getElementById('email-input');
-      const submitButton = document.getElementById('card-button');
+    // Función para enviar el formulario CORREGIDA
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const submitButton = form.querySelector('#card-button');
       const successMessage = document.getElementById('success-message');
       const successText = successMessage.querySelector('p');
-      
-      submitButton.addEventListener('click', async function(e) {
-        e.preventDefault();
-        
-        // Validación simple
-        if (nameInput.value.trim() === '' || emailInput.value.trim() === '') {
-          alert('Bitte fülle alle Felder aus');
-          return;
+      const nameInput = document.getElementById('name-input');
+      const emailInput = document.getElementById('email-input');
+
+      try {
+        // Validación
+        if (!form.checkValidity()) {
+          throw new Error('Bitte fülle alle Felder korrekt aus');
         }
-        
-        // Deshabilitar el formulario
-        nameInput.disabled = true;
-        emailInput.disabled = true;
+
+        // Deshabilitar formulario
         submitButton.disabled = true;
         submitButton.textContent = 'Wird gesendet...';
-        
-        try {
-          // Guardar en Firestore
-          const result = await saveSubscription(nameInput.value.trim(), emailInput.value.trim());
-          
-          if (result.success) {
-            if (result.exists) {
-              // Email ya existe
-              successText.textContent = 'Vielen Dank! Sie sind bereits registriert.';
-            } else {
-              // Nuevo registro
-              successText.textContent = 'Vielen Dank für dein Interesse!';
-            }
-            // Mostrar mensaje de éxito
-            successMessage.classList.add('show');
-          } else {
-            throw result.error || new Error('Unknown error');
-          }
-        } catch (error) {
-          console.error("Submission error:", error);
-          // Mostrar mensaje de error y habilitar el formulario
-          alert('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
-          nameInput.disabled = false;
-          emailInput.disabled = false;
+
+        // 1. Enviar email con EmailJS
+        const emailResponse = await emailjs.sendForm(
+          'default_service',
+          'template_7aylg4m',
+          form
+        );
+        console.log('Email erfolgreich gesendet:', emailResponse);
+
+        // 2. Guardar en Firebase
+        const exists = await emailExists(emailInput.value);
+        if (!exists) {
+          await addDoc(collection(db, "suscripciones"), {
+            nombre: nameInput.value,
+            email: emailInput.value,
+            fecha: new Date(),
+            idioma: document.querySelector('.lang-btn.active').dataset.lang
+          });
+        }
+
+        // Mostrar éxito
+        successText.textContent = exists 
+          ? 'Vielen Dank! Sie sind bereits registriert.' 
+          : 'Vielen Dank für dein Interesse!';
+        successMessage.classList.add('show');
+
+        // Resetear después de 5 segundos
+        setTimeout(() => {
+          form.reset();
+          successMessage.classList.remove('show');
           submitButton.disabled = false;
           submitButton.textContent = 'Senden';
-        }
-      });
+        }, 5000);
+
+      } catch (error) {
+        console.error('Fehler:', error);
+        alert(error.message || 'Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
+        submitButton.disabled = false;
+        submitButton.textContent = 'Senden';
+      }
+    }
+
+    // Función para verificar email
+    async function emailExists(email) {
+      const q = query(collection(db, "suscripciones"), where("email", "==", email));
+      return (await getDocs(q)).size > 0;
     }
 
     // Función para actualizar la traducción
@@ -880,11 +859,15 @@
       }
     };
     
-    // Inicialización
-    document.addEventListener("DOMContentLoaded", function() {
+     // Inicialización CORREGIDA
+    document.addEventListener("DOMContentLoaded", () => {
+      // Configurar el formulario
+      document.getElementById('subscription-form')
+        .addEventListener('submit', handleFormSubmit);
+      
+      // Resto de inicializaciones
       changeLanguage("de");
       setupScrollAnimations();
-      handleFormSubmit();
       
       // Configurar botones de idioma
       let currentLang = "de";
