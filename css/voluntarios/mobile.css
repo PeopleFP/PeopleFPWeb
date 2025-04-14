@@ -1199,3 +1199,66 @@ footer {
         justify-content: center;
       }
     }
+.functions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.function-section {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* ⬅️ ¡Esta es la clave! */
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-text {
+  width: 50%;
+  max-width: 500px;
+  min-width: 280px;
+  text-align: left;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  margin-bottom: 10px;
+}
+
+.section-number {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.section-text h3 {
+  font-weight: bold;
+  font-size: 1.4em;
+  margin: 0;
+}
+
+.section-text p {
+  font-size: 1em;
+  color: #555;
+  margin: 0;
+}
+
+.section-image {
+  width: 200px;
+  text-align: center;
+}
+
+.section-image img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 5px;
+  object-fit: cover;
+}
