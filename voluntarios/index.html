@@ -11,12 +11,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* Global settings */
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
+      body::before {
+    content: "CSS no cargado!";
+    color: red;
+    font-size: 3em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }
 
     /* Header y menú principal */
     header.l-header {
